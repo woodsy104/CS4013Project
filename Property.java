@@ -8,8 +8,13 @@ public class Property
     private String locationCategory;
     private boolean principalPrivateResidence;
     
-    public Property(String propertyOwner, String adress, String eircode, double estimatedMarketValue){
-        
+    public Property(String propertyOwner, String address, String eircode, double estimatedMarketValue, String locationCategory, boolean principalPrivateResidence){
+        this.propertyOwner = propertyOwner;
+        this.address = address;
+        this.eircode = eircode;
+        this.estimatedMarketValue = estimatedMarketValue;
+        this.locationCategory = locationCategory;
+        this.principalPrivateResidence = principalPrivateResidence;
     }
     
     public void setPropertyOwner(String owner){
@@ -52,5 +57,9 @@ public class Property
     }
     public boolean isPPR(){
         return this.principalPrivateResidence;
+    }
+    
+    public void calculatePropertyTax(){
+        
     }
 }
