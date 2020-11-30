@@ -3,6 +3,7 @@ public class Owner
 {
     private String name;
     private ArrayList<Property> properties;
+    private double amountPaid;
     
     public Owner(){       
         properties = new ArrayList<Property>();
@@ -29,7 +30,27 @@ public class Owner
         return output;
     }
     
+    public double toPay(){
+        PropertyTax tax = new PropertyTax();
+        double amount = tax.getPropertyTax();
+        return amount;
+    }
+    
     public void payPropertyTax(double payment){
+        amountPaid = payment;
+        double tax = toPay();
         
     }
+    
+    public double amountPaid(){
+     return amountPaid; 
+    }
+    
+    public boolean paidPropTax(){
+        boolean paid;
+        if(toPay() - amountPaid() > 0){
+            return false;
+    }
+     return true;
+}
 }
