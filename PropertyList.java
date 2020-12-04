@@ -52,6 +52,15 @@ public class PropertyList
         }
         return propertiesInLocation;
     }
+    public ArrayList getOwnersProperties(String owner){
+        properties = new ArrayList();
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getPropertyOwner().equalsIgnoreCase(owner)){
+                properties.add(propertylist.get(i));
+            }
+        }
+        return properties;
+    }
     
     public double marketValueByAddress(String address){
         for(int i = 0; i < propertylist.size(); i++){
