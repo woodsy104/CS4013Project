@@ -1,33 +1,72 @@
 
-/**
- * Write a description of class PropertyList here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class PropertyList
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class PropertyList
-     */
-    public PropertyList()
-    {
-        // initialise instance variables
-        x = 0;
+    private ArrayList<Property> propertylist = new ArrayList();
+    private ArrayList<Property> propertiesInLocation;
+    public void addProperty(Property p){
+        propertylist.add(p);
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public void removeProperty(Property p){
+        propertylist.remove(p);
+    }
+    public void clearList(){
+        propertylist.clear();
+    }
+    
+    public ArrayList getPropertyList(){
+        return propertylist;
+    }
+    
+    public Property getPropertyByOwner(String name){
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getPropertyOwner().equalsIgnoreCase(name)){
+                return propertylist.get(i);
+            }
+        }
+        return null;
+    }
+    public Property getPropertyByEircode(String eircode){
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getEircode().equalsIgnoreCase(eircode)){
+                return propertylist.get(i);
+            }
+        }
+        return null;
+    }
+    public Property getPropertyByAddress(String address){
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getAddress().equalsIgnoreCase(address)){
+                return propertylist.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList getLocationProperties(String location){
+        propertiesInLocation = new ArrayList();
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getLocationCategory().equalsIgnoreCase(location)){
+                propertiesInLocation.add(propertylist.get(i));
+            }
+        }
+        return propertiesInLocation;
+    }
+    
+    public double marketValueByAddress(String address){
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getAddress().equalsIgnoreCase(address)){
+                return propertylist.get(i).getMarketValue();
+            }
+        }
+        return 0;
+    }
+    public double marketValueByEircode(String eircode){
+        for(int i = 0; i < propertylist.size(); i++){
+            if(propertylist.get(i).getEircode().equalsIgnoreCase(eircode)){
+                return propertylist.get(i).getMarketValue();
+            }
+        }
+        return 0;
     }
 }
