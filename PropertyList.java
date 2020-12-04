@@ -15,6 +15,16 @@ public class PropertyList
     public void removeProperty(Property p){
         propertylist.remove(p);
     }
+    public void removeMultipleProperties(Property[] props){
+        for(int i = 0; i < props.length; i++){
+            for(int j = 0; j < propertylist.size(); j++){
+                if(props[i] == propertylist.get(i)){
+                    propertylist.remove(props[i]);
+                    break;
+                }
+            }
+        }
+    }
     public void clearList(){
         propertylist.clear();
     }
