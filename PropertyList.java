@@ -6,6 +6,11 @@ public class PropertyList
     public void addProperty(Property p){
         propertylist.add(p);
     }
+    public void addMultipleProperties(Property[] props){
+        for(int i = 0; i < props.length; i++){
+            propertylist.add(props[i]);
+        }
+    }
     
     public void removeProperty(Property p){
         propertylist.remove(p);
