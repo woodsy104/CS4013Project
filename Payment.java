@@ -3,32 +3,29 @@ public class Payment{
     String owner;
     String eircode;
     String address;
-    double Balance;
+    double toPay;
     double propTax;
-    char status;
+    String status;
     double propValue;
     
-    public Payment(String owner, String eircode, String address, double propValue){
+    public Payment(String owner, String eircode, String address, double propValue, double toPay){
      this.propValue = propValue;
      PropertyTax val = new PropertyTax();
      this.propTax = val.getRate(propValue);
      this.owner = owner;
      this.eircode = eircode;
      this.address = address;
-        
+     this.toPay = this.propTax;   
     }
     
     public void payment(double amount){
-        this.Balance = amount - this.propTax;
-       if(this.Balance == 0){
-            this.status = 'P';
+        this.toPay = amount - this.propTax;
+       if(this.toPay == 0){
+            this.status = "P";
         }
         else{
+        this.status = "NP";
         
-        /* Not finised yet.
-        Not entirely sure on how were donig the paymethod. 
-        Will look at it more later 
-        */
         
         
     }
@@ -54,7 +51,7 @@ public class Payment{
         return propValue;
     }
     
-    public char getStatus(){
+    public String getStatus(){
         return status;
     }
 }
