@@ -1,33 +1,60 @@
-
-/**
- * Write a description of class Payment here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Payment
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Payment
-     */
-    public Payment()
-    {
-        // initialise instance variables
-        x = 0;
+import java.util.ArrayList;
+public class Payment{
+    String owner;
+    String eircode;
+    String address;
+    double Balance;
+    double propTax;
+    char status;
+    double propValue;
+    
+    public Payment(String owner, String eircode, String address, double propValue){
+     this.propValue = propValue;
+     PropertyTax val = new PropertyTax();
+     this.propTax = val.getRate(propValue);
+     this.owner = owner;
+     this.eircode = eircode;
+     this.address = address;
+        
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public void payment(double amount){
+        this.Balance = amount - this.propTax;
+       if(this.Balance == 0){
+            this.status = 'P';
+        }
+        else{
+        
+        /* Not finised yet.
+        Not entirely sure on how were donig the paymethod. 
+        Will look at it more later 
+        */
+        
+        
+    }
+    }
+    
+    public String getOwner(){
+        return owner;
+    }
+    
+    public String getEircode(){
+        return eircode;
+    }
+    
+    public String getAddress(){
+        return address;
+    }
+    
+    public double getRate(){
+        return propTax;
+    }
+    
+    public double getPropValue(){
+        return propValue;
+    }
+    
+    public char getStatus(){
+        return status;
     }
 }
