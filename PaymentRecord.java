@@ -40,7 +40,7 @@ import java.util.*;
        String[] data = readToArray(file);
        for(int i=0; i<data.length; i++){
            if(data[i].equals(owner)){
-             return data[i];  
+             return data[i-1];  
             }
         }
        return null;
