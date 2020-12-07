@@ -136,4 +136,23 @@ public class Owner
         }
         return 0;
     }
+    
+    public static void writeToFile(ArrayList<Property> p) //writes the ArrayList to the CSV file
+{
+    try 
+    {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("payment.csv"));
+
+        for (Property p1 : p) 
+        {
+            writer.write(p1.toString());
+        }
+
+        writer.close();
+        }
+     catch (IOException ex) 
+    {
+        System.out.println("Input/Output format error");
+    }
+}
 }
