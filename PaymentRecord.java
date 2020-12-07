@@ -2,22 +2,22 @@ import java.io.*;
 import java.util.*;
 
  public class paymentRecord{
-      static String file = "payment.csv";
+      String file = "payment.csv";
     
-      public static String[] readToArray(String csvFile) {
+      public ArrayList<String> readToArray(){
         
         String file = "payment.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
-        ArrayList<String> paymentRecord = new ArrayList<String>();
+        ArrayList<String> paymentList = new ArrayList<String>();
         String[] data = new String[256];
         try {
             
             br = new BufferedReader(new FileReader(file));
             while ((line = br.readLine()) != null) {                
                 data = line.split(cvsSplitBy);
-
+                
             }
 
         } catch (FileNotFoundException e) {
@@ -33,23 +33,22 @@ import java.util.*;
                 }
             }
         }
-        return data;
+        for(int i=0; i<data.length; i++){
+            paymentList.add(data[i]);
+        }
+        return paymentList;
      }
    
-    public static String getOwner(String owner){
-       String[] data = readToArray(file);
-       for(int i=0; i<data.length; i++){
-           if(data[i].equals(owner)){
-             return data[i-1];  
+    public String getOwner(String address){
+       ArrayList<String> data = readToArray();
+       for(int i=0; i<data.size(); i++){
+           if(data.get(i).equals(address)){
+             return data.get(i-1);  
             }
         }
        return null;
 }
-
-    public static void main(String[] args){
-        System.out.println(Arrays.toString(readToArray(file)));
-        
-    }
+    
    }
 
 
