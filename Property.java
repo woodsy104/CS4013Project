@@ -59,7 +59,11 @@ public class Property
         return this.principalPrivateResidence;
     }
     
-    public void calculatePropertyTax(){
-        
+    public void calculatePropertyTax(double value, String location, boolean PPR){
+        //System.out.println("" + calculatePropertyTax(value, location, PPR));
+    }
+    
+    public String toString(){
+        return "Owner: " + propertyOwner + "\nAddress: " + address + "\nEircode: " + eircode + "\nMarketValue: " + estimatedMarketValue + "\nLocation Category: " + locationCategory + "\nPPR: " + principalPrivateResidence;
     }
 }

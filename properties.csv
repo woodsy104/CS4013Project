@@ -1,0 +1,11 @@
+Owner,Address,Eircode,Market Value,Location Category,PPR
+Eoin Costello,Roscommon,1,100000,Countryside,false
+Sean Ryan,Waterford,2,200000,Large Town,true
+Andrew McMahon,Limerick,3,300000,City,false
+David Woods,Limerick,4,120000,City,false
+Kevin Mulry,Galway,5,500000,Village,false
+Ronan Thornton,Wexford,6,1500000,Small Town,true
+Ronan McCann,Donegal,7,300000,Large Town,false
+Eoin Roche,Kilkenny,8,100000,Small Town,true
+Trevor Watson,Cork,9,700000,City,true
+Sean Mclaverty,Galway,10,10000,Village,false
