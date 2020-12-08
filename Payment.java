@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.*;
 public class Payment{
     String owner;
     String eircode;
@@ -18,27 +19,23 @@ public class Payment{
      this.toPay = this.propTax;   
     }
     
-     public void payment(double amount){
+     public void payment(double amount) throws FileNotFoundException{
         this.toPay = amount - this.propTax;
-        int tPay = 0;
-       if(this.toPay == 0){
-            this.status = "P";
-       } else {
-            this.status = "NP";
-            ArrayList<Payment> pay = readOrWriteFile.readPayments();
-            
-            for(int i = 0; i < pay.size(); i++){
-                if(this.owner.equals(pay.get(i).getOwner())){
-                    this.toPay -= (pay.get(i).toPay());
-                }
+        double tPay = 0;
+        double remaining = 0;
+        ArrayList<Payment> pay = readOrWriteFile.readPayments();
+       for(int i=0; i<pay.size(); i++){
+           if(pay.get(i).equals(this.owner)){
+               Payment p = pay.get(i+3);
+               tPay = p.toPay();
+               remaining = amount - tPay;
             }
-
-            if(this.toPay == 0){
-                this.status = "P";
-            }
-       }
-    }
+        }
+       
+       readOrWriteFile.writePayment(this.owner, this.eircode, this.address,this.propValue,remaining); 
     
+}
+
     public String getOwner(){
         return owner;
     }
