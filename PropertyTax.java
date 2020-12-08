@@ -27,7 +27,7 @@ public class PropertyTax {
     public static int getLocationRate(String location){
         int locationRate = 0;
         for (int i = 0; i < locations.length - 1; i++){
-            if(location.equals(locations[i])){
+            if(location.equalsIgnoreCase(locations[i])){
                 locationRate = locationBase[i];
             }
         }
