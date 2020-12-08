@@ -10,7 +10,9 @@ public class PropertyTax {
         this.propTax = propTax;
     }
 
-    public double getPropertyTax() {
+    public double getPropertyTax(Property p) {
+        this.p = p;
+        calculatePropertyTax(p.getMarketValue(), p.getLocationCategory(), p.isPPR());
         return propTax;
     }
 
