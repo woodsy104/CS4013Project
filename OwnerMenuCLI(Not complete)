@@ -23,7 +23,7 @@ public class OwnerMenu
      throws IOException{
          boolean more = true;
          while (more){
-             System.out.println("V)iew your Properties S)elect Year G)et Tax Amount for Property P)ay Property Tax R)egister Property D)elete Property Q)uit");
+             System.out.println("V)iew your Properties S)elect Year B)alancing statement P)ay Property Tax R)egister Property Q)uit");
              String command = in.nextLine().toUpperCase();
              if (command.equals("V")){ //view properties
                  for(int i = 0; i < menu.viewProperties().size(); i++){
