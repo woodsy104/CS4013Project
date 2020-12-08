@@ -30,9 +30,9 @@ public class OverduePaymentsWindow {
 		layout.setAlignment(Pos.CENTER);
 
 		Scene scene = new Scene(layout);
+		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		OverduePayments.setScene(scene);
 		OverduePayments.showAndWait();
-
 
 	}
 

@@ -27,6 +27,7 @@ public class PreviousYearsWindow {
 		
 		Scene scene = new Scene(layout);
 		PrevYear.setScene(scene);
+		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		PrevYear.showAndWait();
 		
 		

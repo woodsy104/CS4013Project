@@ -27,6 +27,7 @@ public class PaymentsWindow {
 		
 		Scene scene = new Scene(layout);
 		payments.setScene(scene);
+		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		payments.showAndWait();
 		
 		
