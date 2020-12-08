@@ -1,17 +1,20 @@
+import java.io.*;
 import java.util.*;
 public class Owner
 {
     private String name;
     private ArrayList<Property> properties;
-    private ArrayList<Property> propertylist = new ArrayList();
+    private ArrayList<Payment> payments;
     private double amountPaid;
     
     public Owner(){       
-        propertylist = new ArrayList<Property>();
+        properties = new ArrayList<Property>();
+        payments = new ArrayList<Payment>();
     }
     public Owner(String name){
         this.name = name;
-        propertylist = new ArrayList<Property>();
+        properties = new ArrayList<Property>();
+        payments = new ArrayList<Payment>();
     }
     
     public void setName(String name){
@@ -21,67 +24,93 @@ public class Owner
         return this.name;
     }
     
-    public double toPay(){
+    public void registerProperty(Property property) throws FileNotFoundException{
+        properties.add(property);
+        readOrWriteFile.writeProperty(name, property.getAddress(), property.getEircode(), property.getMarketValue(), property.getLocationCategory(), property.isPPR());
+    }
+    public void registerMultipleProperties(Property[] props) throws FileNotFoundException{
+        for(int i = 0; i < props.length; i++){
+            properties.add(props[i]);
+            readOrWriteFile.writeProperty(name, props[i].getAddress(), props[i].getEircode(), props[i].getMarketValue(), props[i].getLocationCategory(), props[i].isPPR());
+        }
+    }
+    
+    public ArrayList<Property> viewProperties(){ 
+        ArrayList<Property> propOutput = new ArrayList<Property>();
+        properties = new ArrayList<Property>();
+        properties= readOrWriteFile.readProperties();
+        
+        for(int i = 0; i < properties.size(); i++){
+           if(name.equals((properties.get(i)).getPropertyOwner())){
+               propOutput.add(properties.get(i));
+           }                          
+        }
+        return propOutput;
+    }
+    public ArrayList<Property> viewPropertiesByYear(int year){ 
+        ArrayList<Property> propOutput = new ArrayList<Property>();
+        properties = new ArrayList<Property>();
+        properties= readOrWriteFile.readProperties();
+        
+        for(int i = 0; i < properties.size(); i++){
+           if(name.equals((properties.get(i)).getPropertyOwner()) && year == (properties.get(i)).getYearRegistered()){
+               propOutput.add(properties.get(i));
+           }                          
+        }
+        return propOutput;
+    }
+    public ArrayList<Payment> viewPayments(){ 
+        ArrayList<Payment> paymentOutput = new ArrayList<Payment>();
+        payments = new ArrayList<Payment>();
+        payments = readOrWriteFile.readPayments();
+        
+        for(int i = 0; i < payments.size(); i++){
+           if(name.equals((payments.get(i)).getOwner())){
+               paymentOutput.add(payments.get(i));
+           }                          
+        }
+        return paymentOutput;
+    }
+    
+    public void payPropertyTax(Property property){
+        double taxDue = PropertyTax.calculatePropertyTax(property.getMarketValue(), property.getLocationCategory(), property.isPPR(), property.getYearRegistered());
+        
+    }
+    
+    /**public double toPay(){
         PropertyTax tax = new PropertyTax();
         double amount = tax.getPropertyTax();
         return amount;
-    }
-    
-    public void payPropertyTax(double payment){
-        amountPaid = payment;
-        double tax = toPay();
-    }
-    
+    }    
+        
     public double amountPaid(){
-     return amountPaid; 
-    }
-    
+        return amountPaid; 
+    }    
     public boolean paidPropTax(){
         boolean paid;
         if(toPay() - amountPaid() > 0){
             return false;
         }
         return true;
-    }
-    
-    public void addProperty(Property p){
-        propertylist.add(p);
-    }
-    public void addMultipleProperties(Property[] props){
-        for(int i = 0; i < props.length; i++){
-            propertylist.add(props[i]);
-        }
-    }
+    }        
     
     public void removeProperty(Property p){
-        propertylist.remove(p);
+        properties.remove(p);
     }
     public void removeMultipleProperties(Property[] props){
         for(int i = 0; i < props.length; i++){
-            for(int j = 0; j < propertylist.size(); j++){
-                if(props[i] == propertylist.get(i)){
-                    propertylist.remove(props[i]);
+            for(int j = 0; j < properties.size(); j++){
+                if(props[i] == properties.get(i)){
+                    properties.remove(props[i]);
                     break;
                 }
             }
         }
     }
     public void clearList(){
-        propertylist.clear();
+        properties.clear();
     }
     
-    public ArrayList getPropertyList(){
-        return propertylist;
-    }
-    
-    public Property getPropertyByOwner(String name){
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getPropertyOwner().equalsIgnoreCase(name)){
-                return propertylist.get(i);
-            }
-        }
-        return null;
-    }
     public Property getPropertyByEircode(String eircode){
         for(int i = 0; i < propertylist.size(); i++){
             if(propertylist.get(i).getEircode().equalsIgnoreCase(eircode)){
@@ -135,24 +164,5 @@ public class Owner
             }
         }
         return 0;
-    }
-    
-    public static void writeToFile(ArrayList<Property> p) //writes the ArrayList to the CSV file
-{
-    try 
-    {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("payment.csv"));
-
-        for (Property p1 : p) 
-        {
-            writer.write(p1.toString());
-        }
-
-        writer.close();
-        }
-     catch (IOException ex) 
-    {
-        System.out.println("Input/Output format error");
-    }
-}
+    }*/
 }

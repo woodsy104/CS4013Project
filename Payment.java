@@ -25,16 +25,14 @@ public class Payment{
             this.status = "P";
        } else {
             this.status = "NP";
-            paymentRecord list = new paymentRecord();
-            String[] pay = list.readToArray("payment.csv");
-            String sPay = "";
-            for(int i=0; i<pay.length; i++){
-                if(pay[i].equals(this.owner)){
-                    sPay = pay[i+4];
-                    tPay = Integer.parseInt(sPay);
+            ArrayList<Payment> pay = readOrWriteFile.readPayments();
+            
+            for(int i = 0; i < pay.size(); i++){
+                if(this.owner.equals(pay.get(i).getOwner())){
+                    this.toPay -= (pay.get(i).toPay());
                 }
             }
-            this.toPay -= tPay;
+
             if(this.toPay == 0){
                 this.status = "P";
             }
@@ -55,6 +53,10 @@ public class Payment{
     
     public double getRate(){
         return propTax;
+    }
+    
+    public double toPay(){
+        return toPay;
     }
     
     public double getPropValue(){

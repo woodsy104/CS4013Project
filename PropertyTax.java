@@ -1,51 +1,51 @@
-
+import java.time.*;
 public class PropertyTax {
-    private double propTax;
-    private double[] propValue = {0, 150000, 400001, 650000};
-    private double[] rate = {0, 0.01, 0.02, 0.04};
-    private String[] locations = {"City","Large town","Small town","Village","Countryside"};
-    private int[] locationBase = {100, 80, 60, 50, 25};
+    //private double propTax;
+    private static double[] propValue = {0, 150000, 400001, 650000};
+    private static double[] rate = {0, 0.01, 0.02, 0.04};
+    private static String[] locations = {"City","Large town","Small town","Village","Countryside"};
+    private static int[] locationBase = {100, 80, 60, 50, 25};
 
-    public void setPropertyTax(double propTax){
+    /**public void setPropertyTax(double propTax){
         this.propTax = propTax;
     }
-
-    public double getPropertyTax(Property p) {
-        this.p = p;
-        calculatePropertyTax(p.getMarketValue(), p.getLocationCategory(), p.isPPR());
+    public double getPropertyTax() {
         return propTax;
-    }
+    }*/
 
-    public double getRate(double value){
+    public static double getRate(double value){
         double marketRate = 0;
-        if((0<=value) && (value<150000)){
-            marketRate = 0;
-        } else if((150000<=value) && (value<400000)){
-            marketRate = 0.01;
-        }else if((400000<=value) && (value<650000)){
-            marketRate = 0.02;
-        }else if(value >= 650000){
-            marketRate = 0.04;
+        for(int i = 0; i < propValue.length - 1; i++){
+            if((propValue[i] <= value) && (value < propValue[i + 1])){
+                marketRate = rate[i];
+            } else if(value >= 650000){
+                marketRate = rate[3];
+            }
         }
         return marketRate;
     }
-
-    public int getLocationRate(String location){
+    public static int getLocationRate(String location){
         int locationRate = 0;
-        for (int i = 0; i < locations.length; i++){
-            if(location.equalsIgnoreCase(locations[i])){
+        for (int i = 0; i < locations.length - 1; i++){
+            if(location.equals(locations[i])){
                 locationRate = locationBase[i];
             }
         }
         return locationRate;
     }
-    public void calculatePropertyTax(double value, String location, boolean PPR) {
-        propTax = value * getRate(value);
+    
+    public static double calculatePropertyTax(double value, String location, boolean PPR, int yearRegistered) {
+        double propTax = value * getRate(value);
         propTax += getLocationRate(location);
         propTax += 100;
-        if (!PPR) {
+        if(!PPR) {
             propTax += 100;
         }
-        setPropertyTax(propTax);
+        if(Year.now().getValue() - yearRegistered > 0){
+            for(int i = 0; i < Year.now().getValue() - yearRegistered; i++){
+                propTax += (propTax / 100) * 7;
+            }
+        }
+        return propTax;
     }
 }

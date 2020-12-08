@@ -2,9 +2,8 @@ import java.io.*;
 import java.util.*;
 public class DeptEnvironmentRecord{
     private ArrayList<Property> propOutput;
-    public DeptEnvironmentRecord(){       
-    
-        
+    public DeptEnvironmentRecord(){           
+        this.propOutput = new ArrayList<Property>();
     }
     
     public String getTaxDataForProperty(String address){
