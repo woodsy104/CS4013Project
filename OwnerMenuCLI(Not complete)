@@ -1,0 +1,96 @@
+import java.util.Scanner;
+import java.io.IOException;
+import java.util.ArrayList;
+/**
+ A menu for the property owners.
+*/
+public class OwnerMenu
+{
+     private Scanner in;
+     
+     /**
+     Constructs a OwnerMenu object
+     */
+     public OwnerMenu(){
+         in = new Scanner(System.in);
+     }
+    
+     /**
+     Runs the vending machine system. 
+     @param machine the vending machine
+     */
+     public void run(Owner menu)
+     throws IOException{
+         boolean more = true;
+         while (more){
+             System.out.println("V)iew your Properties S)elect Year G)et Tax Amount for Property P)ay Property Tax R)egister Property D)elete Property Q)uit");
+             String command = in.nextLine().toUpperCase();
+             if (command.equals("V")){ //view properties
+                 for(int i = 0; i < menu.viewProperties().size(); i++){
+                   System.out.println(menu.viewProperties().get(i).toString());
+                 }
+             }else if (command.equals("G")){ 
+                 System.out.println("Which property would you like to view tax amount for?");
+                 Property p = (Property)
+                 getChoice(menu.viewProperties());
+                 System.out.println(menu.fulltoPay(p.getAddress()));
+             }else if(command.equals("S")){
+                 //
+             }else if(command.equals("D")){
+                 try{
+                 System.out.println("Select Property to be deleted");
+                 Property p = (Property)
+                 getChoice(menu.viewProperties());
+                 menu.removeProperty(p);
+                 System.out.println(p + " has been deleted");
+                } catch(Exception ex){
+                    System.out.println(ex.getMessage());
+                }
+             }else if (command.equals("P")){ //pay property tax
+                 try{
+                    Property p = (Property)
+                    getChoice(menu.viewProperties());
+                    System.out.println("Amount: ");
+                    double amount = in.nextDouble();
+                    menu.payPropertyTax(amount, p.getAddress());
+                    System.out.println("Payment Confirmed For: " + p);
+                 } catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                 }
+               } else if (command.equals("R")){
+                 System.out.println("Name: ");
+                 String name = in.nextLine();
+                 System.out.println("Address: ");
+                 String address = in.nextLine();
+                 System.out.println("Eircode: ");
+                 String eircode = in.nextLine();
+                 System.out.println("Location Category: " + "(City,Large town,Small town,Village,Countryside)");
+                 String locationCategory = in.nextLine();
+                 System.out.println("Market Value: ");
+                 double estimatedMarketValue = in.nextDouble();
+                 System.out.println("PPR: ");
+                 boolean ppr = in.nextBoolean();
+                 
+                 in.nextLine(); // read the new-line character
+                 menu.addProperty(new Property(name, address, eircode, estimatedMarketValue, locationCategory, ppr));
+             } else if (command.equals("Q")){
+                 more = false;
+             }
+          }
+     }
+     
+     private Property getChoice(ArrayList<Property> choices){
+         while (true){
+              char c = 'A';
+              for (Property choice : choices){
+                  System.out.println(c + ") " + choice);
+                  c++;
+              }
+              String input = in.nextLine();
+              int n = input.toUpperCase().charAt(0) - 'A';
+              if (0 <= n && n < choices.size()){
+                  return choices.get(n);
+                }
+         }
+     }
+} 
