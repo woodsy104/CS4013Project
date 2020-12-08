@@ -18,12 +18,14 @@ public class PropertyTax {
 
     public double getRate(double value){
         double marketRate = 0;
-        for(int i = 0; i < propValue.length; i++){
-            if((propValue[i] <= value) && (value < propValue[i+1])){
-                marketRate = rate[i];
-            } else if(value >= 650000){
-                marketRate = rate[3];
-            }
+        if((0<=value) && (value<150000)){
+            marketRate = 0;
+        } else if((150000<=value) && (value<400000)){
+            marketRate = 0.01;
+        }else if((400000<=value) && (value<650000)){
+            marketRate = 0.02;
+        }else if(value >= 650000){
+            marketRate = 0.04;
         }
         return marketRate;
     }
@@ -31,7 +33,7 @@ public class PropertyTax {
     public int getLocationRate(String location){
         int locationRate = 0;
         for (int i = 0; i < locations.length; i++){
-            if(location.equals(locations[i])){
+            if(location.equalsIgnoreCase(locations[i])){
                 locationRate = locationBase[i];
             }
         }
