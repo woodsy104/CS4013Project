@@ -1,19 +1,12 @@
 import java.time.*;
+import java.util.*;
 public class PropertyTax {
-    //private double propTax;
     private static double[] propValue = {0, 150000, 400001, 650000};
     private static double[] rate = {0, 0.01, 0.02, 0.04};
     private static String[] locations = {"City","Large town","Small town","Village","Countryside"};
     private static int[] locationBase = {100, 80, 60, 50, 25};
-
-    /**public void setPropertyTax(double propTax){
-        this.propTax = propTax;
-    }
-    public double getPropertyTax() {
-        return propTax;
-    }*/
-
-    public static double getRate(double value){
+    
+    private static double getRate(double value){
         double marketRate = 0;
         for(int i = 0; i < propValue.length - 1; i++){
             if((propValue[i] <= value) && (value < propValue[i + 1])){
@@ -24,28 +17,42 @@ public class PropertyTax {
         }
         return marketRate;
     }
-    public static int getLocationRate(String location){
+    private static int getLocationRate(String location){
         int locationRate = 0;
         for (int i = 0; i < locations.length - 1; i++){
-            if(location.equalsIgnoreCase(locations[i])){
+            if(location.equals(locations[i])){
                 locationRate = locationBase[i];
             }
         }
         return locationRate;
     }
+    private static int calculateCompound(String name, int yearRegistered){
+        int count = Year.now().getValue() - yearRegistered;
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        payments = readOrWriteFile.readPayments();
+        
+        for(int year = yearRegistered; year < Year.now().getValue(); year++){
+            for(int i = 0; i < payments.size(); i++){                
+                if(name.equals((payments.get(i)).getOwner()) && year == (payments.get(i)).getYear()){
+                    count--;
+                }
+            }
+        }
+        
+        return count;
+    }
     
-    public static double calculatePropertyTax(double value, String location, boolean PPR, int yearRegistered) {
+    public static double calculatePropertyTax(String owner, double value, String location, boolean PPR, double ammount, int yearRegistered) {
         double propTax = value * getRate(value);
         propTax += getLocationRate(location);
         propTax += 100;
         if(!PPR) {
             propTax += 100;
         }
-        if(Year.now().getValue() - yearRegistered > 0){
-            for(int i = 0; i < Year.now().getValue() - yearRegistered; i++){
-                propTax += (propTax / 100) * 7;
-            }
-        }
+        for(int i = 0; i < calculateCompound(owner, yearRegistered); i++){
+            propTax += (propTax / 100) * 7;
+        }        
+       
         return propTax;
     }
 }

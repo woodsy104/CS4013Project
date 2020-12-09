@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.time.*;
 public class Owner
 {
     private String name;
@@ -7,10 +8,6 @@ public class Owner
     private ArrayList<Payment> payments;
     private double amountPaid;
     
-    public Owner(){       
-        properties = new ArrayList<Property>();
-        payments = new ArrayList<Payment>();
-    }
     public Owner(String name){
         this.name = name;
         properties = new ArrayList<Property>();
@@ -26,12 +23,12 @@ public class Owner
     
     public void registerProperty(Property property) throws FileNotFoundException{
         properties.add(property);
-        readOrWriteFile.writeProperty(name, property.getAddress(), property.getEircode(), property.getMarketValue(), property.getLocationCategory(), property.isPPR());
+        readOrWriteFile.writeProperty(name, property.getAddress(), property.getEircode(), property.getMarketValue(), property.getLocation(), property.isPPR(), property.getYearRegistered());
     }
     public void registerMultipleProperties(Property[] props) throws FileNotFoundException{
         for(int i = 0; i < props.length; i++){
             properties.add(props[i]);
-            readOrWriteFile.writeProperty(name, props[i].getAddress(), props[i].getEircode(), props[i].getMarketValue(), props[i].getLocationCategory(), props[i].isPPR());
+            readOrWriteFile.writeProperty(name, props[i].getAddress(), props[i].getEircode(), props[i].getMarketValue(), props[i].getLocation(), props[i].isPPR());
         }
     }
     
@@ -41,7 +38,7 @@ public class Owner
         properties= readOrWriteFile.readProperties();
         
         for(int i = 0; i < properties.size(); i++){
-           if(name.equals((properties.get(i)).getPropertyOwner())){
+           if(name.equals((properties.get(i)).getOwner())){
                propOutput.add(properties.get(i));
            }                          
         }
@@ -53,7 +50,7 @@ public class Owner
         properties= readOrWriteFile.readProperties();
         
         for(int i = 0; i < properties.size(); i++){
-           if(name.equals((properties.get(i)).getPropertyOwner()) && year == (properties.get(i)).getYearRegistered()){
+           if(name.equals((properties.get(i)).getOwner()) && year == (properties.get(i)).getYearRegistered()){
                propOutput.add(properties.get(i));
            }                          
         }
@@ -72,97 +69,13 @@ public class Owner
         return paymentOutput;
     }
     
-    public void payPropertyTax(Property property){
-        double taxDue = PropertyTax.calculatePropertyTax(property.getMarketValue(), property.getLocationCategory(), property.isPPR(), property.getYearRegistered());
-        
+    public void getBalancingStatement(){
+        System.out.println("howaya now");
     }
     
-    /**public double toPay(){
-        PropertyTax tax = new PropertyTax();
-        double amount = tax.getPropertyTax();
-        return amount;
-    }    
-        
-    public double amountPaid(){
-        return amountPaid; 
-    }    
-    public boolean paidPropTax(){
-        boolean paid;
-        if(toPay() - amountPaid() > 0){
-            return false;
-        }
-        return true;
-    }        
-    
-    public void removeProperty(Property p){
-        properties.remove(p);
+    public void payPropertyTax(Property property, double ammount) throws FileNotFoundException{
+        property.payPropertyTax(ammount);
+        readOrWriteFile.writePayment(name, property.getEircode(), property.getAddress(), property.getMarketValue(), (PropertyTax.calculatePropertyTax(name, property.getMarketValue(), property.getLocation(), property.isPPR(), ammount, property.getYearRegistered())), Year.now().getValue());
     }
-    public void removeMultipleProperties(Property[] props){
-        for(int i = 0; i < props.length; i++){
-            for(int j = 0; j < properties.size(); j++){
-                if(props[i] == properties.get(i)){
-                    properties.remove(props[i]);
-                    break;
-                }
-            }
-        }
-    }
-    public void clearList(){
-        properties.clear();
-    }
-    
-    public Property getPropertyByEircode(String eircode){
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getEircode().equalsIgnoreCase(eircode)){
-                return propertylist.get(i);
-            }
-        }
-        return null;
-    }
-    public Property getPropertyByAddress(String address){
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getAddress().equalsIgnoreCase(address)){
-                return propertylist.get(i);
-            }
-        }
-        return null;
-    }
-    
-    public ArrayList getLocationProperties(String location){
-        properties = new ArrayList();
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getLocationCategory().equalsIgnoreCase(location)){
-                properties.add(propertylist.get(i));
-            }
-        }
-        return properties;
-    }
-    
-    //This is for Department
-    public ArrayList getOwnersProperties(String owner){
-        properties = new ArrayList();
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getPropertyOwner().equalsIgnoreCase(owner)){
-                properties.add(propertylist.get(i));
-            }
-        }
-        return properties;
-    }
-    
-    public double marketValueByAddress(String address){
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getAddress().equalsIgnoreCase(address)){
-                return propertylist.get(i).getMarketValue();
-            }
-        }
-        return 0;
-    }
-    public double marketValueByEircode(String eircode){
-        for(int i = 0; i < propertylist.size(); i++){
-            if(propertylist.get(i).getEircode().equalsIgnoreCase(eircode)){
-                return propertylist.get(i).getMarketValue();
-            }
-        }
-        return 0;
-    }*/
+   
 }

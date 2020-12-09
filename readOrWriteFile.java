@@ -59,7 +59,7 @@ public class readOrWriteFile
                     if(data[0].equals("Owner")){
                         continue;
                     } else {                                                   
-                        csvPayments.add(new Payment(data[0], data[1], data[2], Double.parseDouble(data[3]), Double.parseDouble(data[4])));
+                        csvPayments.add(new Payment(data[0], data[1], data[2], Double.parseDouble(data[3]), Double.parseDouble(data[4]), Integer.parseInt(data[5])));
                     }
                 }
             } catch (FileNotFoundException e) {
@@ -94,11 +94,11 @@ public class readOrWriteFile
             pw.flush();
             pw.close();
      }     
-     public static void writePayment(String owner, String eircode, String address, double propValue, double toPay) throws FileNotFoundException{
+     public static void writePayment(String owner, String eircode, String address, double propValue, double toPay, int yearPaid) throws FileNotFoundException{
             FileOutputStream fos = new FileOutputStream("payments.csv", true);
             PrintWriter pw = new PrintWriter(fos);
             
-            pw.println(owner + "," + eircode + "," + address + "," + propValue + "," + toPay);
+            pw.println(owner + "," + eircode + "," + address + "," + propValue + "," + toPay + "," + yearPaid);
             pw.flush();
             pw.close();
      }

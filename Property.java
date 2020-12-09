@@ -1,38 +1,30 @@
 import java.time.*;
+import java.io.*;
 public class Property
 {
-    private String propertyOwner;
+    private String owner;
     private String address;
     private String eircode;
-    private double estimatedMarketValue;
-    private String locationCategory;
-    private boolean principalPrivateResidence;
-    private int yearRegistered = 0;
+    private double marketValue;
+    private String location;
+    private boolean PPR;
+    private int yearRegistered;
     
-    public Property(String propertyOwner, String address, String eircode, double estimatedMarketValue, String locationCategory, boolean principalPrivateResidence){
-        this.propertyOwner = propertyOwner;
+    public Property(String owner, String address, String eircode, double marketValue, String location, boolean PPR, int yearRegitered){
+        this.owner = owner;
         this.address = address;
         this.eircode = eircode;
-        this.estimatedMarketValue = estimatedMarketValue;
-        this.locationCategory = locationCategory;
-        this.principalPrivateResidence = principalPrivateResidence;
-        this.yearRegistered = Year.now().getValue();
-    }
-    public Property(String propertyOwner, String address, String eircode, double estimatedMarketValue, String locationCategory, boolean principalPrivateResidence, int yearRegitered){
-        this.propertyOwner = propertyOwner;
-        this.address = address;
-        this.eircode = eircode;
-        this.estimatedMarketValue = estimatedMarketValue;
-        this.locationCategory = locationCategory;
-        this.principalPrivateResidence = principalPrivateResidence;
+        this.marketValue = marketValue;
+        this.location = location;
+        this.PPR = PPR;
         this.yearRegistered = yearRegistered;
     }
     
-    public void setPropertyOwner(String owner){
-        this.propertyOwner = owner;
+    public void setowner(String owner){
+        this.owner = owner;
     }
-    public String getPropertyOwner(){
-        return this.propertyOwner;
+    public String getOwner(){
+        return this.owner;
     }
     
     public void setAddress(String address){
@@ -50,24 +42,24 @@ public class Property
     }
     
     public void setMarketValue(double marketValue){
-        this.estimatedMarketValue = marketValue;
+        this.marketValue = marketValue;
     }
     public double getMarketValue(){
-        return this.estimatedMarketValue;
+        return this.marketValue;
     }
     
-    public void setLocationCategory(String location){
-        this.locationCategory = location;
+    public void setLocation(String location){
+        this.location = location;
     }
-    public String getLocationCategory(){
-        return this.locationCategory;
+    public String getLocation(){
+        return this.location;
     }
     
     public void setPPR(boolean PPR){
-        this.principalPrivateResidence = PPR;
+        this.PPR = PPR;
     }
     public boolean isPPR(){
-        return this.principalPrivateResidence;
+        return this.PPR;
     }
     
     public void setYearRegistered(int year){
@@ -77,11 +69,12 @@ public class Property
         return this.yearRegistered;
     }
     
-    public void calculatePropertyTax(double value, String location, boolean PPR){
-        //System.out.println("" + calculatePropertyTax(value, location, PPR));
+    public void payPropertyTax(double ammount) throws FileNotFoundException{
+        double taxDue = PropertyTax.calculatePropertyTax(owner, marketValue, location, PPR, ammount, yearRegistered);
+        readOrWriteFile.writePayment(owner, eircode, address, marketValue, (taxDue - ammount), Year.now().getValue());
     }
     
     public String toString(){
-        return "Owner: " + propertyOwner + "\nAddress: " + address + "\nEircode: " + eircode + "\nMarketValue: " + estimatedMarketValue + "\nLocation Category: " + locationCategory + "\nPPR: " + principalPrivateResidence + "\nYear Registered: " + yearRegistered;
+        return "Owner: " + owner + "\nAddress: " + address + "\nEircode: " + eircode + "\nMarketValue: " + marketValue + "\nLocation Category: " + location + "\nPPR: " + PPR + "\nYear Registered: " + yearRegistered + "\n";
     }
 }

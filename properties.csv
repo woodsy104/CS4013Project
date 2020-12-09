@@ -1,11 +1,15 @@
-Owner,Address,Eircode,Market Value,Location Category,PPR
-Eoin Costello,Roscommon,1,100000,Countryside,false
-Sean Ryan,Waterford,2,200000,Large Town,true
-Andrew McMahon,Limerick,3,300000,City,false
-David Woods,Limerick,4,120000,City,false
-Kevin Mulry,Galway,5,500000,Village,false
-Ronan Thornton,Wexford,6,1500000,Small Town,true
-Ronan McCann,Donegal,7,300000,Large Town,false
-Eoin Roche,Kilkenny,8,100000,Small Town,true
-Trevor Watson,Cork,9,700000,City,true
-Sean Mclaverty,Galway,10,10000,Village,false
+Owner,Address,Eircode,Market Value,Location Category,PPR,Year Registered
+Eoin Costello,Roscommon,1,100000,Countryside,FALSE,2018
+Sean Ryan,Waterford,2,200000,Large Town,TRUE,2020
+Andrew McMahon,Limerick,3,300000,City,FALSE,2019
+David Woods,Limerick,4,120000,City,FALSE,2019
+Kevin Mulry,Galway,5,500000,Village,FALSE,2015
+Ronan Thornton,Wexford,6,1500000,Small Town,TRUE,2017
+Ronan McCann,Donegal,7,300000,Large Town,FALSE,2016
+Eoin Roche,Kilkenny,8,100000,Small Town,TRUE,2020
+Trevor Watson,Cork,9,700000,City,TRUE,2019
+Sean Mclaverty,Galway,10,10000,Village,FALSE,2019
+David Barrett,Sligo,11,400000,Small Town,TRUE,2017
+Eoin Costello,Limerick,13,800000,City,FALSE,0
+Kevin Mulry,Limerick,14,950000,City,FALSE,0
+Eoin Costello,Sligo,15,500000.0,Large Town,false,0

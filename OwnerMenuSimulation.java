@@ -6,8 +6,8 @@ public class OwnerMenuSimulation
 {
     public static void main(String[] args)
     throws IOException{
-         Owner owner = new Owner();
-         OwnerMenu menu = new OwnerMenu();
+         Owner owner = new Owner("Eoin Costello");
+         OwnerMenuCLI menu = new OwnerMenuCLI();
          menu.run(owner);
     }
 } 

@@ -1,5 +1,8 @@
-Owner,Eircode,Address,Property Value,To Pay
-Eoin Costello,1,Roscommon,100000,50000
-Kevin Mulry,5,Galway,500000,10000
-Sean Ryan,2,Waterford,200000,200000
-Ronan McCann,7,Donegal,300000,150000
+Owner,Eircode,Address,Property Value,To Pay,YearPaid
+Eoin Costello,1,Roscommon,100000,50000,2019
+Kevin Mulry,5,Galway,500000,10000,2017
+Sean Ryan,2,Waterford,200000,70000,0
+Ronan McCann,7,Donegal,300000,150000,2018
+Ciaran Royce,12,Mayo,130000,100000,2020
+Eoin Costello,1,Roscommon,100000.0,4.531697579993203E61,2020
+Eoin Costello,1,Roscommon,100000.0,4.531697579993203E61,2020

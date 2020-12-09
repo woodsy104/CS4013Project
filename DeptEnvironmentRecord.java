@@ -22,7 +22,7 @@ public class DeptEnvironmentRecord{
         propOutput = readOrWriteFile.readProperties();
         
         for(int i = 0; i < propOutput.size(); i++){
-           if(name.equals((propOutput.get(i)).getPropertyOwner())){
+           if(name.equals((propOutput.get(i)).getOwner())){
                return (propOutput.get(i)).toString();
            }                          
         }    
