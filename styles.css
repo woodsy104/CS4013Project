@@ -1,17 +1,19 @@
 .root{
-	-fx-background-color: #383838;
+	-fx-background-color: #ffffff;
 	-fx-font-size: 10pt;
-	
-	
+		
 }
+
+
 .label{
-		-fx-text-fill: E8E8E8
+		-fx-text-fill: #000000
 	
 }
 
 .button {
 	-fx-background-color: #AB4642;
-	-fx-text-fill: #FFFFFF;
+	-fx-text-fill: #000000;
 	-fx-background-radius: 15;
+
 }
 	

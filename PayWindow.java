@@ -45,6 +45,9 @@ public class PayWindow {
 			System.out.println(result);
 			if(result == true) {
 				//Pay for this house
+				//THIS IS ONE OF THE AREAS THAT WE NEED TO ACTUALLY ADD THE RESULTS THAT THE USER INPUTS INTO THE CSVs OR THE METHODS
+				
+				
 				handleOptions();
 				Pay.close();
 			}

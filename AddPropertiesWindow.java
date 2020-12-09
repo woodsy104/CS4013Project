@@ -73,12 +73,21 @@ public class AddPropertiesWindow {
 			if (isAddress(addressLine1.getText(), "address line 1 is empty") == true &&
 					isAddress(addressLine2.getText(), "address line 2 is empty") == true && 
 					isValue(marketValue, "Not a valid value") == true) {
+				
+				
+				
 
 				getChoice(location);
 				boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to add this properties");
 				System.out.println(result);
 				if(result == true) {
 					//save all this information and now close both windows
+					//ALL THE INFORMATION AND METHODS MUST BE CALLED HERE TO ACTUALLY ADD THE SAVED INFO TO CLASSES 
+					
+					
+					
+					
+					
 					System.out.println(addressLine1.getText());
 					System.out.println(addressLine2.getText());
 					System.out.println(addressLine3.getText());
@@ -88,7 +97,10 @@ public class AddPropertiesWindow {
 					addProps.close();
 				}
 			}
-		});
+		}); 
+
+
+		
 
 		GridPane layout = new GridPane();
 		layout.setPadding(new Insets(20, 20, 20, 20));
@@ -117,7 +129,7 @@ public class AddPropertiesWindow {
 				addressLine1Label, addressLine2Label,  addressLine3Label, eirCodeLabel,	marketValueLabel, locationLabel, mainResLabel);
 
 		Scene scene = new Scene(layout);		
-		//scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
+		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		addProps.setScene(scene);
 		addProps.showAndWait();
 		

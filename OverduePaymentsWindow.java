@@ -33,7 +33,7 @@ public class OverduePaymentsWindow {
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		OverduePayments.setScene(scene);
 		OverduePayments.showAndWait();
-
+		
 	}
 
 }

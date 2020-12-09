@@ -14,83 +14,163 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
 public class GUI extends Application {
 	
 	Button buttonPayments, buttonAddProperties, overdueButton, payButton, previousYearsButton;
+	Button changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea;
 	Stage window;
-	//Scene scene1, payments, unpaid, overdue, previousYear;
+	Scene scene1, ownerMain, adminMain, overdue, previousYear;
 
 
 	public static void main(String[] args) {
 		launch(args);
 	}
 	
-	@Override
+	
+	
+	
 	public void start(Stage primaryStage) throws Exception {
+		
 		window = primaryStage;
 		window.setTitle("GUI");
-		window.setMinHeight(600);
 		window.setMinWidth(600);
+		window.setMinHeight(400);
+		Label label = new Label();
+		label.setText("Would you like to view this program as the department of environment or property owner");
 		
-		//window.setOnCloseRequest(e -> closeProgram());
+		//scene1
+		
+		//create two buttons
+		Button owner = new Button("Property owner");
+		Button admin = new Button("Department Of environment");
+		
+		//yes
+		owner.setOnAction(e -> {
+			window.setScene(ownerMain);
+			
+			
+		});
+		
+		//no
+		admin.setOnAction(e -> {
+			window.setScene(adminMain);
+		});
 		
 		
+		
+		
+		
+		
+		VBox layout = new VBox(20);
+		layout.getChildren().addAll(label, owner, admin);
+		layout.setAlignment(Pos.CENTER);
+		scene1 = new Scene(layout, 600, 400);
+		
+		//Scene scene = new Scene(layout);
+		//scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
+		
+		
+		//Owner Scene
 		buttonAddProperties = new Button("Add properties");
 		buttonAddProperties.setOnAction(e -> AddPropertiesWindow.display("This will be where we add a new property "));
-		
+
 		buttonPayments = new Button("Blancing statement");
 		buttonPayments.setOnAction(e -> PaymentsWindow.display("This will be where we call the array of the users payments"));
-		
+
 		overdueButton = new Button("Overdue");
 		overdueButton.setOnAction(e -> OverduePaymentsWindow.display("This will display any overdue payments"));
-		
+
 		payButton = new Button("Pay");
 		payButton.setOnAction(e -> PayWindow.display("This will create a form for you to make payments "
 				+ "should also display a list of the houses so they can select which one they want to pay for, "
 				+ "perhaps clicking on that house?"));
-		
+
 		previousYearsButton = new Button("Previous years");
 		previousYearsButton.setOnAction(e -> PreviousYearsWindow.display("This will display the list of previous years"));
-		
-		
-		
-	
-		GridPane layout = new GridPane();
-		layout.setPadding(new Insets(10, 10, 10, 10));
-		layout.setVgap(8);
-		layout.setHgap(10);
-		
+
+
+
+
+		GridPane layoutOwner = new GridPane();
+		layoutOwner.setPadding(new Insets(10, 10, 10, 10));
+		layoutOwner.setVgap(8);
+		layoutOwner.setHgap(10);
+
 		GridPane.setConstraints(buttonAddProperties, 11, 35 );
 		GridPane.setConstraints(buttonPayments,      12, 35 );
 		GridPane.setConstraints(overdueButton,       13, 35 );
 		GridPane.setConstraints(payButton,			 14, 35 );
 		GridPane.setConstraints(previousYearsButton, 15, 35 );
-		
-		
-		
-		
-		layout.getChildren().addAll(buttonAddProperties, buttonPayments, overdueButton, payButton, previousYearsButton);
+
+
+
+
+		layoutOwner.getChildren().addAll(buttonAddProperties, buttonPayments, overdueButton, payButton, previousYearsButton);
 		//layout.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(layout, 600, 400);
+		ownerMain = new Scene(layoutOwner, 600, 400);
 		
-		window.setScene(scene);
+		
+		//Button changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea
+		
+		//Department scene
+		changeTaxes = new Button("Change the taxes");
+		changeTaxes.setOnAction(e -> changeTaxesWindow.display("This will be where we change tax of an area"));
+
+		viewChangeEffects = new Button("View the effects of changing tax rates");
+		viewChangeEffects.setOnAction(e -> viewChangeEffectsWindow.display("This will be where view the effects of changing tax rates"));
+
+		overdueProperties = new Button("Overdue properties");
+		overdueProperties.setOnAction(e -> overduePropertiesWindow.display("This will display any overdue properties"));
+/*
+		payButton = new Button("Pay");
+		payButton.setOnAction(e -> PayWindow.display("This will create a form for you to make payments "
+				+ "should also display a list of the houses so they can select which one they want to pay for, "
+				+ "perhaps clicking on that house?"));
+*/
+		propertyTaxOfArea = new Button("View the property tax of an area");
+		propertyTaxOfArea.setOnAction(e -> propertyTaxOfAreaWindow.display("This will display the property tax of an area"));
+
+
+
+
+		GridPane layoutAdmin = new GridPane();
+		layoutAdmin.setPadding(new Insets(10, 10, 10, 10));
+		layoutAdmin.setVgap(8);
+		layoutAdmin.setHgap(10);
+
+		GridPane.setConstraints(changeTaxes, 11, 35 );
+		GridPane.setConstraints(viewChangeEffects,      12, 35 );
+		GridPane.setConstraints(overdueProperties,       13, 35 );
+		GridPane.setConstraints(propertyTaxOfArea,			 14, 35 );
+		//GridPane.setConstraints(previousYearsButton, 15, 35 );
+
+
+
+
+		layoutAdmin.getChildren().addAll(changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea);
+		//layout.setAlignment(Pos.CENTER);
+		adminMain = new Scene(layoutAdmin, 600, 400);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//default
+		window.setScene(scene1);
 		window.show();
 		
-		//scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-	}
-	
-	
-	private void closeProgram() {
-		boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to close this program without saving");
-		System.out.println(result);
-		if(result == true) {
-			window.close();
-		}
 		
 	}
+	
+	
 	
 
 }

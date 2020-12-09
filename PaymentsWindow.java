@@ -28,9 +28,16 @@ public class PaymentsWindow {
 		Scene scene = new Scene(layout);
 		payments.setScene(scene);
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
+		
+		//HERE NEEDS THE OTHER METHODS TO BE ADDED SO THAT IT DISPLAys the right infortmation
+		
+		
+		
+		
+		
 		payments.showAndWait();
 		
-		
+	//combine overdue and this one 	
 	}
 
 }
