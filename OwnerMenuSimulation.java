@@ -9,7 +9,7 @@ public class OwnerMenuSimulation
     */
     public static void main(String[] args)
     throws IOException{
-         Owner owner = new Owner("Leon Woods");
+         Owner owner = new Owner("Kevin Mulry");
          DeptEnvironment deptOfEnvi = new DeptEnvironment();
          MenuCLI menu = new MenuCLI();
          menu.run(owner, deptOfEnvi);

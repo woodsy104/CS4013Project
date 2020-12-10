@@ -96,11 +96,58 @@ public class Owner
     }
     
     /**
-    View balancing statements
-    @return balancingStatement  Balancing Statement for owners properties
+    View balancing statement for property
+    @return balancingStatement  Balancing Statement for a property
     */
-    public void getBalancingStatement(){
-        System.out.println("howaya now");
+    public String getBalancingStatement(String address){
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        payments = readOrWriteFile.readPayments();
+        double taxDue = 0;
+        double taxPaid = 0;
+        double taxOwed = 0;
+        
+        for(int i = 0; i < (viewProperties().size()); i++){
+            Property p = viewProperties().get(i);
+            if(p.getAddress() == address){
+                double tax = (PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered()));
+                taxDue += tax;
+                for(int j = 0; j < payments.size(); j++){
+                    if(p.getAddress() == (payments.get(i)).getAddress()){
+                        tax -= (payments.get(i)).toPay();
+                    }            
+                }
+                taxPaid += tax;
+                taxOwed += PropertyTax.calculateOverdue(p);
+            }
+        }
+        return "Total Tax Due: " + taxDue + "\nTotal Tax Paid: " + taxPaid + "\nTotal Tax Owed: " + taxOwed;
+    }
+    /**
+    View balancing statement for year
+    @return balancingStatement  Balancing Statement for year
+    */
+    public String getBalancingStatement(int year){
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        payments = readOrWriteFile.readPayments();
+        double taxDue = 0;
+        double taxPaid = 0;
+        double taxOwed = 0;
+        
+        for(int i = 0; i < (viewProperties().size()); i++){
+            Property p = viewProperties().get(i);
+            if(p.getOwner() == name && p.getYearRegistered() >= year){
+                double tax = (PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year));
+                taxDue += tax;
+                for(int j = 0; j < payments.size(); j++){
+                    if(p.getYearRegistered() == (payments.get(i)).getYear()){
+                        tax -= (payments.get(i)).toPay();
+                        taxPaid += tax;
+                    }            
+                }
+                taxOwed += PropertyTax.calculateOverdue(p);
+            }
+        }
+        return "Total Tax Due: " + taxDue + "\nTotal Tax Paid: " + taxPaid + "\nTotal Tax Owed: " + taxOwed;
     }
     
     /**

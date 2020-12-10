@@ -80,8 +80,8 @@ public class PropertyTax {
     }
     
     /**
-    Check if payment already made
-    @param owner            name of property owner
+    Calculate Property Tax for Property
+    @param owner     name of property owner
     @param address          address of property
     @param value            market value of property
     @param location         location of property
@@ -106,27 +106,86 @@ public class PropertyTax {
        
         return propTax;
     }
-    public static void calculateOverdue(){
+    
+    
+    /**
+    Calulate overdue tax for a year
+    @param year          get over due for this year 
+    @return overDueTax   return list of overdue tax in this year
+    */
+    public static ArrayList<String> calculateOverdue(int year){
         ArrayList<Property> properties = new ArrayList<Property>();
         ArrayList<Payment> payments = new ArrayList<Payment>();
+        ArrayList<String> overDueTax = new ArrayList<String>();
         properties = readOrWriteFile.readProperties();
         payments = readOrWriteFile.readPayments();
-        //double taxDue[][] = new double[][];
         double dueForYear;
         
-        for(int i = 0; i < properties.size(); i++){                
-            for(int j = 0; j <= (Year.now().getValue() - (properties.get(i)).getYearRegistered()); j++){                
+        for(int i = 0; i < properties.size() - 1; i++){                               
                 Property p = properties.get(i);
-                dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered());
+                 if(year > p.getYearRegistered()){
+                    dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
+                    
+                    for(int j = 0; j < payments.size(); j++){ 
+                        if(p.getOwner() == (payments.get(j)).getOwner() && p.getAddress() == (payments.get(j)).getAddress()){
+                            dueForYear = (payments.get(j)).toPay();
+                        }
+                    }
+                    overDueTax.add("Name: " + p.getOwner() + ", Address: " + p.getAddress() + ", Ammount: " + dueForYear + "\n");
+                }
+        }   
+        return overDueTax;
+    }
+    /**
+    Calculate overdue tax for a year in a given area
+    @param year          get over due for this year 
+    @param eircode       area to sort by
+    @return overDueTax   return list of overdue tax in this year
+    */
+    public static ArrayList<String> calculateOverdue(int year, String eircode){
+        ArrayList<Property> properties = new ArrayList<Property>();
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        ArrayList<String> overDueTax = new ArrayList<String>();
+        properties = readOrWriteFile.readProperties();
+        payments = readOrWriteFile.readPayments();
+        double dueForYear;
+        
+        
+        for(int i = 0; i < properties.size() - 1; i++){ 
+            Property p = properties.get(i);
+            if(p.getEircode() == eircode && year > p.getYearRegistered()){               
+                dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
                 
-                for(int k = 0; k < payments.size(); k++){ 
-                    if(p.getOwner() == (payments.get(i)).getOwner() && p.getAddress() == (payments.get(i)).getAddress()){
-                        dueForYear = (payments.get(i)).toPay();
+                for(int j = 0; j < payments.size(); j++){ 
+                    if(p.getOwner() == (payments.get(j)).getOwner() && p.getAddress() == (payments.get(j)).getAddress()){
+                        dueForYear = (payments.get(j)).toPay();
                     }
                 }
-                
-                //taxDue[i][j] = dueForYear;
+                overDueTax.add("Name: " + p.getOwner() + ", Address: " + p.getAddress() + ", Ammount: " + dueForYear + "\n");
             }
         }
-    }
+        return overDueTax;
+        }
+        /**
+        Calculate overdue tax for a year in a given area
+        @param p             get over due for this property 
+        @return overDueTax   return total overdue tax for this property
+        */
+        public static double calculateOverdue(Property p){
+            ArrayList<Payment> payments = new ArrayList<Payment>();
+            payments = readOrWriteFile.readPayments();
+            double overDueTax = 0;             
+            double dueForYear;
+            
+            for(int year = p.getYearRegistered(); year < Year.now().getValue(); year++){
+                dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
+                for(int j = 0; j < payments.size(); j++){ 
+                        if(p.getOwner() == (payments.get(j)).getOwner() && p.getAddress() == (payments.get(j)).getAddress()){
+                            dueForYear = (payments.get(j)).toPay();
+                        }
+                }
+                overDueTax += dueForYear;
+            }
+            return overDueTax;       
+        }
 }

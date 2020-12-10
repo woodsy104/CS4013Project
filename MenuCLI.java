@@ -48,16 +48,23 @@ public class MenuCLI
                          
                          in.nextLine(); // read the new-line character
                          menu.registerProperty(new Property(name, address, eircode, estimatedMarketValue, locationCategory, ppr, Year.now().getValue()));                
-                     }else if (command.equals("V")){ //View properties
+                     } else if (command.equals("V")){ //View properties
                          for(int i = 0; i < menu.viewProperties().size(); i++){
-                           System.out.println(menu.viewProperties().get(i).toString());
+                           Property p = (menu.viewProperties()).get(i);
+                           double overdue = 0;
+                                                      
+                           System.out.println(p.toString() +
+                           "Tax Due:"  +  PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered()) +
+                           "\nOverdue Tax: " +  PropertyTax.calculateOverdue(p) + "\n");
                          }
                      } else if(command.equals("S")){ //Search By Year
                          System.out.println("Year: ");
                          int year = in.nextInt();
                          System.out.println(menu.viewPropertiesByYear(year));
                      } else if(command.equals("P")){ //Payments
-                         
+                         for(int i = 0; i < menu.viewPayments().size(); i++){
+                           System.out.println(menu.viewPayments().get(i).toString());
+                         }
                      } else if(command.equals("M")){ //Make Payment   
                         try{
                             Property p = (Property)
@@ -76,7 +83,17 @@ public class MenuCLI
                             System.out.println(ex.getMessage());
                         }
                      } else if (command.equals("B")){ //Balancing Statement
-                         menu.getBalancingStatement();
+                         System.out.println("Balancing Statement for:  P)roperty   Y)ear");
+                         String sort = in.nextLine().toUpperCase();
+                         if(sort.equals("P")){ //Balancing Statement for Property
+                             System.out.println("Address: ");
+                             String address = in.nextLine();
+                             System.out.println(menu.getBalancingStatement(address));                             
+                         } else if(sort.equals("Y")){ //Balancing Statement for Year
+                             System.out.println("Year: ");
+                             int year = in.nextInt();
+                             System.out.println(menu.getBalancingStatement(year));
+                         }
                      } else if (command.equals("Q")){ //Quit
                          propOwner = false;
                      }
@@ -94,16 +111,18 @@ public class MenuCLI
                          System.out.println("Property Owner Name: ");
                          String name = in.nextLine();
                          System.out.println(deptMenu.getTaxDataForOwner(name));
-                     } else if(command.equals("O")){ //Overdue By Year
-                         System.out.println("Year: ");
-                         int year = in.nextInt();
+                     } else if(command.equals("O")){ //Overdue By Year                         
                          System.out.println("Sort by Eircode?   Y)es   N)o");
                          String sort = in.nextLine().toUpperCase();
-                         if(command.equals("Y")){ //Overdue By Year and Eircode
+                         if(sort.equals("Y")){ //Overdue By Year and Eircode
                              System.out.println("Eircode: ");
                              String eircode = in.nextLine();
-                             System.out.println(deptMenu.getOverdueTaxForYear(year, eircode));
-                         } else if(command.equals("N")){ //Overdue by Year
+                             System.out.println("Year: ");
+                             int year = in.nextInt();
+                             System.out.println(deptMenu.getOverdueTaxForYear(year, eircode));                             
+                         } else if(sort.equals("N")){ //Overdue by Year
+                             System.out.println("Year: ");
+                             int year = in.nextInt();
                              System.out.println(deptMenu.getOverdueTaxForYear(year));
                          }
                      } else if(command.equals("S")){ //Statistics
@@ -112,7 +131,7 @@ public class MenuCLI
                          System.out.println(deptMenu.getPropertyTaxStatistics(eircode));
                      } else if(command.equals("I")){ //Ivestigate Rate Changes
                          System.out.println("Rate Change: ");
-                         int rateChange = in.nextInt();
+                         String rateChange = in.nextLine();
                          System.out.println(deptMenu.investigateRateChange(rateChange));
                      } else if(command.equals("Q")){ //Quit
                          depOfEnv = false;
