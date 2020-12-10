@@ -1,11 +1,20 @@
 import java.time.*;
 import java.util.*;
+
+/**
+ Property Tax Calcuations
+*/
 public class PropertyTax {
     private static double[] propValue = {0, 150000, 400001, 650000};
     private static double[] rate = {0, 0.01, 0.02, 0.04};
     private static String[] locations = {"City","Large town","Small town","Village","Countryside"};
     private static int[] locationBase = {100, 80, 60, 50, 25};
     
+    /**
+    Get the rate of property tax paid
+    @param value        property value
+    @return marketRate  rate of property tax paid
+    */
     private static double getRate(double value){
         double marketRate = 0;
         for(int i = 0; i < propValue.length - 1; i++){
@@ -17,6 +26,11 @@ public class PropertyTax {
         }
         return marketRate;
     }
+    /**
+    Get the rate of property tax paid for location
+    @param location       location of property 
+    @return locationRate  rate of property tax paid for location
+    */
     private static int getLocationRate(String location){
         int locationRate = 0;
         for (int i = 0; i < locations.length - 1; i++){
@@ -26,6 +40,12 @@ public class PropertyTax {
         }
         return locationRate;
     }
+    /**
+    Calculate the ammount of property tax paid for overdue tax
+    @param name             name of property owner
+    @param yearRegistered   year the property was registered
+    @return count           ammount of property tax paid for overdue tax
+    */
     private static int calculateCompound(String name, int yearRegistered){
         int count = Year.now().getValue() - yearRegistered;
         ArrayList<Payment> payments = new ArrayList<Payment>();
@@ -41,6 +61,12 @@ public class PropertyTax {
         
         return count;
     }
+    /**
+    Check if payment already made
+    @param name     name of property owner
+    @param address  address of property
+    @return ammount left to pay if found
+    */
     private static double checkToPay(String name, String address){
         ArrayList<Payment> payments = new ArrayList<Payment>();
         payments = readOrWriteFile.readPayments();
@@ -53,6 +79,16 @@ public class PropertyTax {
         return 0;
     }
     
+    /**
+    Check if payment already made
+    @param owner            name of property owner
+    @param address          address of property
+    @param value            market value of property
+    @param location         location of property
+    @param PPR              is principal private residence
+    @ param yearRegistered  year property was registered
+    @return ammount left to pay if found
+    */
     public static double calculatePropertyTax(String owner, String address, double value, String location, boolean PPR, int yearRegistered) {
         if(checkToPay(owner, address) != 0){
             return checkToPay(owner, address);
