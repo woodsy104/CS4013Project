@@ -1,5 +1,8 @@
 import java.time.*;
 import java.io.*;
+/**
+ A Property
+*/
 public class Property
 {
     private String owner;
@@ -10,7 +13,17 @@ public class Property
     private boolean PPR;
     private int yearRegistered;
     
-    public Property(String owner, String address, String eircode, double marketValue, String location, boolean PPR, int yearRegitered){
+    /**
+    Constructs a Payment object
+    @param owner            name of property owner
+    @param address          address of property
+    @param eircode          eircode of property    
+    @param marketValue      value of the property
+    @param location         tax left to pay
+    @param PPR              year of payment
+    @param yearRegistered   year of payment
+    */
+    public Property(String owner, String address, String eircode, double marketValue, String location, boolean PPR, int yearRegistered){
         this.owner = owner;
         this.address = address;
         this.eircode = eircode;
@@ -20,60 +33,69 @@ public class Property
         this.yearRegistered = yearRegistered;
     }
     
-    public void setowner(String owner){
-        this.owner = owner;
-    }
+    /**
+    Get property owner name
+    @return owner  name of property owner 
+    */
     public String getOwner(){
         return this.owner;
     }
-    
-    public void setAddress(String address){
-        this.address = address;
-    }
+    /**
+    Get property address
+    @return address  address of property
+    */
     public String getAddress(){
         return this.address;
     }
-    
-    public void setEircode(String eircode){
-        this.eircode = eircode;
-    }
+    /**
+    Get property eircode
+    @return eircode  eircode of property
+    */
     public String getEircode(){
         return this.eircode;
     }
-    
-    public void setMarketValue(double marketValue){
-        this.marketValue = marketValue;
-    }
+    /**
+    Get value of property
+    @return marketValue  value of the property
+    */
     public double getMarketValue(){
         return this.marketValue;
     }
-    
-    public void setLocation(String location){
-        this.location = location;
-    }
+    /**
+    Get location category of property i.e. City, Large town, Small town, Village, Countryside
+    @return location  location category of the property
+    */
     public String getLocation(){
         return this.location;
     }
-    
-    public void setPPR(boolean PPR){
-        this.PPR = PPR;
-    }
+    /**
+    Check whether property is principal private residence
+    @return PPR  returns true if preoperty is principal privat residence
+    */
     public boolean isPPR(){
         return this.PPR;
     }
-    
-    public void setYearRegistered(int year){
-        this.yearRegistered = year;
-    }
+    /**
+    Get year property was registered
+    @return yearRegistered  returns year property was registered
+    */
     public int getYearRegistered(){
         return this.yearRegistered;
     }
     
-    public void payPropertyTax(double ammount) throws FileNotFoundException{
-        double taxDue = PropertyTax.calculatePropertyTax(owner, marketValue, location, PPR, ammount, yearRegistered);
+    /**
+    Pay property tax for a property
+    @param ammount  ammount of property tax to pay
+    */
+    public void payPropertyTax(double ammount, String address) throws FileNotFoundException{
+        double taxDue = PropertyTax.calculatePropertyTax(owner, address, marketValue, location, PPR, yearRegistered);
         readOrWriteFile.writePayment(owner, eircode, address, marketValue, (taxDue - ammount), Year.now().getValue());
     }
     
+    /**
+    Format property toString()
+    @return property as string 
+    */
     public String toString(){
         return "Owner: " + owner + "\nAddress: " + address + "\nEircode: " + eircode + "\nMarketValue: " + marketValue + "\nLocation Category: " + location + "\nPPR: " + PPR + "\nYear Registered: " + yearRegistered + "\n";
     }

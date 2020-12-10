@@ -20,7 +20,7 @@ public class PropertyTax {
     private static int getLocationRate(String location){
         int locationRate = 0;
         for (int i = 0; i < locations.length - 1; i++){
-            if(location.equalsIgnoreCase(locations[i])){
+            if(location.equals(locations[i])){
                 locationRate = locationBase[i];
             }
         }
@@ -41,8 +41,23 @@ public class PropertyTax {
         
         return count;
     }
+    private static double checkToPay(String name, String address){
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        payments = readOrWriteFile.readPayments();
+        
+        for(int i = 0; i < payments.size(); i++){                
+                if(name.equals((payments.get(i)).getOwner()) && address == (payments.get(i)).getAddress()){
+                    return (payments.get(i)).toPay();
+                }
+        }
+        return 0;
+    }
     
-    public static double calculatePropertyTax(String owner, double value, String location, boolean PPR, double ammount, int yearRegistered) {
+    public static double calculatePropertyTax(String owner, String address, double value, String location, boolean PPR, int yearRegistered) {
+        if(checkToPay(owner, address) != 0){
+            return checkToPay(owner, address);
+        }
+        
         double propTax = value * getRate(value);
         propTax += getLocationRate(location);
         propTax += 100;
@@ -54,5 +69,28 @@ public class PropertyTax {
         }        
        
         return propTax;
+    }
+    public static void calculateOverdue(){
+        ArrayList<Property> properties = new ArrayList<Property>();
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        properties = readOrWriteFile.readProperties();
+        payments = readOrWriteFile.readPayments();
+        //double taxDue[][] = new double[][];
+        double dueForYear;
+        
+        for(int i = 0; i < properties.size(); i++){                
+            for(int j = 0; j <= (Year.now().getValue() - (properties.get(i)).getYearRegistered()); j++){                
+                Property p = properties.get(i);
+                dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered());
+                
+                for(int k = 0; k < payments.size(); k++){ 
+                    if(p.getOwner() == (payments.get(i)).getOwner() && p.getAddress() == (payments.get(i)).getAddress()){
+                        dueForYear = (payments.get(i)).toPay();
+                    }
+                }
+                
+                //taxDue[i][j] = dueForYear;
+            }
+        }
     }
 }

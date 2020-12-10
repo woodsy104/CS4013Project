@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 import java.time.*;
+/**
+ A property Owner
+*/
 public class Owner
 {
     private String name;
@@ -8,30 +11,44 @@ public class Owner
     private ArrayList<Payment> payments;
     private double amountPaid;
     
+    /**
+    Constructs an Owner object
+    @param name  property owners name
+    */
     public Owner(String name){
         this.name = name;
         properties = new ArrayList<Property>();
         payments = new ArrayList<Payment>();
     }
     
+    /**
+     * Get property owners name
+     * @param name  name of property owner
+    */
     public void setName(String name){
         this.name = name;      
     }
+    /**
+     * Get property owners name
+     * @return name  name of property owner
+    */
     public String getName(){
         return this.name;
     }
     
+    /**
+    Register a property into the system
+    @param property  property to register
+    */
     public void registerProperty(Property property) throws FileNotFoundException{
         properties.add(property);
         readOrWriteFile.writeProperty(name, property.getAddress(), property.getEircode(), property.getMarketValue(), property.getLocation(), property.isPPR(), property.getYearRegistered());
     }
-    public void registerMultipleProperties(Property[] props) throws FileNotFoundException{
-        for(int i = 0; i < props.length; i++){
-            properties.add(props[i]);
-            readOrWriteFile.writeProperty(name, props[i].getAddress(), props[i].getEircode(), props[i].getMarketValue(), props[i].getLocation(), props[i].isPPR());
-        }
-    }
     
+    /**
+    View properties in the system
+    @return propOutput  properties in the system
+    */
     public ArrayList<Property> viewProperties(){ 
         ArrayList<Property> propOutput = new ArrayList<Property>();
         properties = new ArrayList<Property>();
@@ -44,6 +61,11 @@ public class Owner
         }
         return propOutput;
     }
+    /**
+    View properties in the system by year they were registered
+    @param year         year to sort by
+    @return propOutput  properties registered in the system for given year
+    */
     public ArrayList<Property> viewPropertiesByYear(int year){ 
         ArrayList<Property> propOutput = new ArrayList<Property>();
         properties = new ArrayList<Property>();
@@ -56,6 +78,10 @@ public class Owner
         }
         return propOutput;
     }
+    /**
+    View payments in the system
+    @return paymentOutput  payments in the system
+    */
     public ArrayList<Payment> viewPayments(){ 
         ArrayList<Payment> paymentOutput = new ArrayList<Payment>();
         payments = new ArrayList<Payment>();
@@ -69,13 +95,20 @@ public class Owner
         return paymentOutput;
     }
     
+    /**
+    View balancing statements
+    @return balancingStatement  Balancing Statement for owners properties
+    */
     public void getBalancingStatement(){
         System.out.println("howaya now");
     }
     
+    /**
+    Pay property tax for a property
+    @param property  Property to pay property tax for
+    @param ammount   Ammount to pay
+    */
     public void payPropertyTax(Property property, double ammount) throws FileNotFoundException{
-        property.payPropertyTax(ammount);
-        readOrWriteFile.writePayment(name, property.getEircode(), property.getAddress(), property.getMarketValue(), (PropertyTax.calculatePropertyTax(name, property.getMarketValue(), property.getLocation(), property.isPPR(), ammount, property.getYearRegistered())), Year.now().getValue());
-    }
-   
+        property.payPropertyTax(ammount, property.getAddress());
+    }   
 }

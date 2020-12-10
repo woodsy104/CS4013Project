@@ -10,6 +10,9 @@ Eoin Roche,Kilkenny,8,100000,Small Town,TRUE,2020
 Trevor Watson,Cork,9,700000,City,TRUE,2019
 Sean Mclaverty,Galway,10,10000,Village,FALSE,2019
 David Barrett,Sligo,11,400000,Small Town,TRUE,2017
-Eoin Costello,Limerick,13,800000,City,FALSE,0
-Kevin Mulry,Limerick,14,950000,City,FALSE,0
-Eoin Costello,Sligo,15,500000.0,Large Town,false,0
+Eoin Costello,Limerick,13,800000,City,FALSE,2020
+Kevin Mulry,Limerick,14,950000,City,FALSE,2020
+Eoin Costello,Sligo,15,500000,Large Town,FALSE,2020
+Eoin Costello,Dublin,16,1000000,City,FALSE,2020
+Eoin Costello,Cork,17,30000,City,FALSE,2020
+Gibby,Limerick,18,20000,City,TRUE,2020
