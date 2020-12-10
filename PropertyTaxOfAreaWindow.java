@@ -2,7 +2,6 @@ package guiClasses;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -12,20 +11,25 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-public class viewChangeEffectsWindow {
+public class PropertyTaxOfAreaWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
 
-	public static void display(String message) {
-		Stage viewChanges = new Stage();
+	static String locationString;
 
-		viewChanges.initModality(Modality.APPLICATION_MODAL);
-		viewChanges.setTitle("Add Properties");
-		viewChanges.setMinWidth(500);
-		viewChanges.setMinHeight(400);
+	public static void display() {
 
-		Label label = new Label();
-		label.setText("Insert data here to see the effects of the change");
+		//String locationString;
+
+		Stage propTaxOfArea = new Stage();
+
+		propTaxOfArea.initModality(Modality.APPLICATION_MODAL);
+		propTaxOfArea.setTitle("Add Properties");
+		propTaxOfArea.setMinWidth(500);
+		propTaxOfArea.setMinHeight(400);
+
+		//Label label = new Label();
+		//label.setText("The property tax of " + newValue);
 
 
 		//location
@@ -39,26 +43,25 @@ public class viewChangeEffectsWindow {
 		location.getItems().add("Village");
 		location.getItems().add("Country side");
 
+		//String locationString;
+		//Listen for selection change
+		location.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> locationString = newValue );
+
+		Label label = new Label();
+		label.setText("The property tax");
+		label.setWrapText(true);
+		
 		//default value
 		location.setValue("City");
-		
-		Button viewChangesButton = new Button("view the changes");
-		viewChangesButton.setOnAction(e -> {
-			// CALL THE METHOD AND PRINT IT 
-			
-			
-		});
-		
+
 		VBox layout = new VBox(10);
-		layout.getChildren().addAll(label, locationLabel, location, viewChangesButton );
+		layout.getChildren().addAll(label, locationLabel, location );
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout);
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
-		fontSize.bind(viewChanges.widthProperty().add(viewChanges.heightProperty()).divide(80));
+		fontSize.bind(propTaxOfArea.widthProperty().add(propTaxOfArea.heightProperty()).divide(60));
 		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
-		viewChanges.setScene(scene);
-		viewChanges.showAndWait();
-		
-
+		propTaxOfArea.setScene(scene);
+		propTaxOfArea.showAndWait();
 	}
 }

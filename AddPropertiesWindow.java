@@ -1,5 +1,8 @@
 package guiClasses;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -7,10 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AddPropertiesWindow {
+	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
-	public static void display(String message) {
+	public static void display() {
 		Stage addProps = new Stage();
 
 		addProps.initModality(Modality.APPLICATION_MODAL);
@@ -19,7 +24,7 @@ public class AddPropertiesWindow {
 		addProps.setMinHeight(400);
 
 		Label label = new Label();
-		label.setText("Insert data here to add a property " +message);
+		label.setText("Insert data here to add a property");
 		
 		Label addressLine1Label = new Label("Address Line 1:");
 		TextField addressLine1 = new TextField();
@@ -55,6 +60,8 @@ public class AddPropertiesWindow {
 		//default value
 		location.setValue("City");
 		
+		
+		//Will need this is my pay window
 		//Listen for selection change
 		//location.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> System.out.println(newValue) );
 		
@@ -85,8 +92,7 @@ public class AddPropertiesWindow {
 					//ALL THE INFORMATION AND METHODS MUST BE CALLED HERE TO ACTUALLY ADD THE SAVED INFO TO CLASSES 
 					
 					
-					
-					
+
 					
 					System.out.println(addressLine1.getText());
 					System.out.println(addressLine2.getText());
@@ -101,9 +107,14 @@ public class AddPropertiesWindow {
 
 
 		
-
+		
 		GridPane layout = new GridPane();
+		
 		layout.setPadding(new Insets(20, 20, 20, 20));
+		//auto change font size
+				fontSize.bind(addProps.widthProperty().add(addProps.heightProperty()).divide(80));
+				layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
+				
 		layout.setVgap(8);
 		layout.setHgap(10);
 		
@@ -124,11 +135,17 @@ public class AddPropertiesWindow {
 		GridPane.setConstraints(mainResLabel, 		0, 7 );
 		
 	
-	
+		layout.setAlignment(Pos.CENTER);
 		layout.getChildren().addAll(label, addressLine1, addressLine2, addressLine3, eirCode, marketValue, location, mainRes, confirmButton, 
 				addressLine1Label, addressLine2Label,  addressLine3Label, eirCodeLabel,	marketValueLabel, locationLabel, mainResLabel);
+		
+		BorderPane borderPane = new BorderPane();
+		//borderPane.setAlignment(layout, Pos.CENTER);
+		
+		borderPane.setCenter(layout);
+		
 
-		Scene scene = new Scene(layout);		
+		Scene scene = new Scene(borderPane, 600, 400);		
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		addProps.setScene(scene);
 		addProps.showAndWait();

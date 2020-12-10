@@ -11,9 +11,14 @@
 }
 
 .button {
-	-fx-background-color: #AB4642;
+	-fx-background-color: #DDDDDD;
 	-fx-text-fill: #000000;
 	-fx-background-radius: 15;
 
+}
+
+.choiceBox{
+	-fx-background-color: #DDDDDD;
+	-fx-text-fill: #000000;
 }
 	

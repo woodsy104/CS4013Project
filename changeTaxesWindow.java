@@ -1,5 +1,8 @@
 package guiClasses;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +15,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class changeTaxesWindow {
+	
+	
+
+	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 	
 	public static void display(String message) {
 		Stage changeTaxes = new Stage();
@@ -69,7 +76,9 @@ public class changeTaxesWindow {
 		
 		Scene scene = new Scene(layout);
 		changeTaxes.setScene(scene);
-		//scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
+		fontSize.bind(changeTaxes.widthProperty().add(changeTaxes.heightProperty()).divide(80));
+		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
+		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		changeTaxes.showAndWait();
 	}
 

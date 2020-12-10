@@ -3,6 +3,11 @@ package guiClasses;
 
 //import Exception;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -24,6 +30,7 @@ public class GUI extends Application {
 	Button changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea;
 	Stage window;
 	Scene scene1, ownerMain, adminMain, overdue, previousYear;
+	private DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
 
 	public static void main(String[] args) {
@@ -41,6 +48,7 @@ public class GUI extends Application {
 		window.setMinHeight(400);
 		Label label = new Label();
 		label.setText("Would you like to view this program as the department of environment or property owner");
+		label.setMinWidth(Region.USE_PREF_SIZE);
 		
 		//scene1
 		
@@ -67,16 +75,27 @@ public class GUI extends Application {
 		
 		VBox layout = new VBox(20);
 		layout.getChildren().addAll(label, owner, admin);
+		
+		
+		
+		
+		//auto change font size
+		fontSize.bind(window.widthProperty().add(window.heightProperty()).divide(80));
+		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
+		
+		
+		layout.setPadding(new Insets(10, 10, 10, 10));
 		layout.setAlignment(Pos.CENTER);
+		
 		scene1 = new Scene(layout, 600, 400);
 		
 		//Scene scene = new Scene(layout);
-		//scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
+		scene1.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		
 		
 		//Owner Scene
 		buttonAddProperties = new Button("Add properties");
-		buttonAddProperties.setOnAction(e -> AddPropertiesWindow.display("This will be where we add a new property "));
+		buttonAddProperties.setOnAction(e -> AddPropertiesWindow.display());
 
 		buttonPayments = new Button("Blancing statement");
 		buttonPayments.setOnAction(e -> PaymentsWindow.display("This will be where we call the array of the users payments"));
@@ -96,6 +115,9 @@ public class GUI extends Application {
 
 
 		GridPane layoutOwner = new GridPane();
+		fontSize.bind(window.widthProperty().add(window.heightProperty()).divide(80));
+		layoutOwner.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
+		
 		layoutOwner.setPadding(new Insets(10, 10, 10, 10));
 		layoutOwner.setVgap(8);
 		layoutOwner.setHgap(10);
@@ -110,9 +132,12 @@ public class GUI extends Application {
 
 
 		layoutOwner.getChildren().addAll(buttonAddProperties, buttonPayments, overdueButton, payButton, previousYearsButton);
-		//layout.setAlignment(Pos.CENTER);
-		ownerMain = new Scene(layoutOwner, 600, 400);
+		layout.setAlignment(Pos.CENTER);
+		//auto change font size
+				
 		
+		ownerMain = new Scene(layoutOwner, 600, 400);
+		ownerMain.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		
 		//Button changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea
 		
@@ -124,7 +149,7 @@ public class GUI extends Application {
 		viewChangeEffects.setOnAction(e -> viewChangeEffectsWindow.display("This will be where view the effects of changing tax rates"));
 
 		overdueProperties = new Button("Overdue properties");
-		overdueProperties.setOnAction(e -> overduePropertiesWindow.display("This will display any overdue properties"));
+		overdueProperties.setOnAction(e -> OverduePropertiesWindow.display("This will display any overdue properties"));
 /*
 		payButton = new Button("Pay");
 		payButton.setOnAction(e -> PayWindow.display("This will create a form for you to make payments "
@@ -132,7 +157,7 @@ public class GUI extends Application {
 				+ "perhaps clicking on that house?"));
 */
 		propertyTaxOfArea = new Button("View the property tax of an area");
-		propertyTaxOfArea.setOnAction(e -> propertyTaxOfAreaWindow.display("This will display the property tax of an area"));
+		propertyTaxOfArea.setOnAction(e -> PropertyTaxOfAreaWindow.display());
 
 
 
@@ -153,11 +178,14 @@ public class GUI extends Application {
 
 		layoutAdmin.getChildren().addAll(changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea);
 		//layout.setAlignment(Pos.CENTER);
+		
+		//auto change font size
+				fontSize.bind(window.widthProperty().add(window.heightProperty()).divide(80));
+				layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
+				
+		
 		adminMain = new Scene(layoutAdmin, 600, 400);
-		
-		
-		
-		
+		adminMain.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		
 		
 		
