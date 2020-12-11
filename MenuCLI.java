@@ -106,11 +106,17 @@ public class MenuCLI
                      if(command.equals("P")){ //Property Tax Data
                          System.out.println("Address: ");
                          String address = in.nextLine();
-                         System.out.println(deptMenu.getTaxDataForProperty(address));
+                         ArrayList<Property> properties = deptMenu.getTaxDataForProperty(address);
+                         for(int i = 0; i < properties.size(); i++){
+                             System.out.println((properties.get(i)).toString());
+                         }
                      } else if(command.equals("T")){ //Tax Data For Owner
                          System.out.println("Property Owner Name: ");
                          String name = in.nextLine();
-                         System.out.println(deptMenu.getTaxDataForOwner(name));
+                         ArrayList<Property> properties = deptMenu.getTaxDataForOwner(name);
+                         for(int i = 0; i < properties.size(); i++){
+                             System.out.println((properties.get(i)).toString());
+                         }
                      } else if(command.equals("O")){ //Overdue By Year                         
                          System.out.println("Sort by Eircode?   Y)es   N)o");
                          String sort = in.nextLine().toUpperCase();
@@ -130,9 +136,17 @@ public class MenuCLI
                          String eircode = in.nextLine();
                          System.out.println(deptMenu.getPropertyTaxStatistics(eircode));
                      } else if(command.equals("I")){ //Ivestigate Rate Changes
-                         System.out.println("Rate Change: ");
-                         String rateChange = in.nextLine();
-                         System.out.println(deptMenu.investigateRateChange(rateChange));
+                         System.out.println("City Charge: ");
+                         int city= in.nextInt();
+                         System.out.println("Large Town Charge: ");
+                         int largeTown = in.nextInt();
+                         System.out.println("Small Town Charge: ");
+                         int smallTown = in.nextInt();
+                         System.out.println("Village charge: ");
+                         int village = in.nextInt();
+                         System.out.println("Countryside charge: ");
+                         int countryside = in.nextInt();
+                         System.out.println(deptMenu.investigateRateChange(city, largeTown, smallTown, village, countryside));
                      } else if(command.equals("Q")){ //Quit
                          depOfEnv = false;
                      }

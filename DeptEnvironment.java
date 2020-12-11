@@ -15,22 +15,23 @@ public class DeptEnvironment{
     
     /**
     Get Tax Data For Property
-    @return propOutput  return Tax Data For Property 
+    @return properties  return Tax Data For Property 
     */
-    public String getTaxDataForProperty(String address){
+    public ArrayList<Property> getTaxDataForProperty(String address){
+        ArrayList<Property> properties = new ArrayList<Property>();
         propOutput = new ArrayList<Property>();
         propOutput = readOrWriteFile.readProperties();
         
         for(int i = 0; i < propOutput.size(); i++){
            if(address.equals((propOutput.get(i)).getAddress())){
-               return (propOutput.get(i)).toString();
+               properties.add(propOutput.get(i));
            }                          
         }    
-        return "Try another address";
+        return properties;
     }
     /**
     Get Tax Data For Property for an Owner
-    @return propOutput  return Tax Data For Property for Owner 
+    @return properties  return Tax Data For Property for Owner 
     */
     public ArrayList<Property> getTaxDataForOwner(String name){
         ArrayList<Property> properties = new ArrayList<Property>();
@@ -95,8 +96,18 @@ public class DeptEnvironment{
     Investigate Rate Change on Property Tax
     @return propOutput  return Impact of Rate Changes 
     */
-    public String investigateRateChange(String location){
-        
-        return "";
+    public String investigateRateChange(int city, int largeTown, int smallTown, int village, int countryside){
+        ArrayList<Property> properties = new ArrayList<Property>();
+        properties = readOrWriteFile.readProperties();
+        double currentTotalTax = 0;
+        double totalTaxAfterChange = 0;
+        int[] locationBaseChange = {city, largeTown, smallTown, village, countryside};
+                        
+        for(int i = 0; i < properties.size(); i++){
+            Property p = (properties.get(i));
+            currentTotalTax += PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered());
+            totalTaxAfterChange += PropertyTax.calculatePropertyTaxChange(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered(), locationBaseChange);
+        }
+        return "Current Total Tax: " + currentTotalTax + "\nTotal Tax After Change: " + totalTaxAfterChange + "\nIncrease: " + (totalTaxAfterChange - currentTotalTax);
     }    
 }

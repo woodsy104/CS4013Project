@@ -41,6 +41,21 @@ public class PropertyTax {
         return locationRate;
     }
     /**
+    Get the rate of property tax paid for location
+    @param location       location of property 
+    @return locationRate  rate of property tax paid for location
+    */
+    private static int getLocationRateChange(String location, int[] locationRateChange){
+        int locationRate = 0;
+        
+        for (int i = 0; i < locations.length - 1; i++){
+            if(location.equals(locations[i])){
+                locationRate = locationRateChange[i];
+            }
+        }
+        return locationRate;
+    }
+    /**
     Calculate the ammount of property tax paid for overdue tax
     @param name             name of property owner
     @param yearRegistered   year the property was registered
@@ -50,11 +65,12 @@ public class PropertyTax {
         int count = Year.now().getValue() - yearRegistered;
         ArrayList<Payment> payments = new ArrayList<Payment>();
         payments = readOrWriteFile.readPayments();
-        
-        for(int year = yearRegistered; year < Year.now().getValue(); year++){
-            for(int i = 0; i < payments.size(); i++){                
-                if(name.equals((payments.get(i)).getOwner()) && year == (payments.get(i)).getYear()){
-                    count--;
+        if(count != 0){
+            for(int year = yearRegistered; year < Year.now().getValue(); year++){
+                for(int i = 0; i < payments.size(); i++){                
+                    if(name.equals((payments.get(i)).getOwner()) && year == (payments.get(i)).getYear()){
+                        count--;
+                    }
                 }
             }
         }
@@ -81,7 +97,7 @@ public class PropertyTax {
     
     /**
     Calculate Property Tax for Property
-    @param owner     name of property owner
+    @param owner            name of property owner
     @param address          address of property
     @param value            market value of property
     @param location         location of property
@@ -96,6 +112,33 @@ public class PropertyTax {
         
         double propTax = value * getRate(value);
         propTax += getLocationRate(location);
+        propTax += 100;
+        if(!PPR) {
+            propTax += 100;
+        }
+        for(int i = 0; i < calculateCompound(owner, yearRegistered); i++){
+            propTax += (propTax / 100) * 7;
+        }        
+       
+        return propTax;
+    }
+    /**
+    Calculate Property Tax for Property after location rate change
+    @param owner            name of property owner
+    @param address          address of property
+    @param value            market value of property
+    @param location         location of property
+    @param PPR              is principal private residence
+    @ param yearRegistered  year property was registered
+    @return ammount left to pay if found
+    */
+    public static double calculatePropertyTaxChange(String owner, String address, double value, String location, boolean PPR, int yearRegistered, int[] locationRate) {
+        if(checkToPay(owner, address) != 0){
+            return checkToPay(owner, address);
+        }
+        
+        double propTax = value * getRate(value);
+        propTax += getLocationRateChange(location, locationRate);
         propTax += 100;
         if(!PPR) {
             propTax += 100;

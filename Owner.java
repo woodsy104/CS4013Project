@@ -108,15 +108,16 @@ public class Owner
         
         for(int i = 0; i < (viewProperties().size()); i++){
             Property p = viewProperties().get(i);
-            if(p.getAddress() == address){
+            if(p.getAddress().equals(address)){
                 double tax = (PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered()));
                 taxDue += tax;
                 for(int j = 0; j < payments.size(); j++){
-                    if(p.getAddress() == (payments.get(i)).getAddress()){
-                        tax -= (payments.get(i)).toPay();
+                    if(address.equals((payments.get(j)).getAddress())){
+                        System.out.println("entered");
+                        tax -= (payments.get(j)).toPay();
                     }            
                 }
-                taxPaid += tax;
+                taxPaid = tax;
                 taxOwed += PropertyTax.calculateOverdue(p);
             }
         }
@@ -135,7 +136,7 @@ public class Owner
         
         for(int i = 0; i < (viewProperties().size()); i++){
             Property p = viewProperties().get(i);
-            if(p.getOwner() == name && p.getYearRegistered() >= year){
+            if(p.getOwner().equals(name) && p.getYearRegistered() >= year){
                 double tax = (PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year));
                 taxDue += tax;
                 for(int j = 0; j < payments.size(); j++){
