@@ -14,7 +14,7 @@ public class ConfirmBox {
 	public static boolean display(String title, String message) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle(title);
+		window.setTitle("Confirmation");
 		window.setMinWidth(250);
 		window.setMinHeight(125);
 		window.setMaxWidth(250);

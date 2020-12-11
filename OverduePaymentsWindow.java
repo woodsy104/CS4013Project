@@ -10,6 +10,8 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
+//OWNER
+
 public class OverduePaymentsWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 	public static void display(String message) {
@@ -21,6 +23,13 @@ public class OverduePaymentsWindow {
 
 		Label label = new Label();
 		label.setText("These are your payments that are overdue:\n" + message);
+
+
+
+		
+
+
+
 		Button closeButton = new Button("Close the window");
 		closeButton.setOnAction(e -> {
 
@@ -37,7 +46,7 @@ public class OverduePaymentsWindow {
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		OverduePayments.setScene(scene);
 		OverduePayments.showAndWait();
-		
+
 	}
 
 }

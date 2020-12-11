@@ -34,7 +34,7 @@ public class RemoveProperties {
 
 
 
-		fontSize.bind(removeProps.widthProperty().add(removeProps.heightProperty()).divide(40));
+		//fontSize.bind(removeProps.widthProperty().add(removeProps.heightProperty()).divide(40));
 	}
 
 }

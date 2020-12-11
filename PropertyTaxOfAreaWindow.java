@@ -24,7 +24,7 @@ public class PropertyTaxOfAreaWindow {
 		Stage propTaxOfArea = new Stage();
 
 		propTaxOfArea.initModality(Modality.APPLICATION_MODAL);
-		propTaxOfArea.setTitle("Add Properties");
+		propTaxOfArea.setTitle("Tax by area");
 		propTaxOfArea.setMinWidth(500);
 		propTaxOfArea.setMinHeight(400);
 

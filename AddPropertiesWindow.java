@@ -1,5 +1,8 @@
 package guiClasses;
 
+import java.io.FileNotFoundException;
+import java.time.Year;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -25,6 +28,9 @@ public class AddPropertiesWindow {
 
 		Label label = new Label();
 		label.setText("Insert data here to add a property");
+		
+
+		
 		
 		Label addressLine1Label = new Label("Address Line 1:");
 		TextField addressLine1 = new TextField();
@@ -77,29 +83,34 @@ public class AddPropertiesWindow {
 		Button confirmButton = new Button("Confirm choices");
 		confirmButton.setOnAction(e -> {
 
-			if (isAddress(addressLine1.getText(), "address line 1 is empty") == true &&
-					isAddress(addressLine2.getText(), "address line 2 is empty") == true && 
+			if (isText(addressLine1.getText(), "address line 1 is empty") == true &&
+					isText(addressLine2.getText(), "address line 2 is empty") == true && 
 					isValue(marketValue, "Not a valid value") == true) {
 				
 				
-				
-
-				getChoice(location);
 				boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to add this properties");
 				System.out.println(result);
 				if(result == true) {
 					//save all this information and now close both windows
 					//ALL THE INFORMATION AND METHODS MUST BE CALLED HERE TO ACTUALLY ADD THE SAVED INFO TO CLASSES 
 					
+					//String Owner = owner.getText();
+					String address = (addressLine1.getText() + " " +  addressLine2.getText() + " " + addressLine3.getText());
+					//double marketValue1 = Double.parseDouble(marketValue);
+					double value = Double.parseDouble(marketValue.getText());
+					int year = Year.now().getValue();
 					
-
+					try {
+						readOrWriteFile.writeProperty(GUI.getOwnerNameText(), address, eirCode.getText(), value, getChoice(location), getChoice2(mainRes), year);
+					} catch (FileNotFoundException e1) {
+						
+						e1.printStackTrace();
+					}
 					
-					System.out.println(addressLine1.getText());
-					System.out.println(addressLine2.getText());
-					System.out.println(addressLine3.getText());
-					System.out.println(eirCode.getText());
-					System.out.println(marketValue.getText());
+					System.out.println(GUI.getOwnerNameText() + " " + address + " " + eirCode.getText() + " " +  value + " " +  getChoice(location) +" " +   getChoice2(mainRes) + " " +  year);
+					
 					getChoice(location);
+					getChoice2(mainRes);
 					addProps.close();
 				}
 			}
@@ -118,26 +129,26 @@ public class AddPropertiesWindow {
 		layout.setVgap(8);
 		layout.setHgap(10);
 		
-		GridPane.setConstraints(addressLine1 , 		1, 1 );
-		GridPane.setConstraints(addressLine2,      	1, 2 );
-		GridPane.setConstraints(addressLine3,       1, 3 );
-		GridPane.setConstraints(eirCode,			1, 4 );
-		GridPane.setConstraints(marketValue,	 	1, 5 );
-		GridPane.setConstraints(location,	 		1, 6 );
-		GridPane.setConstraints(mainRes,	 		1, 7 );
-		GridPane.setConstraints(confirmButton, 		1, 8 );
-		GridPane.setConstraints(addressLine1Label , 0, 1 );
-		GridPane.setConstraints(addressLine2Label,  0, 2 );
-		GridPane.setConstraints(addressLine3Label,  0, 3 );
-		GridPane.setConstraints(eirCodeLabel,	  	0, 4 );
-		GridPane.setConstraints(marketValueLabel,	0, 5 );
-		GridPane.setConstraints(locationLabel,		0, 6 );
-		GridPane.setConstraints(mainResLabel, 		0, 7 );
+		GridPane.setConstraints(addressLine1 , 		1, 2 );
+		GridPane.setConstraints(addressLine2,      	1, 3 );
+		GridPane.setConstraints(addressLine3,       1, 4 );
+		GridPane.setConstraints(eirCode,			1, 5 );
+		GridPane.setConstraints(marketValue,	 	1, 6 );
+		GridPane.setConstraints(location,	 		1, 7 );
+		GridPane.setConstraints(mainRes,	 		1, 8 );
+		GridPane.setConstraints(confirmButton, 		1, 9 );
+		GridPane.setConstraints(addressLine1Label , 0, 2 );
+		GridPane.setConstraints(addressLine2Label,  0, 3 );
+		GridPane.setConstraints(addressLine3Label,  0, 4 );
+		GridPane.setConstraints(eirCodeLabel,	  	0, 5 );
+		GridPane.setConstraints(marketValueLabel,	0, 6 );
+		GridPane.setConstraints(locationLabel,		0, 7 );
+		GridPane.setConstraints(mainResLabel, 		0, 8 );
 		
 	
 		layout.setAlignment(Pos.CENTER);
-		layout.getChildren().addAll(label, addressLine1, addressLine2, addressLine3, eirCode, marketValue, location, mainRes, confirmButton, 
-				addressLine1Label, addressLine2Label,  addressLine3Label, eirCodeLabel,	marketValueLabel, locationLabel, mainResLabel);
+		layout.getChildren().addAll(label,  addressLine1, addressLine2, addressLine3, eirCode, marketValue, location, mainRes, confirmButton, 
+				 addressLine1Label, addressLine2Label,  addressLine3Label, eirCodeLabel,	marketValueLabel, locationLabel, mainResLabel);
 		
 		BorderPane borderPane = new BorderPane();
 		//borderPane.setAlignment(layout, Pos.CENTER);
@@ -154,9 +165,9 @@ public class AddPropertiesWindow {
 
 	
 
-	private static boolean isAddress(String addressLine, String message) {
-		if (addressLine.isEmpty() == false) {
-			System.out.println(addressLine);
+	private static boolean isText(String text, String message) {
+		if (text.isEmpty() == false) {
+			System.out.println(text);
 			return true;
 		} else {
 			System.out.println("ERROR: " + message);
@@ -176,9 +187,18 @@ public class AddPropertiesWindow {
 		}
 	}
 	
-	private static void getChoice(ChoiceBox<String> location) {
+	private static String getChoice(ChoiceBox<String> location) {
 		String choice = location.getValue();
-		System.out.println(choice);
+		return choice;
+	}
+	
+	private static boolean getChoice2(ChoiceBox<String> mainRes) {
+		String choice = mainRes.getValue();
+		if (choice == "Yes") {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 

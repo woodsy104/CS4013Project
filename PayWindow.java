@@ -14,7 +14,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class PayWindow {
-
+	
 	static ListView<String> listView;	
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
@@ -35,14 +35,11 @@ public class PayWindow {
 
 
 		listView = new ListView<>();
-		listView.getItems().addAll("X91 WN0X\n5 Whitethorn Avenue\nGrantstown Village\n€500000", "prop2", "prop3", "prop4");
-
-		//We use this to add in all the houses from the property list 
-		String array[] = {"hello", "my", "name", "is", "sean"};
-		for(int i = 0; i < array.length; i ++) {
-			listView.getItems().add(array[i]);
+		Owner owner = new Owner(GUI.getOwnerNameText());
+		
+		for(int i = 0; i < owner.viewProperties().size(); i++){
+			listView.getItems().add(owner.viewProperties().get(i).toString());
 		}
-		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		
 		Label amountToPayLabel = new Label("How much would you liked to pay for this :");
@@ -62,6 +59,8 @@ public class PayWindow {
 			if(result == true) {
 				//Pay for this house
 				//THIS IS ONE OF THE AREAS THAT WE NEED TO ACTUALLY ADD THE RESULTS THAT THE USER INPUTS INTO THE CSVs OR THE METHODS
+				
+				
 				
 				
 				handleOptions();

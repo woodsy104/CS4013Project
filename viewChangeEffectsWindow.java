@@ -20,7 +20,7 @@ public class viewChangeEffectsWindow {
 		Stage viewChanges = new Stage();
 
 		viewChanges.initModality(Modality.APPLICATION_MODAL);
-		viewChanges.setTitle("Add Properties");
+		viewChanges.setTitle("View Tax change effects");
 		viewChanges.setMinWidth(500);
 		viewChanges.setMinHeight(400);
 

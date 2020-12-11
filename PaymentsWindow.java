@@ -25,6 +25,22 @@ public class PaymentsWindow {
 		label.setText("These are the payments made by user:\n" +message);
 		Button closeButton = new Button("Close the window");
 		label.setWrapText(true);
+		
+		
+		
+		
+		
+		Owner owner = new Owner(GUI.getOwnerNameText());
+		String props = "";
+			for(int i = 0; i < owner.viewProperties().size(); i++){
+				props += "Property " + (i+1) +"\n" + owner.viewProperties().get(i).toString() + "\n";
+				
+		}
+		
+		Label properties = new Label();
+		label.setText(props);
+		label.setWrapText(true);
+	
 
 		closeButton.setOnAction(e -> payments.close());
 		
@@ -35,7 +51,7 @@ public class PaymentsWindow {
 		Scene scene = new Scene(layout);
 		payments.setScene(scene);
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
-		fontSize.bind(payments.widthProperty().add(payments.heightProperty()).divide(40));
+		fontSize.bind(payments.widthProperty().add(payments.heightProperty()).divide(100));
 		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
 		
 		//HERE NEEDS THE OTHER METHODS TO BE ADDED SO THAT IT DISPLAys the right infortmation

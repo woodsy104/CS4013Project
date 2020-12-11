@@ -17,7 +17,7 @@ public class PreviousYearsWindow {
 		Stage PrevYear = new Stage();
 		
 		PrevYear.initModality(Modality.APPLICATION_MODAL);
-		PrevYear.setTitle("Overdue Payments");
+		PrevYear.setTitle("Previous years");
 		PrevYear.setMinWidth(400);
 
 		Label label = new Label();
