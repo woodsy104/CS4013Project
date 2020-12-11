@@ -17,6 +17,10 @@ public class OverduePropertiesWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 	
 	public static void display(String message) {
+		
+		DeptEnvironment deptOfEnvironment = new DeptEnvironment();
+	
+		
 		Stage OverdueProperties = new Stage();
 
 		OverdueProperties.initModality(Modality.APPLICATION_MODAL);
@@ -30,7 +34,7 @@ public class OverduePropertiesWindow {
 		Label sortByEircodeLabel = new Label("Whats the eircode you would like to sort by");
 		TextField sortByEircode = new TextField();
 		sortByEircode.setMaxWidth(140);
-		sortByEircode.setPromptText("Amount to Pay: Max is  ");
+		sortByEircode.setPromptText("Enter the first digits of the Eircode");
 
 
 
@@ -43,12 +47,13 @@ public class OverduePropertiesWindow {
 		Button viewButton = new Button("view the properties");
 		viewButton.setOnAction(e -> {
 			
-			Label label1 = new Label();
-			label.setText("print out all the overdue by that year");
+	
+			String hello = (deptOfEnvironment.getOverdueTaxForYear(getYear(sortByYear)).toString());
 			
 			
 			
 			
+			OverduePropertiesViewWindow.display(getYear(sortByYear), hello);
 			label.setWrapText(true);
 
 		});
@@ -71,5 +76,12 @@ public class OverduePropertiesWindow {
 		OverdueProperties.setScene(scene);
 		OverdueProperties.showAndWait();
 		
+	}
+	
+	private static int getYear(TextField sortByYear) {
+		int yearOut = Integer.parseInt(sortByYear.getText());
+
+
+		return yearOut;
 	}
 }

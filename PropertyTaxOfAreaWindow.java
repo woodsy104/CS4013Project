@@ -36,7 +36,6 @@ public class PropertyTaxOfAreaWindow {
 		ChoiceBox<String> location = new ChoiceBox<>();
 
 		//getItems returns the observable list object which you can add items to
-		Label locationLabel = new Label("Location:");
 		location.getItems().add("City");
 		location.getItems().add("Large town");
 		location.getItems().add("Small town");
@@ -45,17 +44,39 @@ public class PropertyTaxOfAreaWindow {
 
 		//String locationString;
 		//Listen for selection change
-		location.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> locationString = newValue );
-
-		Label label = new Label();
-		label.setText("The property tax");
-		label.setWrapText(true);
+		Label label1 = new Label();
+		label1.setText("The property tax in cities is €" + PropertyTax.getLocationBase1(0));
+		label1.setWrapText(true);
+		
 		
 		//default value
 		location.setValue("City");
+		
+		location.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+			locationString = newValue; 
+			if (locationString.equals("City")) {
+				label1.setText("The property tax in cities is €" + PropertyTax.getLocationBase1(0));
+			} else if (locationString.equals("Large town")) {
+				label1.setText("The property tax in large towns is €" + PropertyTax.getLocationBase1(1));
+			} else if (locationString.equals("Small town")) {
+				label1.setText("The property tax in small towns is €" + PropertyTax.getLocationBase1(2));
+			} else if (locationString.equals("Village")) {
+				label1.setText("The property tax in village is €" + PropertyTax.getLocationBase1(3));
+			} else if (locationString.equals("Country side")) {
+				label1.setText("The property tax in country side is €" + PropertyTax.getLocationBase1(4));
+			}
+		});
+
+		Label label = new Label();
+		label.setText("Select the area you would like to see the property tax");
+		label.setWrapText(true);
+
+		
+		
+		
 
 		VBox layout = new VBox(10);
-		layout.getChildren().addAll(label, locationLabel, location );
+		layout.getChildren().addAll(label, location, label1 );
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout);
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
@@ -64,4 +85,8 @@ public class PropertyTaxOfAreaWindow {
 		propTaxOfArea.setScene(scene);
 		propTaxOfArea.showAndWait();
 	}
+
+
+
+
 }

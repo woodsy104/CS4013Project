@@ -59,10 +59,11 @@ public class changeTaxesWindow {
 		Button confirmButton = new Button("Confirm choices");
 		confirmButton.setOnAction(e -> {
 
-			if (isValue(changeTaxInput, "Not a valid value") == true) {
+			if (isValue(changeTaxInput, "Not a valid value") == true ) {
 
-				boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to add this properties");
+				boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to change these taxes");
 				System.out.println(result);
+				
 				if(result == true) {
 					//this is the percentage change
 					double newTaxRatePercent = Double.parseDouble(changeTaxInput.getText());
@@ -117,7 +118,7 @@ public class changeTaxesWindow {
 
 
 
-
+		Label blank  = new Label("");
 
 
 		GridPane layout = new GridPane();
@@ -131,18 +132,19 @@ public class changeTaxesWindow {
 		layout.setHgap(10);
 
 		GridPane.setConstraints(selectPriceRange,			1, 1 ); 
-		GridPane.setConstraints(selectArea , 				1, 2 ); 
-		GridPane.setConstraints(changeTaxInput,      		1, 4 ); 
-		GridPane.setConstraints(changeTaxAreaFixed, 		1,  3); 
+		GridPane.setConstraints(selectArea , 				1, 4 ); 
+		
+		GridPane.setConstraints(changeTaxInput,      		1, 5 ); 
+		GridPane.setConstraints(changeTaxAreaFixed, 		1,  2); 
 
 		GridPane.setConstraints(selectPriceRangeLabel,		0, 1); 
-		GridPane.setConstraints(selectAreaLabel ,			0, 2 ); 
-		GridPane.setConstraints(changeTaxLabel,  			0, 4 );
-		GridPane.setConstraints(changeTaxAreaFixedLabel,  0, 3); 
-
+		GridPane.setConstraints(selectAreaLabel ,			0, 4 ); 
+		GridPane.setConstraints(changeTaxLabel,  			0, 5 );
+		GridPane.setConstraints(changeTaxAreaFixedLabel,  	0, 2); 
+		GridPane.setConstraints(blank,						0, 3);
 
 		GridPane.setConstraints(confirmButton, 				1, 6 );
-		layout.getChildren().addAll(selectPriceRange, selectPriceRangeLabel, selectArea, selectAreaLabel, changeTaxLabel, changeTaxInput, changeTaxAreaFixedLabel,
+		layout.getChildren().addAll(selectPriceRange, blank, selectPriceRangeLabel, selectArea, selectAreaLabel, changeTaxLabel, changeTaxInput, changeTaxAreaFixedLabel,
 				changeTaxAreaFixed, confirmButton);
 
 

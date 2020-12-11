@@ -14,7 +14,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public class PayWindow {
-	
+
 	static ListView<String> listView;	
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
@@ -36,40 +36,44 @@ public class PayWindow {
 
 		listView = new ListView<>();
 		Owner owner = new Owner(GUI.getOwnerNameText());
-		
+
 		for(int i = 0; i < owner.viewProperties().size(); i++){
 			listView.getItems().add(owner.viewProperties().get(i).toString());
 		}
+		String selection = null;
 
-		
-		Label amountToPayLabel = new Label("How much would you liked to pay for this :");
+		//listView.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> selection = newValue );
+
+
+		Label amountToPayLabel = new Label("How much would you like to pay for this :");
 		TextField amountToPay = new TextField();
-		amountToPay.setMaxWidth(80);
+		amountToPay.setMaxWidth(120);
 		amountToPay.setPromptText("Amount to Pay: Max is  " /*+ (amountTo pay)*/);
 		// I NEED TO ADD THIS BIT HERE SO THAT THE SYSTEM KNOWS WHATS ITS WORTH,
 		// AS SOON AS YOU CLICK ON THE PROPERTY IT SHOULD SAY THE MAX AMOUNT TO PAY
-		
-		
-		
+
+
+
 		Button closeButton = new Button("Pay for selected properties");
 		closeButton.setOnAction(e -> { 
-			
+
 			boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to pay for this properties");
 			System.out.println(result);
 			if(result == true) {
 				//Pay for this house
 				//THIS IS ONE OF THE AREAS THAT WE NEED TO ACTUALLY ADD THE RESULTS THAT THE USER INPUTS INTO THE CSVs OR THE METHODS
-				
-				
-				
-				
+
+
+				System.out.println(amountToPay(amountToPay));
+
+
 				handleOptions();
 				Pay.close();
 			}
 		});
 
 		VBox layout = new VBox(10);
-		
+
 		layout.setAlignment(Pos.CENTER);
 		layout.setPadding(new Insets(10, 10, 10, 10));
 		//amountToPay.setPadding(new Insets(10, 10, 10, 10));
@@ -101,21 +105,29 @@ public class PayWindow {
 
 
 	}
-	
-	
-	
+
+
+
 	private static boolean isValue(TextField input) {
 		try {
 			double value = Double.parseDouble(input.getText());
 			System.out.println("Expected value is: " + value);
+
 			return true;
-			
+
 		} catch(NumberFormatException e) {
 			System.out.println("ERROR: ");
 			return false;
 		}
 	}
-	
+
+
+	private static double amountToPay(TextField input) {
+		double value = Double.parseDouble(input.getText());
+		return value;
+
+	}
+
 
 
 
