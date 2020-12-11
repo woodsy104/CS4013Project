@@ -23,13 +23,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class GUI extends Application {
 	
 	Button buttonPayments, buttonAddProperties, overdueButton, payButton, previousYearsButton;
 	Button changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea;
 	Stage window;
-	Scene scene1, ownerMain, adminMain, overdue, previousYear;
+	Scene scene1, ownerMain, adminMain, ownerName;
+	private static String ownerNameText;
 	private DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
 
@@ -58,9 +60,8 @@ public class GUI extends Application {
 		
 		//yes
 		owner.setOnAction(e -> {
-			window.setScene(ownerMain);
-			
-			
+			window.setScene(ownerName);
+	
 		});
 		
 		//no
@@ -93,7 +94,59 @@ public class GUI extends Application {
 		scene1.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//OwnerName
+		window.setTitle("Owner home");
+		
+		Label ownerLabel = new Label("Who is the owner of this property?");
+		TextField ownerNameInput = new TextField();
+		
+		ownerNameInput.setPromptText("Owner");
+		
+		Button confirm = new Button("Confirm this is your name");
+		
+	
+		confirm.setOnAction(e -> {
+			window.setScene(ownerMain);
+			ownerNameText = ownerNameInput.getText();
+			
+		});
+		
+		VBox layoutOwnerName = new VBox(10);
+		layoutOwnerName.getChildren().addAll(label, ownerLabel, ownerNameInput, confirm);
+		layoutOwnerName.setAlignment(Pos.CENTER);
+		layoutOwnerName.setPadding(new Insets(10, 10, 10, 10));
+		
+		
+		ownerName = new Scene(layoutOwnerName, 600, 400);
+		ownerName.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//Owner Scene
+		window.setTitle("Owner home");
 		buttonAddProperties = new Button("Add properties");
 		buttonAddProperties.setOnAction(e -> AddPropertiesWindow.display());
 
@@ -141,9 +194,29 @@ public class GUI extends Application {
 		
 		//Button changeTaxes, viewChangeEffects, overdueProperties, propertyTaxOfArea
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//Department scene
+		window.setTitle("Department home");
 		changeTaxes = new Button("Change the taxes");
-		changeTaxes.setOnAction(e -> changeTaxesWindow.display("This will be where we change tax of an area"));
+		changeTaxes.setOnAction(e -> changeTaxesWindow.display(""));
 
 		viewChangeEffects = new Button("View the effects of changing tax rates");
 		viewChangeEffects.setOnAction(e -> viewChangeEffectsWindow.display("This will be where view the effects of changing tax rates"));
@@ -196,6 +269,16 @@ public class GUI extends Application {
 		window.show();
 		
 		
+	}
+
+
+
+
+	/**
+	 * @return the ownerNameText
+	 */
+	public static String getOwnerNameText() {
+		return ownerNameText;
 	}
 	
 	
