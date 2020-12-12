@@ -99,9 +99,9 @@ public class Owner
     View balancing statement for property
     @return balancingStatement  Balancing Statement for a property
     */
-    public String getBalancingStatement(String address){
+    public String getBalancingStatement(String address) throws FileNotFoundException{
         ArrayList<Payment> payments = new ArrayList<Payment>();
-        payments = readOrWriteFile.readPayments();
+        payments = readOrWriteFile.readPayments();        
         double taxDue = 0;
         double taxPaid = 0;
         double taxOwed = 0;
@@ -109,7 +109,7 @@ public class Owner
         for(int i = 0; i < (viewProperties().size()); i++){
             Property p = viewProperties().get(i);
             if(p.getAddress().equals(address)){
-                double tax = (PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered()));
+                double tax = (Property.getPropertyTax(p));
                 taxDue += tax;
                 for(int j = 0; j < payments.size(); j++){
                     if(address.equals((payments.get(j)).getAddress())){
@@ -121,13 +121,13 @@ public class Owner
                 taxOwed += PropertyTax.calculateOverdue(p);
             }
         }
-        return "Total Tax Due: " + taxDue + "\nTotal Tax Paid: " + taxPaid + "\nTotal Tax Owed: " + taxOwed;
+        return "Total Tax Due: " + String.format( "%.2f", taxDue) + "\nTotal Tax Paid: " + String.format( "%.2f", taxPaid) + "\nTotal Tax Owed: " + String.format( "%.2f", taxOwed);
     }
     /**
     View balancing statement for year
     @return balancingStatement  Balancing Statement for year
     */
-    public String getBalancingStatement(int year){
+    public String getBalancingStatement(int year) throws FileNotFoundException{
         ArrayList<Payment> payments = new ArrayList<Payment>();
         payments = readOrWriteFile.readPayments();
         double taxDue = 0;
@@ -136,19 +136,19 @@ public class Owner
         
         for(int i = 0; i < (viewProperties().size()); i++){
             Property p = viewProperties().get(i);
-            if(p.getOwner().equals(name) && p.getYearRegistered() >= year){
+            if(p.getOwner().equals(name) && p.getYearRegistered() <= year){
                 double tax = (PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year));
                 taxDue += tax;
                 for(int j = 0; j < payments.size(); j++){
-                    if(p.getYearRegistered() == (payments.get(i)).getYear()){
-                        tax -= (payments.get(i)).toPay();
+                    if(p.getYearRegistered() == (payments.get(j)).getYear()){
+                        tax -= (payments.get(j)).toPay();
                         taxPaid += tax;
                     }            
                 }
                 taxOwed += PropertyTax.calculateOverdue(p);
             }
         }
-        return "Total Tax Due: " + taxDue + "\nTotal Tax Paid: " + taxPaid + "\nTotal Tax Owed: " + taxOwed;
+        return "Total Tax Due: " +  String.format( "%.2f", taxDue) + "\nTotal Tax Paid: " + String.format( "%.2f", taxPaid) + "\nTotal Tax Owed: " + String.format( "%.2f", taxOwed);
     }
     
     /**

@@ -1,5 +1,6 @@
 import java.time.*;
 import java.io.*;
+import java.util.*;
 /**
  A Property
 */
@@ -90,6 +91,22 @@ public class Property
     public void payPropertyTax(double ammount, String address) throws FileNotFoundException{
         double taxDue = PropertyTax.calculatePropertyTax(owner, address, marketValue, location, PPR, yearRegistered);
         readOrWriteFile.writePayment(owner, eircode, address, marketValue, (taxDue - ammount), Year.now().getValue());
+    }
+    /**
+    Get property tax for a property
+    @param Property  property to get property tax for
+    */
+    public static double getPropertyTax(Property p) throws FileNotFoundException{
+        double taxDue = PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered());
+        ArrayList<Payment> payments = readOrWriteFile.readPayments();
+        
+        for(int i = 0; i < payments.size(); i++){
+            if((payments.get(i)).getOwner().equals(p.getOwner()) && (payments.get(i)).getAddress().equals(p.getAddress())){
+                taxDue = (payments.get(i)).toPay();
+            }
+        }
+        
+        return taxDue;
     }
     
     /**

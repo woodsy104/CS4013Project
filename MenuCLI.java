@@ -54,13 +54,15 @@ public class MenuCLI
                            double overdue = 0;
                                                       
                            System.out.println(p.toString() +
-                           "Tax Due:"  +  PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered()) +
-                           "\nOverdue Tax: " +  PropertyTax.calculateOverdue(p) + "\n");
+                           "Tax Due: "  +  String.format( "%.2f", Property.getPropertyTax(p)) +
+                           "\nOverdue Tax: " +  String.format( "%.2f", PropertyTax.calculateOverdue(p)) + "\n");
                          }
                      } else if(command.equals("S")){ //Search By Year
                          System.out.println("Year: ");
                          int year = in.nextInt();
-                         System.out.println(menu.viewPropertiesByYear(year));
+                         for(int i = 0; i < menu.viewPropertiesByYear(year).size(); i++){
+                             System.out.println((menu.viewPropertiesByYear(year).get(i)).toString());
+                         }
                      } else if(command.equals("P")){ //Payments
                          for(int i = 0; i < menu.viewPayments().size(); i++){
                            System.out.println(menu.viewPayments().get(i).toString());
@@ -69,16 +71,18 @@ public class MenuCLI
                         try{
                             Property p = (Property)
                             getChoice(menu.viewProperties());                            
-                            System.out.println(PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered()));  
+                            System.out.println("Ammount Due: " + Property.getPropertyTax(p));                              
                             System.out.println("Ammount: ");
                             double ammount = in.nextDouble();
                             
-                            if(ammount > PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered())){
+                            if(ammount > Property.getPropertyTax(p)){
                                 System.out.println("Enter a smaller ammount");
-                            }
-                            
-                            menu.payPropertyTax(p, ammount);
-                            System.out.println("Payment Confirmed For: " + p.toString());
+                            } else if((Property.getPropertyTax(p)) <= 0) {
+                                System.out.println("Noting To Pay");
+                            } else {
+                                menu.payPropertyTax(p, ammount);
+                                System.out.println("Payment Confirmed For: " + p.toString());
+                            }                            
                         } catch (Exception ex){
                             System.out.println(ex.getMessage());
                         }

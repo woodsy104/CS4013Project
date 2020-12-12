@@ -58,16 +58,17 @@ public class DeptEnvironment{
     @return propOutput  return Overdue Tax For Year for an area 
     */
     public ArrayList<String> getOverdueTaxForYear(int year, String eircode){
-        return PropertyTax.calculateOverdue(year, eircode);
+        return PropertyTax.calculateOverdue(year, getRoutingKey(eircode));
     }
     
     /**
     Get Property Tax Statistics for and area
     @return propOutput  return Property Tax Statistics for and area 
     */
-    public String getPropertyTaxStatistics(String eircode){
+    public String getPropertyTaxStatistics(String eircode) throws FileNotFoundException{
         double totalTaxPaid = 0;
-        double numProps = 1;
+        double numProps = 0;
+        String eirKey = getRoutingKey(eircode);
         
         ArrayList<Property> properties = new ArrayList<Property>();
         ArrayList<Payment> payments = new ArrayList<Payment>();
@@ -76,27 +77,28 @@ public class DeptEnvironment{
         
         for(int i = 0; i < properties.size(); i++){
             Property p = properties.get(i);
-            if((p.getEircode()).equals(eircode)){
+            String eircodeKey = getRoutingKey(p.getEircode());
+            if(eircodeKey.equals(eirKey)){
                 numProps++;                
-                double propTax = PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered());
+                double propTax = Property.getPropertyTax(p);
             
                 for(int j = 0; j < payments.size(); j++){
-                    if((payments.get(i)).getEircode() == eircode && p.getAddress() == (payments.get(i)).getAddress()){
-                        propTax -= (payments.get(i)).toPay();
+                    if(eircodeKey.equals(eircode) && p.getAddress().equals((payments.get(j)).getAddress())){
+                        propTax -= (payments.get(j)).toPay();
                     }            
                 }
                 totalTaxPaid += propTax;
             }
         }
-        
-        return "Eircode: " + eircode + "\nTotal Tax Paid: " + totalTaxPaid + "\nAverage Tax Paid: " + (totalTaxPaid / numProps);
+       
+        return "Eircode: " + eircode + "\nTotal Tax Paid: " + String.format( "%.2f", totalTaxPaid) + "\nAverage Tax Paid: " + String.format( "%.2f", (totalTaxPaid / numProps));
     }
     
     /**
     Investigate Rate Change on Property Tax
     @return propOutput  return Impact of Rate Changes 
     */
-    public String investigateRateChange(int city, int largeTown, int smallTown, int village, int countryside){
+    public String investigateRateChange(int city, int largeTown, int smallTown, int village, int countryside) throws FileNotFoundException{
         ArrayList<Property> properties = new ArrayList<Property>();
         properties = readOrWriteFile.readProperties();
         double currentTotalTax = 0;
@@ -105,9 +107,18 @@ public class DeptEnvironment{
                         
         for(int i = 0; i < properties.size(); i++){
             Property p = (properties.get(i));
-            currentTotalTax += PropertyTax.calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered());
+            currentTotalTax += Property.getPropertyTax(p);
             totalTaxAfterChange += PropertyTax.calculatePropertyTaxChange(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), p.getYearRegistered(), locationBaseChange);
         }
-        return "Current Total Tax: " + currentTotalTax + "\nTotal Tax After Change: " + totalTaxAfterChange + "\nIncrease: " + (totalTaxAfterChange - currentTotalTax);
+        return "Current Total Tax: " + String.format( "%.2f", currentTotalTax) + "\nTotal Tax After Change: " + String.format( "%.2f", totalTaxAfterChange) + "\nIncrease: " + String.format( "%.2f", (totalTaxAfterChange - currentTotalTax));
     }    
+    
+    
+    /**
+    Get routing key on an eircode
+    @return routing key of eircode 
+    */
+    protected static String getRoutingKey(String eircode){        
+        return eircode.substring(0, 3);
+    }
 }

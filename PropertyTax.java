@@ -88,7 +88,7 @@ public class PropertyTax {
         payments = readOrWriteFile.readPayments();
         
         for(int i = 0; i < payments.size(); i++){                
-                if(name.equals((payments.get(i)).getOwner()) && address == (payments.get(i)).getAddress()){
+                if(name.equals((payments.get(i)).getOwner()) && address.equals((payments.get(i)).getAddress())){
                     return (payments.get(i)).toPay();
                 }
         }
@@ -170,7 +170,7 @@ public class PropertyTax {
                     dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
                     
                     for(int j = 0; j < payments.size(); j++){ 
-                        if(p.getOwner() == (payments.get(j)).getOwner() && p.getAddress() == (payments.get(j)).getAddress()){
+                        if(p.getOwner().equals((payments.get(j)).getOwner()) && p.getAddress().equals((payments.get(j)).getAddress())){
                             dueForYear = (payments.get(j)).toPay();
                         }
                     }
@@ -196,11 +196,11 @@ public class PropertyTax {
         
         for(int i = 0; i < properties.size() - 1; i++){ 
             Property p = properties.get(i);
-            if(p.getEircode() == eircode && year > p.getYearRegistered()){               
+            String eircodeKey = DeptEnvironment.getRoutingKey(p.getEircode());
+            if(year > p.getYearRegistered()){               
                 dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
-                
                 for(int j = 0; j < payments.size(); j++){ 
-                    if(p.getOwner() == (payments.get(j)).getOwner() && p.getAddress() == (payments.get(j)).getAddress()){
+                    if(p.getOwner().equals((payments.get(j)).getOwner()) && p.getAddress().equals((payments.get(j)).getAddress())){
                         dueForYear = (payments.get(j)).toPay();
                     }
                 }
@@ -223,7 +223,7 @@ public class PropertyTax {
             for(int year = p.getYearRegistered(); year < Year.now().getValue(); year++){
                 dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
                 for(int j = 0; j < payments.size(); j++){ 
-                        if(p.getOwner() == (payments.get(j)).getOwner() && p.getAddress() == (payments.get(j)).getAddress()){
+                        if(p.getOwner().equals((payments.get(j)).getOwner()) && p.getAddress().equals((payments.get(j)).getAddress())){
                             dueForYear = (payments.get(j)).toPay();
                         }
                 }

@@ -78,6 +78,6 @@ public class Payment{
     @return payment as string 
     */
     public String toString(){
-        return "Owner: " + owner + "\nAddress: " + address + "\nEircode: " + eircode + "\nMarketValue: " + propValue + "\nTo Pay: " + toPay;
+        return "Owner: " + owner + "\nAddress: " + address + "\nEircode: " + eircode + "\nMarketValue: " + propValue + "\nTo Pay: " + toPay + "\n";
     }
 }

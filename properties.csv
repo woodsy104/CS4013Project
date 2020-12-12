@@ -1,18 +1,14 @@
 Owner,Address,Eircode,Market Value,Location Category,PPR,Year Registered
-Eoin Costello,Roscommon,1,100000,Countryside,FALSE,2018
-Sean Ryan,Waterford,2,200000,Large Town,TRUE,2020
-Andrew McMahon,Limerick,3,300000,City,FALSE,2019
-David Woods,Limerick,4,120000,City,FALSE,2019
-Kevin Mulry,Galway,5,500000,Village,FALSE,2015
-Ronan Thornton,Wexford,6,1500000,Small Town,TRUE,2017
-Ronan McCann,Donegal,7,300000,Large Town,FALSE,2016
-Eoin Roche,Kilkenny,8,100000,Small Town,TRUE,2020
-Trevor Watson,Cork,9,700000,City,TRUE,2019
-Sean Mclaverty,Galway,10,10000,Village,FALSE,2019
-David Barrett,Sligo,11,400000,Small Town,TRUE,2017
-Eoin Costello,Limerick,13,800000,City,FALSE,2020
-Kevin Mulry,Limerick,14,950000,City,FALSE,2020
-Eoin Costello,Sligo,15,500000,Large Town,FALSE,2020
-Eoin Costello,Dublin,16,1000000,City,FALSE,2020
-Eoin Costello,Cork,17,30000,City,FALSE,2020
-Gibby,Limerick,18,20000,City,TRUE,2020
+Eoin Costello,Roscommon,H53VN59,95000,Countryside,FALSE,2018
+Sean Ryan,Waterford,W67H904,178000,Village,FALSE,2020
+Andrew McMahon,Limerick,V9476YU,590000,City,FALSE,2019
+David Woods,Limerick,V94LS5E,480000,Large Town,FALSE,2019
+Eoin Costello,Galway,D61PT16,625000,Large Town,FALSE,2015
+Sean Ryan,Limerick,V94Y6GR,690000,Small Town,TRUE,2017
+Andrew McMahon,Cork,C45TY71,470000,Small Town,FALSE,2016
+David Woods,Dublin,G54K8WR,900000,Small Town,FALSE,2020
+Eoin Costello,Limerick,V94T6IP,700000,City,FALSE,2019
+Sean Ryan,Sligo,S94FH53,160000,Large Town,FALSE,2019
+Ronan McCann,Belfast,B39JK04,350000,City,TRUE,2017
+Kevin Mulry,Galway,D61G64T,390000,City,TRUE,2020
+Eoin Costello,Dublin,G54RT62,867000.0,City,false,2020
