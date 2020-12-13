@@ -1,0 +1,24 @@
+.root{
+	-fx-background-color: #ffffff;
+	-fx-font-size: 10pt;
+		
+}
+
+
+.label{
+		-fx-text-fill: #000000
+	
+}
+
+.button {
+	-fx-background-color: #DDDDDD;
+	-fx-text-fill: #000000;
+	-fx-background-radius: 15;
+
+}
+
+.choiceBox{
+	-fx-background-color: #DDDDDD;
+	-fx-text-fill: #000000;
+}
+	
