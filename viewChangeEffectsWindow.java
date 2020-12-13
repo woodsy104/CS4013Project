@@ -11,6 +11,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -20,6 +23,10 @@ public class viewChangeEffectsWindow {
 
 
 	public static void display(String message) {
+		
+		
+		DeptEnvironment deptOfEnvironment = new DeptEnvironment();
+		
 		Stage viewChanges = new Stage();
 
 		viewChanges.initModality(Modality.APPLICATION_MODAL);
@@ -34,7 +41,7 @@ public class viewChangeEffectsWindow {
 		Label cityLabel = new Label();
 		cityLabel.setText("Input the new tax rate for City");
 		TextField cityInput = new TextField();
-		cityInput.setPromptText("");
+		cityInput.setPromptText("City");
 		
 		Label lTownLabel = new Label();
 		lTownLabel.setText("Input the new tax rate for Large town");
@@ -57,17 +64,25 @@ public class viewChangeEffectsWindow {
 		countrySideInput.setPromptText("Country Side");
 		
 		
-
 		
 		
 
-		
+	
 		
 		Button viewChangesButton = new Button("view the changes");
 		viewChangesButton.setOnAction(e -> {
-			// CALL THE METHOD AND PRINT IT 
-			
-			
+			if (cityInputTrue(cityInput) && lTownInputTrue(lTownInput) && sTownInputTrue(sTownInput) 
+					&& villageInputTrue(villageInput) && countrySideTrue(countrySideInput)) {
+				String output = "";
+				try {
+					 output += deptOfEnvironment.investigateRateChange( cityInput(cityInput), lTownInput(lTownInput), sTownInput(sTownInput)
+							, villageInput(villageInput), countrySideInput(countrySideInput)).toString();
+					 ViewChangesEffectsViewWindow.display(output);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		});
 		
 		Label blank  = new Label("");
@@ -109,7 +124,85 @@ public class viewChangeEffectsWindow {
 	
 		viewChanges.setScene(scene);
 		viewChanges.showAndWait();
-		
-
 	}
+	
+	private static int cityInput(TextField cityInput) {
+		int cityOut = Integer.parseInt(cityInput.getText());
+		return cityOut;
+	}
+	
+	private static boolean cityInputTrue(TextField cityInput) {
+		try {
+			int cityInputTrue = Integer.parseInt(cityInput.getText());
+			return true;
+		}catch (Exception e2) {
+			ErrorWindow.display("You must enter an integer for the new tax of city");
+			return false;
+		}
+	}
+	
+	private static int lTownInput(TextField lTownInput) {
+		int lTownOut = Integer.parseInt(lTownInput.getText());
+		return lTownOut;
+	}
+	
+	private static boolean lTownInputTrue(TextField lTownInput) {
+		try {
+			int lTownOut = Integer.parseInt(lTownInput.getText());
+			return true;
+		}catch (Exception e2) {
+			ErrorWindow.display("You must enter an integer for the new tax of city");
+			return false;
+		}
+	}
+	
+	private static int sTownInput(TextField sTownInput) {
+		int sTownOut = Integer.parseInt(sTownInput.getText());
+		return sTownOut;
+	}
+	
+	private static boolean sTownInputTrue(TextField sTownInput) {
+		try {
+			int sTownOut = Integer.parseInt(sTownInput.getText());
+			return true;
+		}catch (Exception e2) {
+			ErrorWindow.display("You must enter an integer for the new tax of city");
+			return false;
+		}
+	}
+	
+	
+	private static int villageInput(TextField villageInput) {
+		int villageOut = Integer.parseInt(villageInput.getText());
+		return villageOut;
+	}
+	
+	private static boolean villageInputTrue(TextField villageInput) {
+		try {
+			int villageOut = Integer.parseInt(villageInput.getText());
+			return true;
+		}catch (Exception e2) {
+			ErrorWindow.display("You must enter an integer for the new tax of city");
+			return false;
+		}
+	}
+	
+	private static int countrySideInput(TextField countrySideInput) {
+		int countrySideOut = Integer.parseInt(countrySideInput.getText());
+		return countrySideOut;
+	}
+	
+	private static boolean countrySideTrue(TextField countrySideInput) {
+		try {
+			int countrySideOut = Integer.parseInt(countrySideInput.getText());
+			return true;
+		}catch (Exception e2) {
+			ErrorWindow.display("You must enter an integer for the new tax of city");
+			return false;
+		}
+	}
+	
+	
+	
+	
 }

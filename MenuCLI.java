@@ -1,3 +1,5 @@
+package guiClasses;
+
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -129,7 +131,7 @@ public class MenuCLI
                              String eircode = in.nextLine();
                              System.out.println("Year: ");
                              int year = in.nextInt();
-                             System.out.println(deptMenu.getOverdueTaxForYear(year, eircode));                             
+                             System.out.println(deptMenu.getOverdueTaxForEircode(year, eircode));                             
                          } else if(sort.equals("N")){ //Overdue by Year
                              System.out.println("Year: ");
                              int year = in.nextInt();

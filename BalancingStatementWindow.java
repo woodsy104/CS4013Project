@@ -6,6 +6,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -24,25 +27,22 @@ public class BalancingStatementWindow {
 		Label label = new Label();
 		label.setText("These are your payments that are overdue:\n" + message);
 
-
-
-		
-
-
+		Owner owner = new Owner(GUI.getOwnerNameText());
+		Label balStatement = new Label();
+		try {
+			balStatement.setText(owner.getBalancingStatement(GUI.getOwnerNameText()));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		Button closeButton = new Button("Close the window");
 		closeButton.setOnAction(e -> {
-			
-			
-			
-			
-
 			OverduePayments.close();
-
 		});
 
 		VBox layout = new VBox(10);
-		layout.getChildren().addAll(label, closeButton);
+		layout.getChildren().addAll(label, balStatement, closeButton);
 		layout.setAlignment(Pos.CENTER);
 		fontSize.bind(OverduePayments.widthProperty().add(OverduePayments.heightProperty()).divide(40));
 		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));

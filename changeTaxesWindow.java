@@ -36,7 +36,7 @@ public class changeTaxesWindow {
 
 
 		ChoiceBox<String> selectArea = new ChoiceBox<>();
-		Label selectAreaLabel = new Label("Where would you like to change the rate of tax for");
+		Label selectAreaLabel = new Label("What area would you like to change the rate of tax for");
 		selectArea.getItems().addAll("City", "Large town", "Small town", "Village", "Country side");
 
 
@@ -51,31 +51,42 @@ public class changeTaxesWindow {
 
 		//PRICE
 		//PERCENT
-		Label changeTaxLabel  = new Label("Set a percentage increase on a price bracket");
-		TextField changeTaxInput = new TextField();
-		changeTaxInput.setPromptText("Enter as a percent (0.04)");
+		Label changeTaxBracketLabel  = new Label("Set a percentage increase on a price bracket");
+		TextField changeTaxBracket = new TextField();
+		changeTaxBracket.setPromptText("Enter as a percent (0.04)");
 
 
 		Button confirmButton = new Button("Confirm choices");
 		confirmButton.setOnAction(e -> {
 
-			if (isValue(changeTaxInput, "Not a valid value") == true ) {
+			if (isValue(changeTaxBracket) == true || isValue2(changeTaxAreaFixed)) {
 
 				boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to change these taxes");
-				System.out.println(result);
-				
+				//System.out.println(result);
+
+
 				if(result == true) {
-					//this is the percentage change
-					double newTaxRatePercent = Double.parseDouble(changeTaxInput.getText());
-					int newFixedTaxRate = (int) Double.parseDouble(changeTaxAreaFixed.getText());
 
-					//add all the information to this
-					if(getChoice(selectArea) == "" && getChoice2(selectPriceRange) == "") {
-						//THEY HAVENT SELECTED ANYTHING AT ALL
 
+					if(isValue(changeTaxBracket) == true) {
+
+						double newTaxRatePercent = Double.parseDouble(changeTaxBracket.getText());
+
+						//PRICE RANGE ISNT BEING USED USE AREA
+						if(getChoice2(selectPriceRange) == "0-150,000" ){
+							PropertyTax.setRate(0, newTaxRatePercent);
+						}else if(getChoice2(selectPriceRange) == "150,000-400,000" ){
+							PropertyTax.setRate(1, newTaxRatePercent);
+						} else if(getChoice2(selectPriceRange) == "650,000+" ){
+							PropertyTax.setRate(2, newTaxRatePercent);
+						}
 					}
-					if(getChoice(selectArea) != "") {
 
+
+
+
+					if(isValue2(changeTaxAreaFixed) == true) {
+						int newFixedTaxRate = (int) Double.parseDouble(changeTaxAreaFixed.getText());
 						//Price range is selected 
 
 						if (getChoice(selectArea) == "City") {
@@ -96,23 +107,13 @@ public class changeTaxesWindow {
 
 						else if (getChoice(selectArea) == "Country side") {
 							PropertyTax.setLocationBase(4, newFixedTaxRate);
-							System.out.println(newFixedTaxRate);
+							//System.out.println(newFixedTaxRate);
 						}
 					}
-
-					if(getChoice2(selectPriceRange) != "") {
-						//PRICE RANGE ISNT BEING USED USE AREA
-						if(getChoice2(selectPriceRange) == "0-150,000" ){
-							PropertyTax.setRate(0, newTaxRatePercent);
-						}else if(getChoice2(selectPriceRange) == "150,000-400,000" ){
-							PropertyTax.setRate(1, newTaxRatePercent);
-						} else if(getChoice2(selectPriceRange) == "650,000+" ){
-							PropertyTax.setRate(2, newTaxRatePercent);
-						}
-					}
-
-					changeTaxes.close();
 				}
+
+
+				changeTaxes.close();
 			}
 		});
 
@@ -133,18 +134,19 @@ public class changeTaxesWindow {
 
 		GridPane.setConstraints(selectPriceRange,			1, 1 ); 
 		GridPane.setConstraints(selectArea , 				1, 4 ); 
-		
-		GridPane.setConstraints(changeTaxInput,      		1, 5 ); 
-		GridPane.setConstraints(changeTaxAreaFixed, 		1,  2); 
+
+		GridPane.setConstraints(changeTaxBracket,      		1, 2 ); 
+		GridPane.setConstraints(changeTaxAreaFixed, 		1,  5); 
 
 		GridPane.setConstraints(selectPriceRangeLabel,		0, 1); 
 		GridPane.setConstraints(selectAreaLabel ,			0, 4 ); 
-		GridPane.setConstraints(changeTaxLabel,  			0, 5 );
-		GridPane.setConstraints(changeTaxAreaFixedLabel,  	0, 2); 
+		
+		GridPane.setConstraints(changeTaxBracketLabel,  	0, 2 );
+		GridPane.setConstraints(changeTaxAreaFixedLabel,  	0, 5); 
 		GridPane.setConstraints(blank,						0, 3);
 
 		GridPane.setConstraints(confirmButton, 				1, 6 );
-		layout.getChildren().addAll(selectPriceRange, blank, selectPriceRangeLabel, selectArea, selectAreaLabel, changeTaxLabel, changeTaxInput, changeTaxAreaFixedLabel,
+		layout.getChildren().addAll(selectPriceRange, blank, selectPriceRangeLabel, selectArea, selectAreaLabel, changeTaxBracketLabel, changeTaxBracket, changeTaxAreaFixedLabel,
 				changeTaxAreaFixed, confirmButton);
 
 
@@ -161,36 +163,52 @@ public class changeTaxesWindow {
 
 
 
-	private static boolean isValue(TextField input, String message) {
+	private static boolean isValue(TextField input) {
 		try {
 			double value = Double.parseDouble(input.getText());
-			System.out.println("Expected value is: " + value);
 			return true;
 
 		} catch(NumberFormatException e) {
-			System.out.println("ERROR: " + message);
 			return false;
 		}
 	}
 
-	private static String getChoice(ChoiceBox<String> location) {
-		String choice = location.getValue();
-		if (choice != "City" && choice != "Large town" && choice != "Small town" && choice != "Village" && choice != "Country side") {
-			
-			return "";
-		}else {
-		
-			return choice;
+
+	private static boolean isValue2(TextField input) {
+		try {
+			int value = Integer.parseInt(input.getText());
+			return true;
+
+		} catch(NumberFormatException e) {
+			return false;
 		}
 	}
 
-	private static String getChoice2(ChoiceBox<String> price) {
-		String choice = price.getValue();
-		if (choice != "0-150,000" && choice != "150,000-400,000" && choice != "650,000+") {
-			return "";
-		}else {
+
+
+
+
+
+	private static String getChoice(ChoiceBox<String> location) {
+		try {
+			String choice = location.getValue();
+			System.out.println("choice area " +choice);
 			return choice;
+		} catch (Exception e2) {
+			System.out.println("failed successfully");
 		}
+		return null;
+	}
+
+	private static String getChoice2(ChoiceBox<String> price) {
+		try {
+		String choice = price.getValue();
+			return choice;
+		} catch (Exception e2){
+			System.out.println("choice price range fail success" );
+			
+		}
+		return null;
 	}
 
 

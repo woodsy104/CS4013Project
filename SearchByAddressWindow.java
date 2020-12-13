@@ -28,23 +28,25 @@ public class SearchByAddressWindow {
 		label.setText( message);
 
 
-		Label addressLabel = new Label("What is the name of the person you'd like to view's history");
+		Label addressLabel = new Label("What is the address of the person you'd like to view's history");
 		
 		TextField address = new TextField();
 		address.setMaxWidth(120);
-		address.setPromptText("Sean");
+		address.setPromptText("Waterford");
 
 
 
 
 
-		Button closeButton = new Button("See properties");
-		closeButton.setOnAction(e -> {
-			SearchByNameViewWindow.display((getAddress(address)), getAddress(address));
+		Button seeProperties = new Button("See properties");
+		seeProperties.setOnAction(e -> {
+			System.out.println(getAddress(address));
+			SearchByAddressViewWindow.display((getAddress(address)), getAddress(address));
+			
 		});
 
 		VBox layout = new VBox(10);
-		layout.getChildren().addAll(label, addressLabel, address, closeButton);
+		layout.getChildren().addAll(label, addressLabel, address, seeProperties);
 		layout.setAlignment(Pos.CENTER);
 
 		Scene scene = new Scene(layout);

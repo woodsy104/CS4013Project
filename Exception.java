@@ -1,3 +1,5 @@
+package guiClasses;
+
 public class Exception extends RuntimeException
 {
    public Exception(String reason){

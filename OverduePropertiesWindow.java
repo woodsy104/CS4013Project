@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -19,6 +22,8 @@ public class OverduePropertiesWindow {
 	public static void display(String message) {
 		
 		DeptEnvironment deptOfEnvironment = new DeptEnvironment();
+		Owner menu = new Owner("Sean");
+		 ArrayList<Property> properties = deptOfEnvironment.getTaxDataForProperty("waterford");
 	
 		
 		Stage OverdueProperties = new Stage();
@@ -47,15 +52,20 @@ public class OverduePropertiesWindow {
 		Button viewButton = new Button("view the properties");
 		viewButton.setOnAction(e -> {
 			
-	
-			String hello = (deptOfEnvironment.getOverdueTaxForYear(getYear(sortByYear)).toString());
+			int year1 = getYear(sortByYear);
 			
+			if (getEirTrue(sortByEircode) == true) {
+				//String eir = (deptOfEnvironment.getOverdueTaxForEircode(year1, (getEir(sortByEircode))).toString());
+				String year = (deptOfEnvironment.getOverdueTaxForYear(getYear(sortByYear)).toString());
+				OverduePropertiesViewWindow.display(getYear(sortByYear), year);
+				label.setWrapText(true);
+				
+			}else if (getYearTrue(sortByYear) == true) {
+				String year = (deptOfEnvironment.getOverdueTaxForYear(getYear(sortByYear)).toString());
+				OverduePropertiesViewWindow.display(getYear(sortByYear), year);
+				label.setWrapText(true);
+			}
 			
-			
-			
-			OverduePropertiesViewWindow.display(getYear(sortByYear), hello);
-			label.setWrapText(true);
-
 		});
 		
 		Button closeButton = new Button("Close the window");
@@ -80,8 +90,48 @@ public class OverduePropertiesWindow {
 	
 	private static int getYear(TextField sortByYear) {
 		int yearOut = Integer.parseInt(sortByYear.getText());
-
-
 		return yearOut;
 	}
+	
+	private static boolean getYearTrue(TextField sortByYear) {
+		try {
+			int yearOut = Integer.parseInt(sortByYear.getText());
+			return true;
+		}catch (Exception e2) {
+			ErrorWindow.display("You must enter a year");
+			return false;
+		}
+		
+	}
+	
+	
+	private static String getEir(TextField sortByEircode) {
+		try {
+			String eirOut = sortByEircode.getText();
+			return eirOut;
+		} catch (Exception e2) {
+			ErrorWindow.display("You must input an Eircode/Eircode key");
+			System.out.println("failed successfully");
+		}
+		return null;
+	
+	}
+	
+	private static boolean getEirTrue(TextField sortByEircode) {
+		try {
+			String eirOut = sortByEircode.getText();
+			if (eirOut.length() > 2) {
+				//System.out.println("This is returning true");
+				return true;
+			}
+		} catch (Exception e2) {
+			ErrorWindow.display("You must input an Eircode/Eircode key");
+			System.out.println("failed successfully");
+			return false;
+		}
+		return false;
+	
+	}
+	
+	
 }

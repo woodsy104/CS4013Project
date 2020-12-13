@@ -1,3 +1,5 @@
+
+package guiClasses;
 import java.io.*;
 import java.util.*;
 /**
@@ -57,7 +59,7 @@ public class DeptEnvironment{
     Get Overdue Tax For Year for and area
     @return propOutput  return Overdue Tax For Year for an area 
     */
-    public ArrayList<String> getOverdueTaxForYear(int year, String eircode){
+    public ArrayList<String> getOverdueTaxForEircode(int year, String eircode){
         return PropertyTax.calculateOverdue(year, getRoutingKey(eircode));
     }
     
@@ -118,7 +120,8 @@ public class DeptEnvironment{
     Get routing key on an eircode
     @return routing key of eircode 
     */
-    protected static String getRoutingKey(String eircode){        
+    protected static String getRoutingKey(String eircode){   
+    	System.out.println("get routing " +eircode.substring(0, 3));
         return eircode.substring(0, 3);
     }
 }

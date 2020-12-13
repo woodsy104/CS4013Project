@@ -1,3 +1,5 @@
+package guiClasses;
+
 import java.io.*;
 import java.util.*;
 public class DeptEnvironmentRecord{
@@ -11,7 +13,7 @@ public class DeptEnvironmentRecord{
         propOutput = readOrWriteFile.readProperties();
         
         for(int i = 0; i < propOutput.size(); i++){
-           if(address.equals((propOutput.get(i)).getAddress())){
+           if(address.equalsIgnoreCase((propOutput.get(i)).getAddress())){
                return (propOutput.get(i)).toString();
            }                          
         }    
@@ -22,7 +24,7 @@ public class DeptEnvironmentRecord{
         propOutput = readOrWriteFile.readProperties();
         
         for(int i = 0; i < propOutput.size(); i++){
-           if(name.equals((propOutput.get(i)).getOwner())){
+           if(name.equalsIgnoreCase((propOutput.get(i)).getOwner())){
                return (propOutput.get(i)).toString();
            }                          
         }    

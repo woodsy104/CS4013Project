@@ -9,6 +9,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -32,43 +36,45 @@ public class PayWindow {
 		label.setText("Select the houses you wish to pay for:\n");
 		label.setWrapText(true);
 
-
-
 		listView = new ListView<>();
 		Owner owner = new Owner(GUI.getOwnerNameText());
-
+		char j = 'A';
 		for(int i = 0; i < owner.viewProperties().size(); i++){
-			listView.getItems().add(owner.viewProperties().get(i).toString());
+			listView.getItems().add(j + ":\n" + owner.viewProperties().get(i).toString());
+			j++;
 		}
-		String selection = null;
 
-		//listView.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> selection = newValue );
+
+
+		Label propertyToPayForLabel = new Label("Type in the letter of the property to pay for it");
+		TextField propertyToPayFor = new TextField();
+		propertyToPayFor.setMaxWidth(120);
+		propertyToPayFor.setPromptText("A");
 
 
 		Label amountToPayLabel = new Label("How much would you like to pay for this :");
 		TextField amountToPay = new TextField();
 		amountToPay.setMaxWidth(120);
-		amountToPay.setPromptText("Amount to Pay: Max is  " /*+ (amountTo pay)*/);
-		// I NEED TO ADD THIS BIT HERE SO THAT THE SYSTEM KNOWS WHATS ITS WORTH,
-		// AS SOON AS YOU CLICK ON THE PROPERTY IT SHOULD SAY THE MAX AMOUNT TO PAY
+		amountToPay.setPromptText("100");
+
 
 
 
 		Button closeButton = new Button("Pay for selected properties");
 		closeButton.setOnAction(e -> { 
+			if (getCharTrue(propertyToPayFor) == true && (isValue(amountToPay) == true )) {
+				boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to pay for this properties");
 
-			boolean result = ConfirmBox.display("Confirmation", "Are you sure you want to pay for this properties");
-			System.out.println(result);
-			if(result == true) {
-				//Pay for this house
-				//THIS IS ONE OF THE AREAS THAT WE NEED TO ACTUALLY ADD THE RESULTS THAT THE USER INPUTS INTO THE CSVs OR THE METHODS
-
-
-				System.out.println(amountToPay(amountToPay));
-
-
-				handleOptions();
-				Pay.close();
+				if(result == true) {
+					char h = getChar(propertyToPayFor);
+					Property p = (Property) getChoice(owner.viewProperties(), h); 
+					try {
+						owner.payPropertyTax(p, amountToPay(amountToPay));
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+					Pay.close();
+				}
 			}
 		});
 
@@ -76,8 +82,8 @@ public class PayWindow {
 
 		layout.setAlignment(Pos.CENTER);
 		layout.setPadding(new Insets(10, 10, 10, 10));
-		//amountToPay.setPadding(new Insets(10, 10, 10, 10));
-		layout.getChildren().addAll(label, listView, amountToPayLabel, amountToPay, closeButton);
+		layout.getChildren().addAll(label, listView, amountToPayLabel, amountToPay, propertyToPayForLabel, 
+				propertyToPayFor, closeButton);
 
 
 
@@ -90,42 +96,68 @@ public class PayWindow {
 	}
 
 
-	//handle check box options
-	private static void handleOptions() {
-		String message = "Selected to pay\n";
-		ObservableList<String> words;
-		words = listView.getSelectionModel().getSelectedItems();
-
-		for(String w: words) {
-			message += w + "\n";
-
-		}
-
-		System.out.print(message);
-
-
-	}
-
-
-
 	private static boolean isValue(TextField input) {
 		try {
 			double value = Double.parseDouble(input.getText());
-			System.out.println("Expected value is: " + value);
-
 			return true;
-
 		} catch(NumberFormatException e) {
-			System.out.println("ERROR: ");
+			ErrorWindow.display("Please input an amount to pay");
 			return false;
 		}
+
 	}
 
 
 	private static double amountToPay(TextField input) {
 		double value = Double.parseDouble(input.getText());
 		return value;
+	}
 
+
+	private static boolean getCharTrue(TextField input) {
+		try {
+
+			String in = input.getText();
+			if(in.trim().isEmpty()) {
+				ErrorWindow.display("Please input a single character");
+				return false;
+			}
+			in.toUpperCase();
+			if (Character.isLetter(in.charAt(0)) && in.length() == 1) {
+				return true;
+			}
+		}catch(Exception e ) {
+			ErrorWindow.display("Please input a single character");
+			return false;
+		}
+		ErrorWindow.display("Please input a single character");
+		return false;
+	}
+
+	private static char getChar(TextField input) {
+		String in = input.getText();
+		String out = in.toUpperCase();
+		return out.charAt(0);
+	}
+
+
+
+
+
+	private static Property getChoice(ArrayList<Property> choices, char h){ //offer choice
+		boolean literallyAnything = true;
+		//try ???????? catch ????????
+			while (literallyAnything){
+				int n = h - 'A';
+				if (0 <= n && n < choices.size()){
+					System.out.println(choices.get(n));
+					return choices.get(n);
+				} else {
+					literallyAnything =false;
+					ErrorWindow.display("No such property exists at " + h);
+				}
+			}
+		return null;
 	}
 
 

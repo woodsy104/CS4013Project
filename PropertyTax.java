@@ -1,3 +1,4 @@
+package guiClasses;
 import java.time.*;
 import java.util.*;
 
@@ -194,10 +195,10 @@ public class PropertyTax {
         double dueForYear;
         
         
-        for(int i = 0; i < properties.size() - 1; i++){ 
+        for(int i = 0; i < properties.size(); i++){ 
             Property p = properties.get(i);
             String eircodeKey = DeptEnvironment.getRoutingKey(p.getEircode());
-            if(year > p.getYearRegistered()){               
+            if(year > p.getYearRegistered() && eircodeKey.equals(eircode)){               
                 dueForYear = calculatePropertyTax(p.getOwner(), p.getAddress(), p.getMarketValue(), p.getLocation(), p.isPPR(), year);
                 for(int j = 0; j < payments.size(); j++){ 
                     if(p.getOwner().equals((payments.get(j)).getOwner()) && p.getAddress().equals((payments.get(j)).getAddress())){
@@ -230,5 +231,33 @@ public class PropertyTax {
                 overDueTax += dueForYear;
             }
             return overDueTax;       
+        }
+        
+        public static void setLocationBase(int i, int rate) {
+            locationBase[i] = rate;
+        }
+        public static int[] getLocationBase() {
+            System.out.println("Location base");
+            for (int i =0; i < locationBase.length; i++) {
+                System.out.println(locationBase[i] + " ");
+            }
+            System.out.println();
+            return locationBase;
+        }
+
+        public static int getLocationBase1(int i) {
+            return locationBase[i];
+        }
+
+        public static void setRate(int i, double rate) {
+            PropertyTax.rate[i] = rate;
+        }
+        public static double[] getRate1() {
+            System.out.println("rate");
+            for (int i =0; i < rate.length; i++) {
+                System.out.println(rate[i] + " ");
+            }
+            System.out.println();
+            return rate;
         }
 }
