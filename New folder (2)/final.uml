@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="2719.0" y="3015.0">com</node>
+    <node x="2116.3125" y="1769.0">OverduePropertiesViewWindow</node>
+    <node x="1577.0" y="3015.0">netscape</node>
+    <node x="2932.7324304738977" y="303.0">readOrWriteFile</node>
+    <node x="641.0" y="1370.0">Owner</node>
+    <node x="2980.0125" y="2065.0">SearchByAddressWindow</node>
+    <node x="0.0" y="1769.0">BalancingStatementWindow</node>
+    <node x="732.0" y="1769.0">PreviousYearViewWindow</node>
+    <node x="3283.0125" y="1769.0">SearchByAddressViewWindow</node>
+    <node x="1007.0" y="3015.0">toolbarButtonGraphics</node>
+    <node x="3146.7625" y="1403.5">DeptEnvironment</node>
+    <node x="1235.3523905938641" y="1769.0">ConfirmBox</node>
+    <node x="2884.0" y="3015.0">sun</node>
+    <node x="1663.8125" y="2032.0">changeTaxesWindow</node>
+    <node x="1316.0" y="3015.0">groovyjarjarasm</node>
+    <node x="2546.0" y="3015.0">java</node>
+    <node x="1814.8096130135807" y="1780.5">ErrorWindow</node>
+    <node x="824.25" y="2065.0">PreviousYearsWindow</node>
+    <node x="2365.0" y="3015.0">javax</node>
+    <node x="40.0" y="3030.701171875">groovyjarjarpicocli</node>
+    <node x="2607.9124999999995" y="1966.0">viewChangeEffectsWindow</node>
+    <node x="3153.802578106316" y="483.0">Property</node>
+    <node x="557.25" y="2065.0">SearchByNameWindow</node>
+    <node x="1987.0" y="3015.0">images</node>
+    <node x="1823.9762796802472" y="849.0">PropertyTax</node>
+    <node x="1939.8125" y="2065.0">PropertyTaxOfAreaWindow</node>
+    <node x="3049.0" y="3015.0">org</node>
+    <node x="2400.3125" y="1780.5">Exception</node>
+    <node x="1348.8125" y="2010.0">PayWindow</node>
+    <node x="260.0" y="1769.0">ViewPropertiesWindow</node>
+    <node x="3214.0" y="3015.0">jdk</node>
+    <node x="1782.0" y="3015.0">META-INF</node>
+    <node x="2922.429166666666" y="0.0">Payment</node>
+    <node x="3483.5568352358027" y="2684.5">MenuSimulation</node>
+    <node x="2176.0" y="3015.0">groovy</node>
+    <node x="1044.25" y="2032.0">AddPropertiesWindow</node>
+    <node x="2765.5125" y="1769.0">ViewChangesEffectsViewWindow</node>
+    <node x="373.0" y="3020.701171875">groovyjarjarcommonscli</node>
+    <node x="488.0" y="1769.0">SearchByNameViewWindow</node>
+    <node x="3360.0568352358027" y="2053.5">MenuCLI</node>
+    <node x="730.0" y="3020.701171875">groovyjarjarantlr</node>
+    <node x="2355.9124999999995" y="2032.0">OverduePropertiesWindow</node>
+    <node x="1663.449800328538" y="2453.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Owner" target="readOrWriteFile">
+      <point x="-24.5" y="-149.5" />
+      <point x="763.5" y="1350.0" />
+      <point x="769.0" y="1350.0" />
+      <point x="769.0" y="443.0" />
+      <point x="2961.8752876167546" y="443.0" />
+      <point x="-174.8571428571429" y="60.0" />
+    </edge>
+    <edge source="SearchByAddressWindow" target="SearchByAddressViewWindow">
+      <point x="0.0" y="-49.5" />
+      <point x="3088.0125" y="1896.0" />
+      <point x="3345.0125" y="1896.0" />
+      <point x="-62.0" y="38.5" />
+    </edge>
+    <edge source="PayWindow" target="ErrorWindow">
+      <point x="73.75" y="-104.5" />
+      <point x="1570.0625" y="1926.0" />
+      <point x="1877.7262796802474" y="1926.0" />
+      <point x="-12.583333333333258" y="27.0" />
+    </edge>
+    <edge source="OverduePropertiesWindow" target="Main">
+      <point x="58.0" y="82.5" />
+      <point x="2529.9124999999995" y="2373.0" />
+      <point x="1828.7084210181933" y="2373.0" />
+      <point x="58.75862068965512" y="-258.5" />
+    </edge>
+    <edge source="PreviousYearViewWindow" target="Owner">
+      <point x="-56.0" y="-38.5" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="SearchByNameWindow" target="Main">
+      <point x="48.0" y="49.5" />
+      <point x="701.25" y="2373.0" />
+      <point x="1711.191179638883" y="2373.0" />
+      <point x="-58.75862068965512" y="-258.5" />
+    </edge>
+    <edge source="MenuCLI" target="Property">
+      <point x="66.5" y="-61.0" />
+      <point x="3559.5568352358027" y="1936.0" />
+      <point x="3695.4204461494196" y="1936.0" />
+      <point x="3695.4204461494196" y="819.0" />
+      <point x="3458.9525781063157" y="819.0" />
+      <point x="125.65000000000009" y="138.0" />
+    </edge>
+    <edge source="PreviousYearsWindow" target="ErrorWindow">
+      <point x="50.0" y="-49.5" />
+      <point x="974.25" y="1906.0" />
+      <point x="1827.392946346914" y="1906.0" />
+      <point x="-62.91666666666674" y="27.0" />
+    </edge>
+    <edge source="PayWindow" target="ConfirmBox">
+      <point x="-122.91666666666674" y="-104.5" />
+      <point x="1373.395833333333" y="1896.0" />
+      <point x="1342.2273905938641" y="1896.0" />
+      <point x="21.375" y="38.5" />
+    </edge>
+    <edge source="PreviousYearsWindow" target="PreviousYearViewWindow">
+      <point x="-50.0" y="-49.5" />
+      <point x="874.25" y="1946.0" />
+      <point x="900.0" y="1946.0" />
+      <point x="56.0" y="38.5" />
+    </edge>
+    <edge source="Property" target="readOrWriteFile">
+      <point x="-134.625" y="-138.0" />
+      <point x="3198.677578106316" y="463.0" />
+      <point x="3195.018144759612" y="463.0" />
+      <point x="58.28571428571422" y="60.0" />
+    </edge>
+    <edge source="changeTaxesWindow" target="ConfirmBox">
+      <point x="-85.0" y="-82.5" />
+      <point x="1706.3125" y="1876.0" />
+      <point x="1384.9773905938641" y="1876.0" />
+      <point x="64.125" y="38.5" />
+    </edge>
+    <edge source="viewChangeEffectsWindow" target="Exception">
+      <point x="-47.19999999999982" y="-148.5" />
+      <point x="2678.7124999999996" y="1886.0" />
+      <point x="2500.4124999999995" y="1886.0" />
+      <point x="28.59999999999991" y="27.0" />
+    </edge>
+    <edge source="PropertyTax" target="DeptEnvironment">
+      <point x="123.25" y="225.5" />
+      <point x="2193.726279680247" y="1340.0" />
+      <point x="3231.7625" y="1340.0" />
+      <point x="-85.0" y="-116.0" />
+    </edge>
+    <edge source="viewChangeEffectsWindow" target="DeptEnvironment">
+      <point x="47.19999999999982" y="-148.5" />
+      <point x="2773.1124999999993" y="1946.0" />
+      <point x="2755.0125" y="1946.0" />
+      <point x="2755.0125" y="1749.0" />
+      <point x="3278.9847222222215" y="1749.0" />
+      <point x="-37.77777777777783" y="116.0" />
+    </edge>
+    <edge source="Property" target="PropertyTax">
+      <point x="-17.949999999999818" y="138.0" />
+      <point x="3315.3525781063163" y="829.0" />
+      <point x="2255.3512796802474" y="829.0" />
+      <point x="184.87500000000023" y="-225.5" />
+    </edge>
+    <edge source="ViewChangesEffectsViewWindow" target="Main">
+      <point x="68.0" y="38.5" />
+      <point x="2969.5125" y="2403.0" />
+      <point x="1850.7429037768138" y="2403.0" />
+      <point x="80.79310344827582" y="-258.5" />
+    </edge>
+    <edge source="changeTaxesWindow" target="PropertyTax">
+      <point x="0.0" y="-82.5" />
+      <point x="1791.3125" y="1896.0" />
+      <point x="1764.892946346914" y="1896.0" />
+      <point x="1764.892946346914" y="1350.0" />
+      <point x="1947.2262796802472" y="1350.0" />
+      <point x="-123.25" y="225.5" />
+    </edge>
+    <edge source="MenuSimulation" target="MenuCLI">
+      <point x="-13.333333333333485" y="-27.0" />
+      <point x="3550.2235019024693" y="2413.0" />
+      <point x="3426.5568352358027" y="2413.0" />
+      <point x="-66.5" y="61.0" />
+    </edge>
+    <edge source="viewChangeEffectsWindow" target="ErrorWindow">
+      <point x="-94.40000000000009" y="-148.5" />
+      <point x="2631.5125" y="1896.0" />
+      <point x="1953.2262796802474" y="1896.0" />
+      <point x="62.91666666666674" y="27.0" />
+    </edge>
+    <edge source="SearchByAddressViewWindow" target="DeptEnvironment">
+      <point x="-82.66666666666652" y="-38.5" />
+      <point x="3324.345833333333" y="1749.0" />
+      <point x="3316.7625" y="1749.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="Main" target="changeTaxesWindow">
+      <point x="7.344827586206748" y="-258.5" />
+      <point x="1777.294627914745" y="2283.0" />
+      <point x="1727.5625" y="2283.0" />
+      <point x="-63.75" y="82.5" />
+    </edge>
+    <edge source="ConfirmBox" target="Main">
+      <point x="-21.375" y="38.5" />
+      <point x="1299.4773905938641" y="1896.0" />
+      <point x="1321.75" y="1896.0" />
+      <point x="1321.75" y="2313.0" />
+      <point x="1755.260145156124" y="2313.0" />
+      <point x="-14.68965517241395" y="-258.5" />
+    </edge>
+    <edge source="Main" target="OverduePropertiesWindow">
+      <point x="51.41379310344837" y="-258.5" />
+      <point x="1821.3635934319864" y="2363.0" />
+      <point x="2413.9124999999995" y="2363.0" />
+      <point x="-58.0" y="82.5" />
+    </edge>
+    <edge source="DeptEnvironment" target="Payment">
+      <point x="141.66666666666652" y="-116.0" />
+      <point x="3458.429166666666" y="1350.0" />
+      <point x="3523.302578106316" y="1350.0" />
+      <point x="3523.302578106316" y="263.0" />
+      <point x="3217.7148809523806" y="263.0" />
+      <point x="136.28571428571422" y="116.5" />
+    </edge>
+    <edge source="Property" target="Payment">
+      <point x="134.625" y="-138.0" />
+      <point x="3467.927578106316" y="463.0" />
+      <point x="3453.5360019024693" y="463.0" />
+      <point x="3453.5360019024693" y="273.0" />
+      <point x="3172.286309523809" y="273.0" />
+      <point x="90.85714285714266" y="116.5" />
+    </edge>
+    <edge source="MenuSimulation" target="DeptEnvironment">
+      <point x="40.0" y="-27.0" />
+      <point x="3603.5568352358027" y="2423.0" />
+      <point x="3717.4204461494196" y="2423.0" />
+      <point x="3717.4204461494196" y="1729.0" />
+      <point x="3430.095833333333" y="1729.0" />
+      <point x="113.33333333333303" y="116.0" />
+    </edge>
+    <edge source="groovyjarjarantlr" target="groovyjarjarantlr">
+      <point x="77.33333333333331" y="15.0" />
+      <point x="923.3333333333333" y="3090.701171875" />
+      <point x="690.0" y="3090.701171875" />
+      <point x="690.0" y="3025.701171875" />
+      <point x="-116.0" y="-10.0" />
+    </edge>
+    <edge source="Owner" target="PropertyTax">
+      <point x="122.5" y="-149.5" />
+      <point x="910.5" y="1340.0" />
+      <point x="1865.0596130135805" y="1340.0" />
+      <point x="-205.41666666666674" y="225.5" />
+    </edge>
+    <edge source="PropertyTax" target="Payment">
+      <point x="-184.87499999999977" y="-225.5" />
+      <point x="1885.6012796802474" y="779.0" />
+      <point x="758.0" y="779.0" />
+      <point x="758.0" y="273.0" />
+      <point x="3036.0005952380943" y="273.0" />
+      <point x="-45.42857142857156" y="116.5" />
+    </edge>
+    <edge source="DeptEnvironment" target="Property">
+      <point x="28.333333333333485" y="-116.0" />
+      <point x="3345.095833333333" y="1350.0" />
+      <point x="3363.7025781063157" y="1350.0" />
+      <point x="3363.7025781063157" y="829.0" />
+      <point x="3351.252578106316" y="829.0" />
+      <point x="17.949999999999818" y="138.0" />
+    </edge>
+    <edge source="SearchByNameViewWindow" target="Owner">
+      <point x="-56.0" y="-38.5" />
+      <point x="544.0" y="1739.0" />
+      <point x="742.7692307692307" y="1739.0" />
+      <point x="-45.23076923076928" y="149.5" />
+    </edge>
+    <edge source="Main" target="AddPropertiesWindow">
+      <point x="-29.379310344827672" y="-258.5" />
+      <point x="1740.5704899837106" y="2333.0" />
+      <point x="1111.0" y="2333.0" />
+      <point x="-66.75" y="82.5" />
+    </edge>
+    <edge source="groovyjarjarpicocli" target="groovyjarjarpicocli">
+      <point x="82.66666666666669" y="15.0" />
+      <point x="246.66666666666669" y="3100.701171875" />
+      <point x="0.0" y="3100.701171875" />
+      <point x="0.0" y="3035.701171875" />
+      <point x="-124.0" y="-10.0" />
+    </edge>
+    <edge source="PayWindow" target="Exception">
+      <point x="122.91666666666674" y="-104.5" />
+      <point x="1619.2291666666665" y="1936.0" />
+      <point x="2414.6125" y="1936.0" />
+      <point x="-57.19999999999982" y="27.0" />
+    </edge>
+    <edge source="PreviousYearViewWindow" target="Main">
+      <point x="-56.0" y="38.5" />
+      <point x="788.0" y="1946.0" />
+      <point x="813.75" y="1946.0" />
+      <point x="813.75" y="2363.0" />
+      <point x="1718.5360072250896" y="2363.0" />
+      <point x="-51.41379310344837" y="-258.5" />
+    </edge>
+    <edge source="OverduePropertiesViewWindow" target="Main">
+      <point x="-66.0" y="38.5" />
+      <point x="2182.3125" y="2353.0" />
+      <point x="1814.0187658457794" y="2353.0" />
+      <point x="44.068965517241395" y="-258.5" />
+    </edge>
+    <edge source="MenuCLI" target="Exception">
+      <point x="-110.83333333333348" y="-61.0" />
+      <point x="3382.2235019024693" y="1876.0" />
+      <point x="2529.0125" y="1876.0" />
+      <point x="57.19999999999982" y="27.0" />
+    </edge>
+    <edge source="BalancingStatementWindow" target="Main">
+      <point x="-60.0" y="38.5" />
+      <point x="60.0" y="1946.0" />
+      <point x="137.0481187607072" y="1946.0" />
+      <point x="137.0481187607072" y="2433.0" />
+      <point x="1667.1222141216417" y="2433.0" />
+      <point x="-102.82758620689651" y="-258.5" />
+    </edge>
+    <edge source="Main" target="PayWindow">
+      <point x="-7.344827586206975" y="-258.5" />
+      <point x="1762.604972742331" y="2303.0" />
+      <point x="1422.5625" y="2303.0" />
+      <point x="-73.75" y="104.5" />
+    </edge>
+    <edge source="Main" target="SearchByAddressWindow">
+      <point x="88.13793103448279" y="-258.5" />
+      <point x="1858.0877313630208" y="2413.0" />
+      <point x="3034.0125" y="2413.0" />
+      <point x="-54.0" y="49.5" />
+    </edge>
+    <edge source="viewChangeEffectsWindow" target="ViewChangesEffectsViewWindow">
+      <point x="94.40000000000009" y="-148.5" />
+      <point x="2820.3125" y="1946.0" />
+      <point x="2833.5125" y="1946.0" />
+      <point x="-68.0" y="38.5" />
+    </edge>
+    <edge source="readOrWriteFile" target="Property">
+      <point x="116.57142857142844" y="60.0" />
+      <point x="3253.303859045326" y="463.0" />
+      <point x="3288.427578106316" y="463.0" />
+      <point x="-44.875" y="-138.0" />
+    </edge>
+    <edge source="viewChangeEffectsWindow" target="Main">
+      <point x="59.0" y="148.5" />
+      <point x="2784.9124999999995" y="2393.0" />
+      <point x="1843.3980761906073" y="2393.0" />
+      <point x="73.44827586206907" y="-258.5" />
+    </edge>
+    <edge source="ViewPropertiesWindow" target="Owner">
+      <point x="-52.0" y="-38.5" />
+      <point x="312.0" y="1719.0" />
+      <point x="697.5384615384614" y="1719.0" />
+      <point x="-90.46153846153845" y="149.5" />
+    </edge>
+    <edge source="PropertyTaxOfAreaWindow" target="Main">
+      <point x="58.0" y="49.5" />
+      <point x="2113.8125" y="2343.0" />
+      <point x="1806.6739382595724" y="2343.0" />
+      <point x="36.72413793103442" y="-258.5" />
+    </edge>
+    <edge source="SearchByNameViewWindow" target="Main">
+      <point x="-56.0" y="38.5" />
+      <point x="544.0" y="1946.0" />
+      <point x="546.75" y="1946.0" />
+      <point x="546.75" y="2393.0" />
+      <point x="1696.5015244664692" y="2393.0" />
+      <point x="-73.44827586206907" y="-258.5" />
+    </edge>
+    <edge source="PropertyTax" target="readOrWriteFile">
+      <point x="-61.62499999999977" y="-225.5" />
+      <point x="2008.8512796802474" y="463.0" />
+      <point x="3078.4467161881835" y="463.0" />
+      <point x="-58.28571428571422" y="60.0" />
+    </edge>
+    <edge source="Main" target="PropertyTaxOfAreaWindow">
+      <point x="29.379310344827672" y="-258.5" />
+      <point x="1799.329110673366" y="2333.0" />
+      <point x="1997.8125" y="2333.0" />
+      <point x="-58.0" y="49.5" />
+    </edge>
+    <edge source="AddPropertiesWindow" target="ErrorWindow">
+      <point x="89.0" y="-82.5" />
+      <point x="1266.75" y="1916.0" />
+      <point x="1852.5596130135807" y="1916.0" />
+      <point x="-37.75" y="27.0" />
+    </edge>
+    <edge source="ErrorWindow" target="Main">
+      <point x="12.583333333333258" y="27.0" />
+      <point x="1902.892946346914" y="1926.0" />
+      <point x="1929.3125" y="1926.0" />
+      <point x="1929.3125" y="2323.0" />
+      <point x="1791.984283087159" y="2323.0" />
+      <point x="22.034482758620697" y="-258.5" />
+    </edge>
+    <edge source="Main" target="SearchByNameWindow">
+      <point x="-66.10344827586209" y="-258.5" />
+      <point x="1703.8463520526761" y="2383.0" />
+      <point x="605.25" y="2383.0" />
+      <point x="-48.0" y="49.5" />
+    </edge>
+    <edge source="Main" target="PreviousYearsWindow">
+      <point x="-44.068965517241395" y="-258.5" />
+      <point x="1725.8808348112966" y="2353.0" />
+      <point x="874.25" y="2353.0" />
+      <point x="-50.0" y="49.5" />
+    </edge>
+    <edge source="PreviousYearsWindow" target="Main">
+      <point x="50.0" y="49.5" />
+      <point x="974.25" y="2343.0" />
+      <point x="1733.2256623975036" y="2343.0" />
+      <point x="-36.72413793103465" y="-258.5" />
+    </edge>
+    <edge source="DeptEnvironment" target="readOrWriteFile">
+      <point x="-28.333333333333485" y="-116.0" />
+      <point x="3288.429166666666" y="1330.0" />
+      <point x="3143.302578106316" y="1330.0" />
+      <point x="3143.302578106316" y="463.0" />
+      <point x="3136.7324304738977" y="463.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="PropertyTax" target="Property">
+      <point x="61.62500000000023" y="-225.5" />
+      <point x="2132.1012796802474" y="819.0" />
+      <point x="3279.4525781063157" y="819.0" />
+      <point x="-53.84999999999991" y="138.0" />
+    </edge>
+    <edge source="Main" target="viewChangeEffectsWindow">
+      <point x="66.10344827586209" y="-258.5" />
+      <point x="1836.0532486044003" y="2383.0" />
+      <point x="2666.9124999999995" y="2383.0" />
+      <point x="-59.0" y="148.5" />
+    </edge>
+    <edge source="DeptEnvironment" target="PropertyTax">
+      <point x="-141.66666666666652" y="-116.0" />
+      <point x="3175.095833333333" y="1350.0" />
+      <point x="2111.5596130135805" y="1350.0" />
+      <point x="41.08333333333326" y="225.5" />
+    </edge>
+    <edge source="PropertyTaxOfAreaWindow" target="PropertyTax">
+      <point x="0.0" y="-49.5" />
+      <point x="2055.8125" y="1350.0" />
+      <point x="2029.392946346914" y="1350.0" />
+      <point x="-41.08333333333326" y="225.5" />
+    </edge>
+    <edge source="Owner" target="Payment">
+      <point x="-122.5" y="-149.5" />
+      <point x="665.5" y="1340.0" />
+      <point x="736.0" y="1340.0" />
+      <point x="736.0" y="253.0" />
+      <point x="2945.143452380952" y="253.0" />
+      <point x="-136.28571428571422" y="116.5" />
+    </edge>
+    <edge source="SearchByAddressViewWindow" target="Property">
+      <point x="82.66666666666652" y="-38.5" />
+      <point x="3489.679166666666" y="1749.0" />
+      <point x="3534.302578106316" y="1749.0" />
+      <point x="3534.302578106316" y="829.0" />
+      <point x="3423.052578106316" y="829.0" />
+      <point x="89.75" y="138.0" />
+    </edge>
+    <edge source="MenuCLI" target="DeptEnvironment">
+      <point x="-22.166666666666515" y="-61.0" />
+      <point x="3470.890168569136" y="1916.0" />
+      <point x="3541.5125" y="1916.0" />
+      <point x="3541.5125" y="1739.0" />
+      <point x="3392.3180555555555" y="1739.0" />
+      <point x="75.55555555555566" y="116.0" />
+    </edge>
+    <edge source="BalancingStatementWindow" target="Owner">
+      <point x="-60.0" y="-38.5" />
+      <point x="60.0" y="1699.0" />
+      <point x="652.3076923076924" y="1699.0" />
+      <point x="-135.69230769230774" y="149.5" />
+    </edge>
+    <edge source="groovyjarjarcommonscli" target="groovyjarjarcommonscli">
+      <point x="90.66666666666669" y="15.0" />
+      <point x="599.6666666666667" y="3090.701171875" />
+      <point x="333.0" y="3090.701171875" />
+      <point x="333.0" y="3025.701171875" />
+      <point x="-136.0" y="-10.0" />
+    </edge>
+    <edge source="changeTaxesWindow" target="Main">
+      <point x="63.75" y="82.5" />
+      <point x="1855.0625" y="2313.0" />
+      <point x="1784.639455500952" y="2313.0" />
+      <point x="14.689655172413723" y="-258.5" />
+    </edge>
+    <edge source="AddPropertiesWindow" target="ConfirmBox">
+      <point x="0.0" y="-82.5" />
+      <point x="1177.75" y="1896.0" />
+      <point x="1256.7273905938641" y="1896.0" />
+      <point x="-64.125" y="38.5" />
+    </edge>
+    <edge source="OverduePropertiesWindow" target="Exception">
+      <point x="0.0" y="-82.5" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="PayWindow" target="Main">
+      <point x="73.75" y="104.5" />
+      <point x="1570.0625" y="2293.0" />
+      <point x="1769.949800328538" y="2293.0" />
+      <point x="0.0" y="-258.5" />
+    </edge>
+    <edge source="Main" target="ViewPropertiesWindow">
+      <point x="-88.13793103448279" y="-258.5" />
+      <point x="1681.8118692940552" y="2413.0" />
+      <point x="373.0481187607072" y="2413.0" />
+      <point x="373.0481187607072" y="1946.0" />
+      <point x="312.0" y="1946.0" />
+      <point x="-52.0" y="38.5" />
+    </edge>
+    <edge source="MenuCLI" target="PropertyTax">
+      <point x="22.166666666666515" y="-61.0" />
+      <point x="3515.2235019024693" y="1926.0" />
+      <point x="3640.253779482753" y="1926.0" />
+      <point x="3640.253779482753" y="1320.0" />
+      <point x="2275.892946346914" y="1320.0" />
+      <point x="205.41666666666674" y="225.5" />
+    </edge>
+    <edge source="changeTaxesWindow" target="Exception">
+      <point x="85.0" y="-82.5" />
+      <point x="1876.3125" y="1946.0" />
+      <point x="2443.2124999999996" y="1946.0" />
+      <point x="-28.59999999999991" y="27.0" />
+    </edge>
+    <edge source="AddPropertiesWindow" target="readOrWriteFile">
+      <point x="-89.0" y="-82.5" />
+      <point x="1088.75" y="453.0" />
+      <point x="3020.1610019024693" y="453.0" />
+      <point x="-116.57142857142844" y="60.0" />
+    </edge>
+    <edge source="AddPropertiesWindow" target="Main">
+      <point x="66.75" y="82.5" />
+      <point x="1244.5" y="2323.0" />
+      <point x="1747.9153175699175" y="2323.0" />
+      <point x="-22.034482758620697" y="-258.5" />
+    </edge>
+    <edge source="OverduePropertiesWindow" target="ErrorWindow">
+      <point x="-92.80000000000018" y="-82.5" />
+      <point x="2379.1124999999993" y="1916.0" />
+      <point x="1928.0596130135807" y="1916.0" />
+      <point x="37.75" y="27.0" />
+    </edge>
+    <edge source="ViewPropertiesWindow" target="Main">
+      <point x="52.0" y="38.5" />
+      <point x="416.0" y="1946.0" />
+      <point x="380.3929463469142" y="1946.0" />
+      <point x="380.3929463469142" y="2403.0" />
+      <point x="1689.1566968802622" y="2403.0" />
+      <point x="-80.79310344827582" y="-258.5" />
+    </edge>
+    <edge source="OverduePropertiesWindow" target="OverduePropertiesViewWindow">
+      <point x="-46.40000000000009" y="-82.5" />
+      <point x="2425.5125" y="1906.0" />
+      <point x="2314.3125" y="1906.0" />
+      <point x="66.0" y="38.5" />
+    </edge>
+    <edge source="PayWindow" target="Owner">
+      <point x="-73.75" y="-104.5" />
+      <point x="1422.5625" y="1896.0" />
+      <point x="1438.4565572605306" y="1896.0" />
+      <point x="1438.4565572605306" y="1739.0" />
+      <point x="833.2307692307693" y="1739.0" />
+      <point x="45.23076923076928" y="149.5" />
+    </edge>
+    <edge source="MenuCLI" target="Owner">
+      <point x="-66.5" y="-61.0" />
+      <point x="3426.5568352358027" y="1866.0" />
+      <point x="3272.5125" y="1866.0" />
+      <point x="3272.5125" y="1689.0" />
+      <point x="923.6923076923078" y="1689.0" />
+      <point x="135.69230769230785" y="149.5" />
+    </edge>
+    <edge source="Main" target="BalancingStatementWindow">
+      <point x="-95.48275862068954" y="-258.5" />
+      <point x="1674.4670417078487" y="2423.0" />
+      <point x="144.3929463469142" y="2423.0" />
+      <point x="144.3929463469142" y="1946.0" />
+      <point x="180.0" y="1946.0" />
+      <point x="60.0" y="38.5" />
+    </edge>
+    <edge source="Owner" target="Property">
+      <point x="73.5" y="-149.5" />
+      <point x="861.5" y="1340.0" />
+      <point x="791.0" y="1340.0" />
+      <point x="791.0" y="799.0" />
+      <point x="3207.6525781063156" y="799.0" />
+      <point x="-125.65000000000009" y="138.0" />
+    </edge>
+    <edge source="MenuSimulation" target="Owner">
+      <point x="-40.0" y="-27.0" />
+      <point x="3523.5568352358027" y="2423.0" />
+      <point x="3228.5125" y="2423.0" />
+      <point x="3228.5125" y="1699.0" />
+      <point x="901.0769230769231" y="1699.0" />
+      <point x="113.0769230769231" y="149.5" />
+    </edge>
+    <edge source="SearchByAddressViewWindow" target="Main">
+      <point x="62.0" y="38.5" />
+      <point x="3469.0125" y="1906.0" />
+      <point x="3206.5125" y="1906.0" />
+      <point x="3206.5125" y="2433.0" />
+      <point x="1872.7773865354347" y="2433.0" />
+      <point x="102.82758620689651" y="-258.5" />
+    </edge>
+    <edge source="OverduePropertiesWindow" target="DeptEnvironment">
+      <point x="46.40000000000009" y="-82.5" />
+      <point x="2518.3125" y="1936.0" />
+      <point x="2606.5398905938637" y="1936.0" />
+      <point x="2606.5398905938637" y="1719.0" />
+      <point x="3165.6513888888885" y="1719.0" />
+      <point x="-151.1111111111113" y="116.0" />
+    </edge>
+    <edge source="readOrWriteFile" target="Payment">
+      <point x="-102.0" y="-60.0" />
+      <point x="3034.7324304738977" y="283.0" />
+      <point x="3081.429166666666" y="283.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+    <edge source="SearchByNameWindow" target="SearchByNameViewWindow">
+      <point x="0.0" y="-49.5" />
+      <point x="653.25" y="1946.0" />
+      <point x="656.0" y="1946.0" />
+      <point x="56.0" y="38.5" />
+    </edge>
+    <edge source="SearchByAddressWindow" target="Main">
+      <point x="54.0" y="49.5" />
+      <point x="3142.0125" y="2423.0" />
+      <point x="1865.4325589492278" y="2423.0" />
+      <point x="95.48275862068976" y="-258.5" />
+    </edge>
+    <edge source="PayWindow" target="Property">
+      <point x="24.583333333333258" y="-104.5" />
+      <point x="1520.895833333333" y="1886.0" />
+      <point x="1460.4565572605306" y="1886.0" />
+      <point x="1460.4565572605306" y="809.0" />
+      <point x="3243.552578106316" y="809.0" />
+      <point x="-89.75" y="138.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.30000000000000004" x="-51.35910665780784" y="541.4243830928291" />
+  <SelectedNodes>
+    <node>com</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
