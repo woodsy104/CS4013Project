@@ -169,7 +169,7 @@ public class GUI extends Application {
 		overdueButton = new Button("Balancing Statement");
 		overdueButton.prefWidthProperty().bind(Bindings.divide(layoutOwner.widthProperty(), 3.0));
 		overdueButton.prefHeightProperty().bind(Bindings.divide(layoutOwner.heightProperty(), 6.0));
-		overdueButton.setOnAction(e -> BalancingStatementWindow.display("This will display any overdue payments"));
+		overdueButton.setOnAction(e -> BalancingStatementWindow.display());
 
 
 		/*
@@ -179,9 +179,7 @@ public class GUI extends Application {
 		payButton = new Button("Make a Payment");
 		payButton.prefWidthProperty().bind(Bindings.divide(layoutOwner.widthProperty(), 3.0));
 		payButton.prefHeightProperty().bind(Bindings.divide(layoutOwner.heightProperty(), 6.0));
-		payButton.setOnAction(e -> PayWindow.display("This will create a form for you to make payments "
-				+ "should also display a list of the houses so they can select which one they want to pay for, "
-				+ "perhaps clicking on that house?"));
+		payButton.setOnAction(e -> PayWindow.display());
 
 
 		/*
@@ -282,7 +280,7 @@ public class GUI extends Application {
 		changeTaxes.setWrapText(true);
 		changeTaxes.prefWidthProperty().bind(Bindings.divide(layoutAdmin.widthProperty(), 3.0));
 		changeTaxes.prefHeightProperty().bind(Bindings.divide(layoutAdmin.heightProperty(), 6.0));
-		changeTaxes.setOnAction(e -> changeTaxesWindow.display(""));
+		changeTaxes.setOnAction(e -> changeTaxesWindow.display());
 
 
 		/*
@@ -294,7 +292,7 @@ public class GUI extends Application {
 		viewChangeEffects.setWrapText(true);
 		viewChangeEffects.prefWidthProperty().bind(Bindings.divide(layoutAdmin.widthProperty(), 3.0));
 		viewChangeEffects.prefHeightProperty().bind(Bindings.divide(layoutAdmin.heightProperty(), 6.0));
-		viewChangeEffects.setOnAction(e -> viewChangeEffectsWindow.display("This will be where view the effects of changing tax rates"));
+		viewChangeEffects.setOnAction(e -> viewChangeEffectsWindow.display());
 
 
 		/*

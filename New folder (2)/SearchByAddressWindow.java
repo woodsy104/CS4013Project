@@ -9,15 +9,23 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+/**
+ * 
+ * class to search by an address for the admin
+ *
+ */
 public class SearchByAddressWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
+	/**
+	 * 
+	 * @param message takes the input when the method was called and uses that as a label 
+	 */
 	public static void display(String message) {
 		Stage searchByAddress = new Stage();
 		
 		searchByAddress.initModality(Modality.APPLICATION_MODAL);
-		searchByAddress.setTitle("");
+		searchByAddress.setTitle("Search by address");
 		searchByAddress.setMinWidth(400);
 		searchByAddress.setMinHeight(300);
 
@@ -34,11 +42,13 @@ public class SearchByAddressWindow {
 
 
 
-
+/*
+ * on button click opens up the view and passes the address from the textfield as a string
+ */
 
 		Button seeProperties = new Button("See properties");
 		seeProperties.setOnAction(e -> {
-			System.out.println(getAddress(address));
+			//System.out.println(getAddress(address));
 			SearchByAddressViewWindow.display((getAddress(address)), getAddress(address));
 			
 		});
@@ -49,7 +59,7 @@ public class SearchByAddressWindow {
 
 		Scene scene = new Scene(layout);
 		searchByAddress.setScene(scene);
-		/**
+		/*
 		 * Read the size of the window and then set the variable fontsize 
 		 * to change as the window gets bigger or smaller
 		 */
@@ -58,7 +68,7 @@ public class SearchByAddressWindow {
 		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
 		
 		
-		/**
+		/*
 		 * Gets the style of the font from the style sheet "styles.css"
 		 * 
 		 */
@@ -67,7 +77,11 @@ public class SearchByAddressWindow {
 
 
 	}
-
+	/**
+	 * 
+	 * @param address takes ithe input from the address textfield 
+	 * @return the textfield as a string
+	 */
 	private static String getAddress(TextField address) {
 		String addressOut = address.getText();
 

@@ -18,12 +18,15 @@ import javafx.stage.Stage;
 */
 public class AddPropertiesWindow {
 	
-	/**
+	/*
 	 * Creates a DoubleProperty variable called fontsize to get bigger or smaller as the window gets bigger
 	 * 
 	 */
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
+	/**
+	 * displays the window
+	 */
 	public static void display() {
 		Stage addProps = new Stage();
 
@@ -69,9 +72,6 @@ public class AddPropertiesWindow {
 		//default value
 		location.setValue("City");
 		
-		//Will need this is my pay window
-		//Listen for selection change
-		//location.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> System.out.println(newValue) );
 		
 		//Main residence or not
 		
@@ -156,33 +156,51 @@ public class AddPropertiesWindow {
 		addProps.setScene(scene);
 		addProps.showAndWait();	
 	}
-
+	
+	/**
+	 * 
+	 * @param text checks if the textfield is empty in addressLine1
+	 * @param message displays the error window stating the line that is the problem
+	 * @return true if there is text and false if it is empty
+	 */
 	private static boolean isText(String text, String message) {
 		if (text.isEmpty() == false) {
-			System.out.println(text);
 			return true;
 		} else {
-			System.out.println("ERROR: " + message);
+			ErrorWindow.display(message);
 			return false;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param input checks if the textfield is empty in marketValue
+	 * @param message displays the error window stating the line that is the problem
+	 * @return true if it contains a double and false otherwise
+	 */
 	private static boolean isValue(TextField input, String message) {
 		try {
 			double value = Double.parseDouble(input.getText());
-			System.out.println("Expected Value is: " + value);
 			return true;		
 		} catch(NumberFormatException e) {
-			System.out.println("ERROR: " + message);
+			ErrorWindow.display(message);
 			return false;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param location takes in the location selected in the choicebox
+	 * @return the location as a string
+	 */
 	private static String getChoice(ChoiceBox<String> location) {
 		String choice = location.getValue();
 		return choice;
 	}
 	
+	/**
+	 * 
+	 * @param mainRes takes in your choice in the choicebox mainRes
+	 * @return the choice selected as a string
+	 */
 	private static boolean getChoice2(ChoiceBox<String> mainRes) {
 		String choice = mainRes.getValue();
 		if (choice == "Yes") {

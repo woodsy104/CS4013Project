@@ -12,12 +12,18 @@ import java.io.FileNotFoundException;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+/**
+ * 
+ * class to let the admin to see the effect that changing the tax rates will do 
+ *
+ */
 public class viewChangeEffectsWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
-
-	public static void display(String message) {
+/**
+ * displays the scene 
+ */
+	public static void display() {
 		
 		
 		DeptEnvironment deptOfEnvironment = new DeptEnvironment();
@@ -63,7 +69,10 @@ public class viewChangeEffectsWindow {
 		
 
 	
-		
+		/*
+		 * on button press checks if there is an input in all the fields and then sends that to
+		 * ViewChangesEffectsViewWindow as a paramater to display in the next scene
+		 */
 		Button viewChangesButton = new Button("view the changes");
 		viewChangesButton.setOnAction(e -> {
 			if (cityInputTrue(cityInput) && lTownInputTrue(lTownInput) && sTownInputTrue(sTownInput) 
@@ -88,8 +97,8 @@ public class viewChangeEffectsWindow {
 		GridPane layout = new GridPane();
 
 		layout.setPadding(new Insets(20, 20, 20, 20));
-		//auto change font size
-		/**
+	
+		/*
 		 * Read the size of the window and then set the variable fontsize 
 		 * to change as the window gets bigger or smaller
 		 */
@@ -122,7 +131,7 @@ public class viewChangeEffectsWindow {
 
 		Scene scene = new Scene(layout);
 		
-		/**
+		/*
 		 * Gets the style of the font from the style sheet "styles.css"
 		 * 
 		 */
@@ -131,12 +140,21 @@ public class viewChangeEffectsWindow {
 		viewChanges.setScene(scene);
 		viewChanges.showAndWait();
 	}
-	
+	/**
+	 * 
+	 * @param cityInput takes the input in the city and convert it to an int
+	 * @return the input as an int
+	 */
 	private static int cityInput(TextField cityInput) {
 		int cityOut = Integer.parseInt(cityInput.getText());
 		return cityOut;
 	}
 	
+	/**
+	 * 
+	 * @param cityInput takes the input in the textfield 
+	 * @return true if there is an int in the field otherwise returns false
+	 */
 	private static boolean cityInputTrue(TextField cityInput) {
 		try {
 			int cityInputTrue = Integer.parseInt(cityInput.getText());
@@ -148,11 +166,21 @@ public class viewChangeEffectsWindow {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param lTownInput takes the input in the large town and convert it to an int
+	 * @return the input as an int
+	 */
 	private static int lTownInput(TextField lTownInput) {
 		int lTownOut = Integer.parseInt(lTownInput.getText());
 		return lTownOut;
 	}
 	
+	/**
+	 * 
+	 * @param lTownInputTrue takes the input in the textfield 
+	 * @return true if there is an int in the field otherwise returns false
+	 */
 	private static boolean lTownInputTrue(TextField lTownInput) {
 		try {
 			int lTownOut = Integer.parseInt(lTownInput.getText());
@@ -168,11 +196,21 @@ public class viewChangeEffectsWindow {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param sTownInput takes the input in the small town and convert it to an int
+	 * @return the input as an int
+	 */
 	private static int sTownInput(TextField sTownInput) {
 		int sTownOut = Integer.parseInt(sTownInput.getText());
 		return sTownOut;
 	}
 	
+	/**
+	 * 
+	 * @param sTownInputTrue takes the input in the textfield 
+	 * @return true if there is an int in the field otherwise returns false
+	 */
 	private static boolean sTownInputTrue(TextField sTownInput) {
 		try {
 			int sTownOut = Integer.parseInt(sTownInput.getText());
@@ -184,12 +222,21 @@ public class viewChangeEffectsWindow {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @param villageInput takes the input in the village and convert it to an int
+	 * @return the input as an int
+	 */
 	private static int villageInput(TextField villageInput) {
 		int villageOut = Integer.parseInt(villageInput.getText());
 		return villageOut;
 	}
 	
+	/**
+	 * 
+	 * @param villageInput takes the input in the textfield 
+	 * @return true if there is an int in the field otherwise returns false
+	 */
 	private static boolean villageInputTrue(TextField villageInput) {
 		try {
 			int villageOut = Integer.parseInt(villageInput.getText());
@@ -201,11 +248,21 @@ public class viewChangeEffectsWindow {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param countrySideInput takes the input in the countryside and convert it to an int
+	 * @return the input as an int
+	 */
 	private static int countrySideInput(TextField countrySideInput) {
 		int countrySideOut = Integer.parseInt(countrySideInput.getText());
 		return countrySideOut;
 	}
 	
+	/**
+	 * 
+	 * @param countrySideInput takes the input in the textfield 
+	 * @return true if there is an int in the field otherwise returns false
+	 */
 	private static boolean countrySideTrue(TextField countrySideInput) {
 		try {
 			int countrySideOut = Integer.parseInt(countrySideInput.getText());

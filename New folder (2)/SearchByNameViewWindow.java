@@ -8,10 +8,18 @@ import javafx.stage.Stage;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+/**
+ * 
+ * Class to view the results from searching for a user by name
+ *
+ */
 public class SearchByNameViewWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
-
+/**
+ * 
+ * @param title takes the name of the person that was searched for and displays it as title
+ * @param name takes the name of the person that was searched for and uses that to display the list of properties owned by that person
+ */
 	public static void display(String title, String name) {
 		Stage searchByNameView = new Stage();
 		
@@ -64,12 +72,7 @@ public class SearchByNameViewWindow {
 		searchByNameView.setScene(scene);
 		searchByNameView.showAndWait();
 	
-		
-		
-		
-		
-		
-		
+
 		
 	}
 }

@@ -12,16 +12,20 @@ import java.util.ArrayList;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+/**
+ * 
+ * class to pay for a property
+ *
+ */
 public class PayWindow {
 
 	static ListView<String> listView;	
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
 
-
-
-
-	public static void display(String message) {
+	/**
+	 * displays the scene
+	 */
+	public static void display() {
 		Stage Pay= new Stage();
 
 		Pay.initModality(Modality.APPLICATION_MODAL);
@@ -32,6 +36,12 @@ public class PayWindow {
 		label.setText("Select the houses you wish to pay for:\n");
 		label.setWrapText(true);
 
+		
+		/*
+		 * returns the properties owned as a list so that the user can easily scroll through and view all 
+		 * also adds a letter for each property so they can pay for it easily by inputting the letter
+		 * 
+		 */
 		listView = new ListView<>();
 		Owner owner = new Owner(GUI.getOwnerNameText());
 		char j = 'A';
@@ -91,7 +101,11 @@ public class PayWindow {
 		Pay.showAndWait();
 	}
 
-
+	/**
+	 * 
+	 * @param input takes the amount you want to pay and checks if it was filled and if it can be converted to a double
+	 * @return true if it can be converted to a double and false if it cant
+	 */
 	private static boolean isValue(TextField input) {
 		try {
 			double value = Double.parseDouble(input.getText());
@@ -103,13 +117,21 @@ public class PayWindow {
 
 	}
 
-
+/**
+ * 
+ * @param input takes the amount you want to pay and converts it to a double
+ * @return the input as a double
+ */
 	private static double amountToPay(TextField input) {
 		double value = Double.parseDouble(input.getText());
 		return value;
 	}
 
-
+/**
+ * 
+ * @param input checks if the letter inputted is a singular character
+ * @return	if it is returns true otherwise returns false
+ */
 	private static boolean getCharTrue(TextField input) {
 		try {
 
@@ -130,6 +152,11 @@ public class PayWindow {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param input gets the character inputted 
+	 * @return the character inputted as a char
+	 */
 	private static char getChar(TextField input) {
 		String in = input.getText();
 		String out = in.toUpperCase();
@@ -139,17 +166,21 @@ public class PayWindow {
 
 
 
-
+/**
+ * 
+ * @param choices 
+ * @param h	gets the character inputted 
+ * @return	the property selected 
+ */
 	private static Property getChoice(ArrayList<Property> choices, char h){ //offer choice
-		boolean literallyAnything = true;
-		//try ???????? catch ????????
-			while (literallyAnything){
+		boolean truth = true;
+			while (truth){
 				int n = h - 'A';
 				if (0 <= n && n < choices.size()){
 					System.out.println(choices.get(n));
 					return choices.get(n);
 				} else {
-					literallyAnything =false;
+					truth =false;
 					ErrorWindow.display("No such property exists at " + h);
 				}
 			}

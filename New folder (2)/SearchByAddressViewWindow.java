@@ -11,10 +11,18 @@ import java.util.ArrayList;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+/**
+ * 
+ * class to let the admin see the results of searching by an address
+ *
+ */
 public class SearchByAddressViewWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
-
+/**
+ * 
+ * @param title takes in the address of the property to display it as the title of the webpage
+ * @param address takes in the address to use it to getTaxDataForProperty 
+ */
 	public static void display(String title, String address) {
 		Stage searchByAddressView = new Stage();
 
@@ -53,7 +61,7 @@ public class SearchByAddressViewWindow {
 		Scene scene = new Scene(layout);
 		searchByAddressView.setScene(scene);
 		
-		/**
+		/*
 		 * Read the size of the window and then set the variable fontsize 
 		 * to change as the window gets bigger or smaller
 		 */
@@ -62,13 +70,15 @@ public class SearchByAddressViewWindow {
 		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
 		
 		
-		/**
+		/*
 		 * Gets the style of the font from the style sheet "styles.css"
 		 * 
 		 */
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 
-
+	/*
+	 * displays the property
+	 */
 		searchByAddressView.showAndWait();
 
 

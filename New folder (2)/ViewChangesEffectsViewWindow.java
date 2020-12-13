@@ -8,10 +8,17 @@ import javafx.stage.Stage;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+/**
+ * 
+ * Class to view the effects of changing taxes
+ *
+ */
 public class ViewChangesEffectsViewWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
-
+/**
+ * displays the scene
+ * @param message displays the message that got inputted in ViewChangesEffectsWindow
+ */
 	public static void display(String message) {
 		Stage viewChangesEffectsView = new Stage();
 	
@@ -23,10 +30,6 @@ public class ViewChangesEffectsViewWindow {
 
 		Label label = new Label();
 		label.setText("these are the effects of changing tax:\n");
-		
-	
-	
-		
 		
 		Label properties1 = new Label();
 		label.setText(message);
@@ -54,13 +57,7 @@ public class ViewChangesEffectsViewWindow {
 		 */
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		viewChangesEffectsView.showAndWait();
-	
-		
-		
-		
-		
-		
-		
+
 		
 	}
 }

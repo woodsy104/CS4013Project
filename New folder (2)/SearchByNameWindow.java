@@ -8,10 +8,18 @@ import javafx.stage.Stage;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-
+/**
+ * 
+ * class to allow the admin search by name
+ *
+ */
 public class SearchByNameWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
-
+	
+/**
+ * 
+ * @param message takes string passed previously and uses it to display the label
+ */
 	public static void display(String message) {
 		Stage searchByName = new Stage();
 		
@@ -31,6 +39,11 @@ public class SearchByNameWindow {
 		name.setMaxWidth(120);
 		name.setPromptText("Sean Ryan");
 
+		
+		/*
+		 * on button press get the name from the text field and pass those into the 
+		 * SearchByNameViewWindow 
+		 */
 		Button closeButton = new Button("See properties");
 		closeButton.setOnAction(e -> {
 			SearchByNameViewWindow.display((getName(name)), getName(name));
@@ -65,7 +78,11 @@ public class SearchByNameWindow {
 
 
 	}
-
+	/**
+	 * 
+	 * @param name takes the input from the name field 
+	 * @return the input as a string
+	 */
 	private static String getName(TextField name) {
 		String nameOut = name.getText();
 

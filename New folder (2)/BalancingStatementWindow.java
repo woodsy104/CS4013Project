@@ -11,11 +11,19 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-//OWNER
 
+/**
+ * 
+ * class to let the user see their balancing statement
+ *
+ */
 public class BalancingStatementWindow {
 	private static DoubleProperty fontSize = new SimpleDoubleProperty(4);
-	public static void display(String message) {
+	
+	/**
+	 * displays the scene to view the balancing statemtn
+	 */
+	public static void display() {
 		Stage OverduePayments = new Stage();
 
 		OverduePayments.initModality(Modality.APPLICATION_MODAL);
@@ -23,7 +31,7 @@ public class BalancingStatementWindow {
 		OverduePayments.setMinWidth(400);
 
 		Label label = new Label();
-		label.setText("These are your payments that are overdue:\n" + message);
+		label.setText("This is your balancing statement:\n");
 
 		Owner owner = new Owner(GUI.getOwnerNameText());
 		Label balStatement = new Label();
@@ -44,7 +52,7 @@ public class BalancingStatementWindow {
 		layout.setAlignment(Pos.CENTER);
 		
 		
-		/**
+		/*
 		 * Read the size of the window and then set the variable fontsize 
 		 * to change as the window gets bigger or smaller
 		 */
@@ -53,7 +61,10 @@ public class BalancingStatementWindow {
 		layout.styleProperty().bind(Bindings.concat("-fx-font-size: ", fontSize.asString()));
 		
 		
-		
+		/*
+		 * 
+		 * displays the scene 
+		 */
 		Scene scene = new Scene(layout);
 		scene.getStylesheets().add(GUI.class.getResource("styles.css").toExternalForm());
 		OverduePayments.setScene(scene);
